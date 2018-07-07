@@ -5,10 +5,7 @@ import com.linkedin.database.repo.UserRepository;
 import com.linkedin.dto.BaseDto;
 import com.linkedin.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -21,9 +18,13 @@ public class UserController {
 
 	@PostMapping("/register")
 	@ResponseBody
-	public BaseDto register(
-							@RequestParam String name,
-							@RequestParam String surname) {
+	public User register(
+							@RequestParam String email,@RequestParam String username,
+							@RequestParam String password) {
+		System.out.println("email = ");
+		System.out.println(email);
+
+
 
 //		BaseDto baseDto = new BaseDto();
 //		if (!password.equals(password2)) {
@@ -39,16 +40,17 @@ public class UserController {
 //			return baseDto;
 //		}
 
-		User user = new User();
-		user.setName(name);
-		user.setSurname(surname);
+		User user = new User(email,username,password);
+//		user.setEmail(email);
+//		user.setPassword(password);
 		userRepository.save(user);
+		user.printUser();
+		System.out.println(user);
 
+//		UserDto userDto = new UserDto();
+//		userDto.setUser(user);
 
-		UserDto userDto = new UserDto();
-		userDto.setUser(user);
-
-		return userDto;
+		return user;
 	}
 	@PostMapping(name = "/login")
 	@ResponseBody
@@ -75,4 +77,15 @@ public class UserController {
 		return userDto;
 	}
 
+	@GetMapping(name = "/login")
+	public String login() {
+
+		return "<h1>Hallo from login</h1>";
+	}
+
+	@GetMapping(path="/all")
+	public @ResponseBody Iterable<User> getAllUsers() {
+		// This returns a JSON or XML with the users
+		return userRepository.findAll();
+	}
 }

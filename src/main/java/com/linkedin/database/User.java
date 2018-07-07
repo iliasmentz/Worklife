@@ -2,11 +2,7 @@ package com.linkedin.database;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -19,6 +15,41 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	private String name;
-	private String surname;
+	@Column(name="password")
+	private String password;
+	@Column(name="username")
+	private String username;
+	@Column(name="email")
+	private String email;
+	@Column(name="role")
+	private String role;
+
+
+	public User (){};
+
+	public User( String email,
+				 String username,
+
+				 String password
+	){
+
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.role = "USER";
+
+	}
+
+	public void printUser(){
+		System.out.println("\n\n");
+		System.out.println("\n\n");
+		System.out.println(this.email);
+		System.out.println("\n\n");
+	}
+	public void setEmail(String email){
+		this.email = email;
+	}
+	public void setPassword(String password){
+		this.password = password;
+	}
 }
