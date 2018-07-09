@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
-	private UserRepository userRepository;
-
 	@Autowired
-	public UserController(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	private static UserRepository userRepository;
+
+	//@Autowired
+	//public UserController(UserRepository userRepository) {
+//		this.userRepository = userRepository;
+//	}
 
 	@PostMapping("/register")
-	@ResponseBody
-	public User register(
+	public  @ResponseBody User register(
 							@RequestParam String email,@RequestParam String username,
 							@RequestParam String password) {
 		System.out.println("email = ");
