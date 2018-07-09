@@ -9,7 +9,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-public class Notification {
+
+@Data
+@Table(name = "notification")
+@Entity
+@DynamicUpdate
+
+public class Notification  implements Serializable{
     @Id
     @Column(name="notification_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)

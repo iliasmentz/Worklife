@@ -1,5 +1,7 @@
 package com.linkedin.database;
 
+import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,11 +9,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.DATE;
 
-public class Message {
+@Data
+@Table(name = "message")
+@Entity
+@DynamicUpdate
+
+
+public class Message  implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,7 +33,6 @@ public class Message {
     @JoinColumn(name = "Conversation.conversation_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @Column(name= "conversation_id")
-
     private Long conversation_id;
 
 
@@ -50,8 +58,8 @@ public class Message {
         this.message_id = message_id;
     }
 
-    public void setConversation_id(Long conversation_id) {
-        this.conversation_id = conversation_id;
+    public void setConversation_id(Long message_id) {
+        this.message_id = message_id;
     }
 
     public void setSender_id(Long sender_id) {
@@ -72,7 +80,7 @@ public class Message {
     }
 
     public Long getConversation_id() {
-        return conversation_id;
+        return message_id;
     }
 
     public Long getSender_id() {

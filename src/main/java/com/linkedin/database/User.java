@@ -2,10 +2,14 @@ package com.linkedin.database;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
+
+import static javax.persistence.TemporalType.DATE;
 
 @Data
 @Table(name = "users")
@@ -21,11 +25,12 @@ public class User implements Serializable {
 	private Long user_id;
 
 	@NotNull
-	@Column(name="password")
-	private String password;
+	@Column(name= "name")
+	private String name;
+
 
 	@NotNull
-	@Column(name="username")
+	@Column(name="surname")
 	private String username;
 
 	@NotNull
@@ -36,6 +41,28 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name="role")
 	private Role role;
+
+
+	@NotNull
+	@Temporal(DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name= "birthdate")
+	private Date birthdate;
+
+
+	@NotNull
+	@Column(name="address")
+	private String address;
+
+
+	@NotNull
+	@Column(name="phone_number")
+	private String phone_number;
+
+	@NotNull
+	@Column(name="img_path")
+	private String img_path;
+
 
 	public void setId(Long id) {
 		this.user_id = id;
@@ -54,9 +81,7 @@ public class User implements Serializable {
 		return user_id;
 	}
 
-	public String getPassword() {
-		return password;
-	}
+
 
 	public String getUsername() {
 		return username;
@@ -80,7 +105,6 @@ public class User implements Serializable {
 
 		this.email = email;
 		this.username = username;
-		this.password = password;
 		this.role = Role.USER;
 
 	}
