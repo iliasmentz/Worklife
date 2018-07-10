@@ -22,9 +22,7 @@ public class Notification  implements Serializable{
     private Long notification_id ;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "User.user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @Column(name="user_id")
     private Long user_id ;
 
     @NotNull

@@ -29,19 +29,18 @@ public class Message  implements Serializable {
     private Long message_id;
 
 
-    @OneToOne
-    @JoinColumn(name = "Conversation.conversation_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @Column(name= "conversation_id")
-    private Long conversation_id;
+//    @OneToOne
+//    @JoinColumn(name = "conversation_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @Column(name= "conversation_id")
+//    private Long conversation_id;
 
-
-    @OneToOne
-    @JoinColumn(name = "User.user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @Column(name= "sender_id")
-
-    private Long sender_id;
+//
+//    @OneToOne
+//    @JoinColumn(name = "User.user_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @Column(name= "sender_id")
+//    private Long sender_id;
 
 
     @NotNull
@@ -62,9 +61,7 @@ public class Message  implements Serializable {
         this.message_id = message_id;
     }
 
-    public void setSender_id(Long sender_id) {
-        this.sender_id = sender_id;
-    }
+
 
     public void setSent_date(Date sent_date) {
         this.sent_date = sent_date;
@@ -83,9 +80,6 @@ public class Message  implements Serializable {
         return message_id;
     }
 
-    public Long getSender_id() {
-        return sender_id;
-    }
 
     public Date getSent_date() {
         return sent_date;
