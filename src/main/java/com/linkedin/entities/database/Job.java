@@ -1,4 +1,4 @@
-package com.linkedin.database;
+package com.linkedin.entities.database;
 
 
 import lombok.Data;

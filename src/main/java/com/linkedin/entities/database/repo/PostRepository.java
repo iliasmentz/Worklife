@@ -1,7 +1,6 @@
-package com.linkedin.database.repo;
+package com.linkedin.entities.database.repo;
 
-import com.linkedin.database.Post;
+import com.linkedin.entities.database.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 public interface PostRepository extends JpaRepository<Post,Long> {
 }

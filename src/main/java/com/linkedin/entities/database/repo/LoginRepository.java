@@ -1,8 +1,7 @@
-package com.linkedin.database.repo;
+package com.linkedin.entities.database.repo;
 
 
-import com.linkedin.database.Login;
-import com.linkedin.database.User;
+import com.linkedin.entities.database.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
