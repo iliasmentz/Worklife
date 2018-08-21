@@ -20,7 +20,7 @@ public class Notification implements Serializable {
 	@Id
 	@Column(name = "notification_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long notificationId;
+	private Long id;
 
 	@NotNull
 	@Column(name = "user_id")

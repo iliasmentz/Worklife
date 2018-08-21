@@ -2,31 +2,24 @@ package com.linkedin.service;
 
 import com.linkedin.constants.RoleName;
 import com.linkedin.entities.database.Login;
-import com.linkedin.entities.database.Role;
 import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.LoginRepository;
-import com.linkedin.entities.database.repo.RoleRepository;
 import com.linkedin.entities.database.repo.UserRepository;
-import com.linkedin.entities.dto.SignUpRequest;
-import com.linkedin.exception.AppException;
+import com.linkedin.model.RegisterRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class UserService {
 	private final LoginRepository loginRepository;
 	private final UserRepository userRepository;
-	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserService(LoginRepository loginRepository, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+	public UserService(LoginRepository loginRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		this.loginRepository = loginRepository;
 		this.userRepository = userRepository;
-		this.roleRepository = roleRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -42,30 +35,29 @@ public class UserService {
 		return loginRepository.existsByEmail(email);
 	}
 
-	private Role getUserRole() {
-		return roleRepository.findByName(RoleName.ROLE_USER)
-				.orElseThrow(() -> new AppException("User Role not set."));
+	private RoleName getUserRole() {
+		return RoleName.ROLE_USER;
 	}
 
-	public Login createLogin(SignUpRequest signUpRequest) {
-		Login login = new Login(signUpRequest.getEmail(), signUpRequest.getPassword());
+	public Login createLogin(RegisterRequestDto registerRequestDto) {
+		Login login = new Login(registerRequestDto.getEmail(), registerRequestDto.getPassword());
 
 		login.setPassword(passwordEncoder.encode(login.getPassword()));
-		login.setRoles(Collections.singleton(getUserRole()));
+		login.setRole(getUserRole());
 
 		return loginRepository.save(login);
 	}
 
-	public User createUser(Long userId, SignUpRequest signUpRequest) {
+	public User createUser(Long userId, RegisterRequestDto registerRequestDto) {
 		User user = new User();
 		user.setId(userId);
-		user.setUsername(signUpRequest.getUsername());
-		user.setName(signUpRequest.getName());
-		user.setSurname(signUpRequest.getSurname());
-		user.setBirthdate(signUpRequest.getBirthdate());
-		user.setAddress(signUpRequest.getAddress());
-		user.setImgPath(signUpRequest.getImgPath());
-		user.setPhoneNumber(signUpRequest.getPhoneNumber());
+		user.setUsername(registerRequestDto.getUsername());
+		user.setName(registerRequestDto.getName());
+		user.setSurname(registerRequestDto.getSurname());
+		user.setBirthdate(registerRequestDto.getBirthdate());
+		user.setAddress(registerRequestDto.getAddress());
+		user.setImgPath(registerRequestDto.getImgPath());
+		user.setPhoneNumber(registerRequestDto.getPhoneNumber());
 		return userRepository.save(user);
 	}
 }

@@ -1,6 +1,7 @@
 package com.linkedin.entities.database;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.linkedin.constants.RoleName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -10,18 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -43,14 +37,16 @@ public class Login implements Serializable {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role", nullable = false)
+	private RoleName role;
+
+	@Column(name = "is_active")
+	private boolean active;
 
 	public Login(String email, String password) {
 		this.email = email;
 		this.password = password;
+		this.active = true;
 	}
 }
