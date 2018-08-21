@@ -20,7 +20,6 @@ public class UserDto {
 	private String imgPath;
 
 	public UserDto(Login login, User user) {
-		super();
 		this.email = login.getEmail();
 		this.userId = user.getId();
 		this.name = user.getName();

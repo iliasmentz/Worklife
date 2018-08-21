@@ -31,12 +31,10 @@ public class AuthController {
 	public static final String tag = "Authentication";
 
 	private final UserService userService;
-	private final AuthenticationFacade authenticationFacade;
 
 	@Autowired
-	public AuthController(UserService userService, AuthenticationFacade authenticationFacade) {
+	public AuthController(UserService userService) {
 		this.userService = userService;
-		this.authenticationFacade = authenticationFacade;
 	}
 
 	@ApiOperation(value = "Register", notes = "Creates a new user", response = String.class)
@@ -60,13 +58,13 @@ public class AuthController {
 	@GetMapping("/profile")
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
 	public UserDto myProfile() {
-		Login login = authenticationFacade.authenticatedUser();
+		Login login = AuthenticationFacade.authenticatedUser();
 		return new UserDto(login, userService.getUser(login.getUserId()));
 	}
 
 	@GetMapping("/profile/{id}")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "user id", required = true, dataType = "long", example = "1234"),
+		@ApiImplicitParam(name = "id", value = "user id", required = true, dataType = "long", example = "1234"),
 	})
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
 	public UserDto myProfile(@PathVariable Long id) {
