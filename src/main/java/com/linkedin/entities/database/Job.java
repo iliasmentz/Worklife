@@ -29,13 +29,12 @@ public class Job implements Serializable {
     @Column(name="title" ,nullable = false)
     private String title;
 
-    @Column(name="descr" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
-    private String descr;
+    @Column(name="descr" ,nullable = false)
 
-    @Column(name="author" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
+    @Column(name="author" ,nullable = false)
     private String author;
 
-    @Column(name="company" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
+    @Column(name="company" ,nullable = false)
     private String company;
 
     @NotNull

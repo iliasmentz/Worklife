@@ -28,6 +28,7 @@ public class Message implements Serializable {
 	@Column(name = "message_id")
 	private Long id;
 
+
 	@NotNull
 	@Column(name = "recipient_id")
 	private Long recipientId;
