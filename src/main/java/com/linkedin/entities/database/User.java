@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 3097430508040456243L;
 
 	@Id
-	@Column(name = "userId")
+	@Column(name = "user_id")
 	private Long id;
 
 	@NotNull
@@ -35,7 +35,6 @@ public class User implements Serializable {
 	@NotNull
 	@Column(name = "username")
 	private String username;
-
 	@NotNull
 	@Column(name = "surname")
 	private String surname;

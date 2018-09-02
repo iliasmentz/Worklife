@@ -28,18 +28,13 @@ public class Message implements Serializable {
 	@Column(name = "message_id")
 	private Long id;
 
-//    @OneToOne
-//    @JoinColumn(name = "conversation_id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @Column(name= "conversation_id")
-//    private Long conversation_id;
+	@NotNull
+	@Column(name = "recipient_id")
+	private Long recipientId;
 
-//
-//    @OneToOne
-//    @JoinColumn(name = "User.id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @Column(name= "sender_id")
-//    private Long sender_id;
+	@NotNull
+	@Column(name = "sender_id")
+	private Long senderId;
 
 	@NotNull
 	@Temporal(DATE)

@@ -16,10 +16,10 @@ import static javax.persistence.TemporalType.DATE;
 @Entity
 @DynamicUpdate
 
-public class Position implements Serializable {
+public class Experience implements Serializable {
     @Id
-    @Column(name="position_id")
-    private Long positionId;
+    @Column(name="experience_id")
+    private Long experienceId;
 
     @Column(name = "user_id" , nullable = false)
     private Long userId;
@@ -35,4 +35,14 @@ public class Position implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name= "ending_date")
     private Date endingDate;
+
+
+    @NotNull
+    @Column(name = "title")
+    private String title;
+
+
+    @NotNull
+    @Column(name = "company")
+    private String company;
 }

@@ -33,4 +33,12 @@ public class Notification implements Serializable {
 	@NotNull
 	@Column(name = "message")
 	private String message;
+
+	@NotNull
+	@Column(name = "type")
+	private String type;
+
+	@NotNull
+	@Column(name = "img_path")
+	private String img_path;
 }

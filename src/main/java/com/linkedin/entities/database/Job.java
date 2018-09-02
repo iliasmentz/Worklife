@@ -32,4 +32,21 @@ public class Job implements Serializable {
     @Column(name="descr" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
     private String descr;
 
+    @Column(name="author" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
+    private String author;
+
+    @Column(name="company" ,nullable = false) //////////////////////////////////////////AYTO TI SKATA EINAI @todo
+    private String company;
+
+    @NotNull
+    @Temporal(DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "date")
+    private Date date;
+
+    //@@todo add skills
+
+
+
 }
+
