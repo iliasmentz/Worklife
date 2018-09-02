@@ -6,13 +6,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public final class AuthenticationFacade {
 
-	public static Authentication getAuthentication() {
+	private static Authentication getAuthentication() {
 		return SecurityContextHolder.getContext().getAuthentication();
 	}
 
 	public static Login authenticatedUser() {
 		MyUserDetails userDetails = (MyUserDetails) getAuthentication().getPrincipal();
-		return userDetails.getUser();
+		return userDetails.getLogin();
 	}
 
 

@@ -1,4 +1,4 @@
-package com.linkedin.model;
+package com.linkedin.entities.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,12 +24,12 @@ public class RegisterRequestDto {
 	private String surname;
 
 	@NotBlank
-	@Size(min = 3, max = 15)
+	@Size(min = 3, max = 35)
 	@ApiModelProperty(value = "username", example = "JohnDoe", position = 3)
 	private String username;
 
 	@NotBlank
-	@Size(max = 40)
+	@Size(min = 3, max = 256)
 	@Email
 	@ApiModelProperty(value = "user email", example = "johndoe@gmail.com", position = 4)
 	private String email;

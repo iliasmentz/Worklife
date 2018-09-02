@@ -1,7 +1,7 @@
 package com.linkedin.entities.database;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.linkedin.constants.RoleName;
+import com.linkedin.constants.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -30,8 +30,8 @@ public class Login implements Serializable {
 	private Long userId;
 
 	@NaturalId
-	@Column(name = "email", nullable = false)
-	private String email;
+	@Column(name = "username", nullable = false)
+	private String username;
 
 	@JsonIgnore
 	@Column(name = "password", nullable = false)
@@ -39,13 +39,13 @@ public class Login implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", nullable = false)
-	private RoleName role;
+	private Role role;
 
 	@Column(name = "is_active")
 	private boolean active;
 
-	public Login(String email, String password) {
-		this.email = email;
+	public Login(String username, String password) {
+		this.username = username;
 		this.password = password;
 		this.active = true;
 	}

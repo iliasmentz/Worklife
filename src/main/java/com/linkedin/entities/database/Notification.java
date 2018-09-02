@@ -40,5 +40,5 @@ public class Notification implements Serializable {
 
 	@NotNull
 	@Column(name = "img_path")
-	private String img_path;
+	private String imgPath;
 }

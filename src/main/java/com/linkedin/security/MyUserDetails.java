@@ -13,26 +13,26 @@ public class MyUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Login user;
+	private final Login login;
 
-	public MyUserDetails(Login user) {
-		this.user = user;
+	public MyUserDetails(Login login) {
+		this.login = login;
 	}
 
 	@Override
 	public String getUsername() {
-		return user.getEmail();
+		return login.getUsername();
 	}
 
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+		return login.getPassword();
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		final List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
+		authorities.add(new SimpleGrantedAuthority(login.getRole().name()));
 		return authorities;
 	}
 
@@ -53,12 +53,11 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return login.isActive();
 	}
 
-
-	public Login getUser() {
-		return user;
+	public Login getLogin() {
+		return login;
 	}
 
 

@@ -19,7 +19,6 @@ import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,8 +38,8 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("com.linkedin.controller"))
 				.paths(PathSelectors.any())
 				.build()
-				.securitySchemes(Arrays.asList(securityScheme()))
-				.securityContexts(Arrays.asList(securityContext()));
+				.securitySchemes(Collections.singletonList(securityScheme()))
+				.securityContexts(Collections.singletonList(securityContext()));
 	}
 
 	@Bean

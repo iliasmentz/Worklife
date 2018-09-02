@@ -1,11 +1,11 @@
 package com.linkedin.controller;
 
-
 import com.linkedin.constants.UrlConst;
 import com.linkedin.entities.database.Login;
-import com.linkedin.model.ApiResponse;
-import com.linkedin.model.RegisterRequestDto;
-import com.linkedin.model.UserDto;
+import com.linkedin.entities.database.User;
+import com.linkedin.entities.model.RegisterRequestDto;
+import com.linkedin.entities.model.UserDto;
+import com.linkedin.entities.model.UserRequestDto;
 import com.linkedin.security.AuthenticationFacade;
 import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,8 +50,7 @@ public class AuthController {
 		}
 
 		// Creating user's account
-		Login result = userService.createLogin(registerRequestDto);
-		userService.createUser(result.getUserId(), registerRequestDto);
+		userService.register(registerRequestDto);
 
 		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
 	}
@@ -59,22 +59,27 @@ public class AuthController {
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
 	public UserDto myProfile() {
 		Login login = AuthenticationFacade.authenticatedUser();
-		return new UserDto(login, userService.getUser(login.getUserId()));
+		return new UserDto(userService.getUser(login.getUserId()));
 	}
 
-	@GetMapping("/profile/{id}")
+	@PutMapping("/profile")
+	public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
+		Login login = AuthenticationFacade.authenticatedUser();
+		User user = userService.getUser(login.getUserId());
+		userRequestDto.updateUser(user);
+		user = userService.save(user);
+		return new UserDto(user);
+	}
+
+	@GetMapping("/profile/{username}")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "id", value = "user id", required = true, dataType = "long", example = "1234"),
+			@ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
 	})
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
-	public UserDto myProfile(@PathVariable Long id) {
-		return new UserDto(userService.getUser(id));
+	public UserDto getProfile(@PathVariable String username) {
+		User user = userService.getUser(username);
+		UserDto userDto = new UserDto(user);
+		return userDto;
 	}
-
-	@GetMapping("/test")
-	public ApiResponse test() {
-		return new ApiResponse("Test Coble");
-	}
-
 }
 

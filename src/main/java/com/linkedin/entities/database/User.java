@@ -33,12 +33,15 @@ public class User implements Serializable {
 	private String name;
 
 	@NotNull
+	@Column(name = "surname")
+	private String surname;
+
+	@NotNull
 	@Column(name = "username")
 	private String username;
 
-	@NotNull
-	@Column(name = "surname")
-	private String surname;
+	@Column(name = "email", nullable = false)
+	private String email;
 
 	@NotNull
 	@Temporal(DATE)

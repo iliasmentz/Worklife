@@ -1,6 +1,5 @@
-package com.linkedin.model;
+package com.linkedin.entities.model;
 
-import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,18 +18,8 @@ public class UserDto {
 	private String phoneNumber;
 	private String imgPath;
 
-	public UserDto(Login login, User user) {
-		this.email = login.getEmail();
-		this.userId = user.getId();
-		this.name = user.getName();
-		this.username = user.getUsername();
-		this.birthdate = user.getBirthdate();
-		this.address = user.getAddress();
-		this.phoneNumber = user.getPhoneNumber();
-		this.imgPath = user.getImgPath();
-	}
-
 	public UserDto(User user) {
+		this.email = user.getEmail();
 		this.userId = user.getId();
 		this.name = user.getName();
 		this.username = user.getUsername();
