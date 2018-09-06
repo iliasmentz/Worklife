@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,11 +25,9 @@ import static javax.persistence.TemporalType.DATE;
 public class Job implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "job_id")
 	private Long jobId;
-
-	@Column(name = "creator_id", nullable = false)
-	private Long creatorId;
 
 	@Column(name = "title", nullable = false)
 	private String title;
@@ -36,7 +36,7 @@ public class Job implements Serializable {
 	private String description;
 
 	@Column(name = "author", nullable = false)
-	private String author;
+	private Long authorId;
 
 	@Column(name = "company", nullable = false)
 	private String company;

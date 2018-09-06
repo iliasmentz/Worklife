@@ -3,6 +3,7 @@ package com.linkedin.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.AuthorizationScope;
@@ -20,6 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 @Configuration
@@ -39,7 +41,9 @@ public class SwaggerConfig {
 				.paths(PathSelectors.any())
 				.build()
 				.securitySchemes(Collections.singletonList(securityScheme()))
-				.securityContexts(Collections.singletonList(securityContext()));
+				.securityContexts(Collections.singletonList(securityContext()))
+				.consumes(new HashSet<>(Collections.singletonList(MediaType.APPLICATION_JSON_VALUE)))
+				.produces(new HashSet<>(Collections.singletonList(MediaType.APPLICATION_JSON_VALUE)));
 	}
 
 	@Bean

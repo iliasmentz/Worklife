@@ -14,6 +14,9 @@ public final class AuthenticationFacade {
 		MyUserDetails userDetails = (MyUserDetails) getAuthentication().getPrincipal();
 		return userDetails.getLogin();
 	}
+	public static Long getUserId() {
+		return authenticatedUser().getUserId();
+	}
 
 
 }
