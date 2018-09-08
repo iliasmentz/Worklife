@@ -2,18 +2,19 @@ package com.linkedin.controller;
 
 import com.linkedin.converter.JobConverter;
 import com.linkedin.entities.database.Job;
+import com.linkedin.entities.database.repo.JobRepository;
 import com.linkedin.entities.model.jobs.JobDto;
 import com.linkedin.entities.model.jobs.JobRequestDto;
 import com.linkedin.service.JobService;
+import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Api(tags = JobsController.tag)
 @RestController
@@ -25,7 +26,10 @@ public class JobsController {
 	private final JobConverter jobConverter;
 
 	@Autowired
-	public JobsController(JobService jobService, JobConverter jobConverter) {
+	JobRepository jobRepository;
+
+	@Autowired
+	public JobsController(JobService jobService, JobConverter jobConverter, UserService userService) {
 		this.jobService = jobService;
 		this.jobConverter = jobConverter;
 	}
@@ -33,12 +37,34 @@ public class JobsController {
 	@ApiOperation(value = "Creates a new job", response = JobDto.class)
 	@PostMapping("/")
 	public JobDto createNewJob(@Valid @RequestBody JobRequestDto jobRequestDto) {
-		if (jobRequestDto.getId() != null) {
-			return null;
-		}
+
 		Job job = jobService.createJob(jobRequestDto);
 
 		return jobConverter.toJobDto(job);
 	}
 
+
+
+	@ApiOperation(value = "Returns all jobs", response = JobDto.class , responseContainer = "List")
+	@GetMapping("/")
+	public List<JobDto> returnJobs()
+	{
+		return jobService.getJobs();
+	}
+
+
+	@ApiOperation(value = "Returns a single job", response = JobDto.class)
+	@GetMapping("/{jobId}")
+	public JobDto returnJobs(@PathVariable Long jobId) throws Exception
+	{
+		return jobService.getJob(jobId);
+	}
+
+
+	@ApiOperation(value = "Deletes a single Job", response = JobDto.class , responseContainer = "List")
+	@DeleteMapping("/{jobId}")
+	public void deleteJob(@PathVariable Long jobId) throws Exception
+	{
+		jobService.removeJob(jobId);
+	}
 }

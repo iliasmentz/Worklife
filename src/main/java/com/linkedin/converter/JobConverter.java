@@ -8,6 +8,8 @@ import com.linkedin.entities.model.jobs.JobDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class JobConverter {
 
@@ -38,5 +40,6 @@ public class JobConverter {
 		userDto.setImagePath(user.getImgPath());
 		return userDto;
 	}
+
 
 }

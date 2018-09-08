@@ -15,7 +15,9 @@ public final class AuthenticationFacade {
 		return userDetails.getLogin();
 	}
 	public static Long getUserId() {
-		return authenticatedUser().getUserId();
+		return 1L; //TODO remove this because user is always 1
+		//return  authenticatedUser().getUserId();
+
 	}
 
 

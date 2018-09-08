@@ -33,7 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/swagger-resources/**",
 				"/configuration/**",
 				"/swagger-ui.html",
-				"/webjars/**");
+				"/webjars/**",
+				"/**");//here we allow all routes without security
+					//TODO remove this because security doesnt work with this 
 	}
 
 	@Override
@@ -43,7 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 				.and()
 				.authorizeRequests()
-				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html").permitAll();
+				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html","/api/jobs/").permitAll()
+
+		;
 	}
 
 	@Override

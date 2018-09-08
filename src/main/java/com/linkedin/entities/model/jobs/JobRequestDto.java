@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Data
 public class JobRequestDto implements Serializable {
 
-	@ApiModelProperty(value = "job id", example = "1234", position = 1)
-	private Long id;
+//	@ApiModelProperty(value = "job id", example = "1234", position = 1)
+//	private Long id;
 
 	@NotBlank
 	@ApiModelProperty(value = "job title", example = "Software Engineer", position = 2)
