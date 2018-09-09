@@ -1,6 +1,7 @@
 package com.linkedin.controller;
 
 import com.linkedin.constants.UrlConst;
+import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.User;
 import com.linkedin.entities.model.RegisterRequestDto;
@@ -32,10 +33,12 @@ public class AuthController {
 	public static final String tag = "Authentication";
 
 	private final UserService userService;
+	private final UserConverter userConverter;
 
 	@Autowired
-	public AuthController(UserService userService) {
+	public AuthController(UserService userService, UserConverter userConverter) {
 		this.userService = userService;
+		this.userConverter = userConverter;
 	}
 
 	@ApiOperation(value = "Register", notes = "Creates a new user", response = String.class)
@@ -59,7 +62,8 @@ public class AuthController {
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
 	public UserDto myProfile() {
 		Login login = AuthenticationFacade.authenticatedUser();
-		return new UserDto(userService.getUser(login.getUserId()));
+		User user = userService.getUser(login.getUserId());
+		return userConverter.toUserDto(user);
 	}
 
 	@PutMapping("/profile")
@@ -68,7 +72,7 @@ public class AuthController {
 		User user = userService.getUser(login.getUserId());
 		userRequestDto.updateUser(user);
 		user = userService.save(user);
-		return new UserDto(user);
+		return userConverter.toUserDto(user);
 	}
 
 	@GetMapping("/profile/{username}")
@@ -78,8 +82,7 @@ public class AuthController {
 	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
 	public UserDto getProfile(@PathVariable String username) {
 		User user = userService.getUser(username);
-		UserDto userDto = new UserDto(user);
-		return userDto;
+		return userConverter.toUserDto(user);
 	}
 }
 

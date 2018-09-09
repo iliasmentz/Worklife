@@ -57,11 +57,4 @@ public class User implements Serializable {
 
 	@Column(name = "img_path")
 	private String imgPath;
-
-	public void printUser() {
-		System.out.println("\n\n");
-		System.out.println("\n\n");
-		System.out.println(this.surname);
-		System.out.println("\n\n");
-	}
 }

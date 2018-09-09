@@ -5,6 +5,7 @@ import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.repo.JobRepository;
 import com.linkedin.entities.model.jobs.JobDto;
 import com.linkedin.entities.model.jobs.JobRequestDto;
+import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,6 @@ public class JobService {
 
         return jobRepository.findById(jobId)
                 .map(jobConverter::toJobDto)
-                .orElseThrow(() -> new RuntimeException("Object Not Found"));
+                .orElseThrow(() -> new ObjectNotFoundException(Job.class, jobId));
     }
 }

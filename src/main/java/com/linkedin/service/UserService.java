@@ -28,7 +28,11 @@ public class UserService {
 	}
 
 	public User getUser(Long id) {
-		return userRepository.getOne(id);
+		return userRepository.findById(id).orElse(null);
+	}
+
+	public boolean isUserExists(Long id) {
+		return getUser(id) != null;
 	}
 
 	public boolean usernameTaken(String username) {
