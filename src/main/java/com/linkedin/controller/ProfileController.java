@@ -2,7 +2,6 @@ package com.linkedin.controller;
 
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Login;
-import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserRequestDto;
@@ -16,25 +15,25 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @Api(tags = ProfileController.tag)
 @RestController
 @RequestMapping("/api/profile/")
 public class ProfileController {
 
-    public static final String tag = "Profile Controller";
+    public  static final  String tag = "Profile Controller";
 
-    private static UserService userService;
-    private static ProfileService profileService;
-    private static UserConverter userConverter;
-    private static UserRepository userRepository;
+    private final UserService userService;
+    private final ProfileService profileService;
+    private final UserConverter userConverter;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProfileController(UserService userService,ProfileService profileService){
+    public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter, UserRepository userRepository){
         this.userService = userService;
         this.profileService = profileService;
+        this.userConverter = userConverter;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/profile")
