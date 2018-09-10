@@ -1,3 +1,5 @@
+@import url("https://use.fontawesome.com/releases/v5.0.1/css/all.css");
+
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -163,14 +165,14 @@ iframe {
 }
 
 /*//////////////////////////////////////////////////////////////////
-[ register ]*/
+[ login ]*/
 
 .limiter {
   width: 100%;
   margin: 0 auto;
 }
 
-.container-register100 {
+.container-login100 {
   width: 100%;
   min-height: 100vh;
   display: -webkit-box;
@@ -189,7 +191,7 @@ iframe {
   /*background: linear-gradient(-135deg, #c850c0, #4158d0);*/
 }
 
-.wrap-register100 {
+.wrap-login100 {
   width: 960px;
   background: transparent;
   border-radius: 10px;
@@ -207,21 +209,21 @@ iframe {
 
 /*------------------------------------------------------------------
 [  ]*/
-.register100-pic {
+.login100-pic {
   width: 316px;
 }
 
-.register100-pic img {
+.login100-pic img {
   max-width: 100%;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
-.register100-form {
+.login100-form {
   width: 290px;
 }
 
-.register100-form-title {
+.login100-form-title {
   font-family: Poppins-Bold;
   font-size: 24px;
   color: #333333;
@@ -321,7 +323,7 @@ iframe {
 
 /*------------------------------------------------------------------
 [ Button ]*/
-.container-register100-form-btn {
+.container-login100-form-btn {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -333,7 +335,7 @@ iframe {
   padding-top: 20px;
 }
 
-.register100-form-btn {
+.login100-form-btn {
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
@@ -359,7 +361,7 @@ iframe {
   transition: all 0.4s;
 }
 
-.register100-form-btn:hover {
+.login100-form-btn:hover {
   background: #4d636f;
 }
 
@@ -367,36 +369,107 @@ iframe {
 [ Responsive ]*/
 
 @media (max-width: 992px) {
-  .wrap-register100 {
+  .wrap-login100 {
     padding: 177px 90px 33px 85px;
   }
 
-  .register100-pic {
+  .login100-pic {
     width: 35%;
   }
 
-  .register100-form {
+  .login100-form {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .wrap-register100 {
+  .wrap-login100 {
     padding: 100px 80px 33px 80px;
   }
 
-  .register100-pic {
+  .login100-pic {
     display: none;
   }
 
-  .register100-form {
+  .login100-form {
     width: 100%;
   }
 }
 
 @media (max-width: 576px) {
-  .wrap-register100 {
+  .wrap-login100 {
     padding: 100px 15px 33px 15px;
+  }
+}
+
+/*------------------------------------------------------------------
+[ Alert validate ]*/
+
+.validate-input {
+  position: relative;
+}
+
+div.ng-error::before {
+  content: attr(data-validate);
+  position: absolute;
+  max-width: 70%;
+  background-color: transparent;
+  border: 1px solid #c80000;
+  border-radius: 13px;
+  padding: 4px 25px 4px 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 8px;
+  pointer-events: none;
+
+  font-family: Poppins-Medium;
+  color: #c80000;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+
+  visibility: hidden;
+  opacity: 0;
+
+  -webkit-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+
+div.ng-error::after {
+  content: "\f06a";
+  //font-family: 'FontAwesome', serif;
+  font-family: 'Font Awesome\ 5 Free';
+
+  font-weight: 900;
+
+  display: block;
+  position: absolute;
+  color: #c80000;
+  font-size: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 13px;
+}
+
+div.ng-error:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  div.ng-error::before {
+    visibility: visible;
+    opacity: 1;
   }
 }
 

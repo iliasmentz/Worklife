@@ -8,7 +8,7 @@ import {RepoResponse} from './repo-response';
 @Injectable()
 export class RepoService {
 
-  private API_ENDPOINT = '/api/';
+  private API_ENDPOINT = 'localhost:8080/';
 
   constructor(private _http: HttpClient) {
   }

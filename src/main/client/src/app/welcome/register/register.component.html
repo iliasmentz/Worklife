@@ -1,0 +1,98 @@
+<!--<div class="limiter">-->
+<div class="container-register100">
+  <div class="wrap-register100">
+    <div class="register100-pic js-tilt" data-tilt>
+      <img src="assets/img/img-01.png" alt="IMG">
+    </div>
+    <form class="register100-form validate-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+					<span class="register100-form-title">
+						Hello, Welcome to Worklife!
+					</span>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('email').valid && registerForm.get('email').touched}" data-validate="Valid email is required: ex@abc.xyz">
+        <input class="input100" type="text" name="email" placeholder="Email" formControlName="email">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('name').valid && registerForm.get('name').touched}" data-validate="Name must be at least 3 chars">
+        <input class="input100" type="text" name="name" placeholder="Name" formControlName="name">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('surname').valid && registerForm.get('surname').touched}" data-validate="Surname must be at least 2 chars">
+        <input class="input100" type="text" name="name" placeholder="Surname" formControlName="surname">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-signature" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('username').valid && registerForm.get('username').touched}" data-validate="Username must be at least 3 chars">
+        <input class="input100" type="text" name="name" placeholder="Username" formControlName="username">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fas fa-user-secret" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password').valid && registerForm.get('password').touched}" data-validate="Password must be at least 5 chars">
+        <input class="input100" type="password" name="password" formControlName="password">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password2').valid && registerForm.get('password2').touched}" >
+        <input class="input100" type="password" name="password2" placeholder="Retype Password" formControlName="password2">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('phone').valid && registerForm.get('phone').touched}" >
+        <input class="input100" type="text" name="phone" placeholder="Phone number" formControlName="phone">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fas fa-phone" aria-hidden="true"></i>
+						</span>
+      </div>
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('address').valid && registerForm.get('address').touched}" >
+        <input class="input100" type="text" name="address" placeholder="Address" formControlName="address">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+						</span>
+      </div>
+
+      <!--birthdate-->
+
+      <div class="container-register100-form-btn">
+        <button class="register100-form-btn">
+          Register
+        </button>
+      </div>
+
+      <div class="text-center p-t-36">
+        <a class="txt2" [routerLink]="['/welcome']">
+          Already a user? Login
+          <i class="fa fa-long-arrow-alt-left m-l-5" aria-hidden="true"></i>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+<!--</div>-->
+
+<script>
+  $('.js-tilt').tilt({
+    scale: 1.1
+  })
+</script>

@@ -1,10 +1,10 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./welcome/login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {RegisterComponent} from "./login/register/register.component";
+import {RegisterComponent} from "./welcome/register/register.component";
 
 
 const appRoutes: Routes = [

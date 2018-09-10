@@ -163,14 +163,14 @@ iframe {
 }
 
 /*//////////////////////////////////////////////////////////////////
-[ login ]*/
+[ register ]*/
 
 .limiter {
   width: 100%;
   margin: 0 auto;
 }
 
-.container-login100 {
+.container-register100 {
   width: 100%;
   min-height: 100vh;
   display: -webkit-box;
@@ -189,7 +189,7 @@ iframe {
   /*background: linear-gradient(-135deg, #c850c0, #4158d0);*/
 }
 
-.wrap-login100 {
+.wrap-register100 {
   width: 960px;
   background: transparent;
   border-radius: 10px;
@@ -207,21 +207,21 @@ iframe {
 
 /*------------------------------------------------------------------
 [  ]*/
-.login100-pic {
+.register100-pic {
   width: 316px;
 }
 
-.login100-pic img {
+.register100-pic img {
   max-width: 100%;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
-.login100-form {
+.register100-form {
   width: 290px;
 }
 
-.login100-form-title {
+.register100-form-title {
   font-family: Poppins-Bold;
   font-size: 24px;
   color: #333333;
@@ -321,7 +321,7 @@ iframe {
 
 /*------------------------------------------------------------------
 [ Button ]*/
-.container-login100-form-btn {
+.container-register100-form-btn {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -333,7 +333,7 @@ iframe {
   padding-top: 20px;
 }
 
-.login100-form-btn {
+.register100-form-btn {
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
@@ -359,7 +359,7 @@ iframe {
   transition: all 0.4s;
 }
 
-.login100-form-btn:hover {
+.register100-form-btn:hover {
   background: #4d636f;
 }
 
@@ -367,47 +367,46 @@ iframe {
 [ Responsive ]*/
 
 @media (max-width: 992px) {
-  .wrap-login100 {
+  .wrap-register100 {
     padding: 177px 90px 33px 85px;
   }
 
-  .login100-pic {
+  .register100-pic {
     width: 35%;
   }
 
-  .login100-form {
+  .register100-form {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .wrap-login100 {
+  .wrap-register100 {
     padding: 100px 80px 33px 80px;
   }
 
-  .login100-pic {
+  .register100-pic {
     display: none;
   }
 
-  .login100-form {
+  .register100-form {
     width: 100%;
   }
 }
 
 @media (max-width: 576px) {
-  .wrap-login100 {
+  .wrap-register100 {
     padding: 100px 15px 33px 15px;
   }
 }
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/
-
 .validate-input {
   position: relative;
 }
 
-.alert-validate::before {
+div.ng-error::before {
   content: attr(data-validate);
   position: absolute;
   max-width: 70%;
@@ -439,9 +438,13 @@ iframe {
   transition: opacity 0.4s;
 }
 
-.alert-validate::after {
+div.ng-error::after {
   content: "\f06a";
-  font-family: FontAwesome;
+//font-family: 'FontAwesome', serif;
+  font-family: 'Font Awesome\ 5 Free';
+
+  font-weight: 900;
+
   display: block;
   position: absolute;
   color: #c80000;
@@ -455,17 +458,18 @@ iframe {
   right: 13px;
 }
 
-.alert-validate:hover:before {
+div.ng-error:hover:before {
   visibility: visible;
   opacity: 1;
 }
 
 @media (max-width: 992px) {
-  .alert-validate::before {
+  div.ng-error::before {
     visibility: visible;
     opacity: 1;
   }
 }
+
 
 /* utils */
 /*[ FONT SIZE ]
