@@ -40,10 +40,7 @@ public class ProfileController {
     @ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
     public UserDto myProfile() {
         Login login = AuthenticationFacade.authenticatedUser();
-        System.out.println("\n\n\n\n");
-        System.out.println(login.getUserId());
-        System.out.println("\n\n\n\n");
-        userRepository.findById(1L);
+
         return userConverter.toUserDto( userService.getUser(login.getUserId()));
        // return new UserDto(userService.getUser(login.getUserId()));
     }
