@@ -44,12 +44,5 @@ public class UserRequestDto {
 	@ApiModelProperty(value = "user image path", example = "/photos/test", position = 10)
 	private String imgPath;
 
-	public void updateUser(User user) {
-		user.setName(this.getName());
-		user.setSurname(this.getSurname());
-		user.setBirthdate(this.getBirthdate());
-		user.setAddress(this.address);
-		user.setPhoneNumber(this.phoneNumber);
-		user.setImgPath(this.imgPath);
-	}
+
 }

@@ -6,10 +6,11 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.LoginRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.RegisterRequestDto;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+@Data
 @Service
 public class UserService {
 	private final LoginRepository loginRepository;
@@ -78,4 +79,8 @@ public class UserService {
 	public User save(User user) {
 		return userRepository.save(user);
 	}
+
+
+
+
 }
