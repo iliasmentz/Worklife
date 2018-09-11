@@ -17,6 +17,7 @@ import static javax.persistence.TemporalType.DATE;
 public class Education implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "education_id")
     private Long educationId;
 
