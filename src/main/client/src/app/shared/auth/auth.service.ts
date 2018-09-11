@@ -1,33 +1,33 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {LoginCredentials} from "./login-credentials.model";
 import {RepoService} from "../repo/repo.service";
+import {Login} from "./login.model";
+import {map} from "rxjs/operators";
+import {LoginCredentials} from "./login-credentials.model";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private repoService: RepoService) {}
-
-  private _loggedIn = new BehaviorSubject<boolean>(true);
-
-  get isLoggedIn(): Observable<boolean> {
-    return this._loggedIn;
+  constructor(private repoService: RepoService) {
   }
 
-  signinUser(username: string, password: string) {
+
+  public get loggedIn(): boolean {
+    return localStorage.getItem( 'access_token') !== null;
+  }
+
+  logout() {
+    localStorage.removeItem('access_token');
+  }
+
+  loginUser(username: string, password: string) {
     const creds = new LoginCredentials(username, password);
-    const prom = this.repoService.post('/oauth/token', creds)
-      .toPromise() as Promise<Object>
-    prom
-      .then(
-        response => console.log(response)
-      )
-      .catch(
-        error => console.log(error)
-      );
+    return this.repoService.login(creds)
+      .pipe(map(login => this.deserializeLogin(login)))
+      .toPromise() as Promise<Login>;
   }
 
-  getToken() {
-
+  deserializeLogin(resp): Login {
+    return new Login(resp);
   }
+
 }

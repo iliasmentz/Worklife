@@ -12,6 +12,10 @@ import {AuthGuard} from "./shared/auth/auth.guard";
 import {AuthService} from "./shared/auth/auth.service";
 import {RegisterComponent} from './welcome/register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RepoService} from "./shared/repo/repo.service";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./shared/auth/auth.interceptor";
+import {UserService} from "./shared/user/user.service";
 
 @NgModule({
   declarations: [
@@ -25,10 +29,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [Globals, AuthGuard, AuthService],
+  providers: [
+    Globals, AuthGuard, AuthService, RepoService, UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

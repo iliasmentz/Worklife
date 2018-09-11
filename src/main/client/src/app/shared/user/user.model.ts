@@ -1,9 +1,6 @@
-import {Moment} from 'moment';
-
-
 export class User {
   address: string;
-  birthdate: Moment;
+  birthdate: Date;
   email: string;
   imgPath: string;
   name: string;
