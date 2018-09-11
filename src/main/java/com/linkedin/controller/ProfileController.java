@@ -36,7 +36,7 @@ public class ProfileController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/")
     @ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
     public UserDto myProfile() {
         Login login = AuthenticationFacade.authenticatedUser();
@@ -48,7 +48,7 @@ public class ProfileController {
        // return new UserDto(userService.getUser(login.getUserId()));
     }
 
-    @PutMapping("/profile")
+    @PutMapping("/")
     @ApiOperation(value = "Profile", notes = "Changes User's profile info", response = UserDto.class)
     public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
 
@@ -63,7 +63,7 @@ public class ProfileController {
 
 
 
-    @GetMapping("/profile/{username}")
+    @GetMapping("/{username}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
     })
