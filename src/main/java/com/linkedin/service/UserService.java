@@ -37,11 +37,11 @@ public class UserService {
 	}
 
 	public boolean usernameTaken(String username) {
-		return userRepository.existsByEmailIgnoreCase(username);
+		return loginRepository.existsByUsernameIgnoreCase(username);
 	}
 
 	public boolean emailExists(String email) {
-		return loginRepository.existsByUsernameIgnoreCase(email);
+		return userRepository.existsByEmailIgnoreCase(email);
 	}
 
 	private Role getUserRole() {

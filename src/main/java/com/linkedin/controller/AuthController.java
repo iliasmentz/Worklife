@@ -3,14 +3,13 @@ package com.linkedin.controller;
 import com.linkedin.constants.UrlConst;
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.repo.UserRepository;
+import com.linkedin.entities.model.RegisterDto;
 import com.linkedin.entities.model.RegisterRequestDto;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,19 +39,19 @@ public class AuthController {
 
 	@ApiOperation(value = "Register", notes = "Creates a new user", response = String.class)
 	@PostMapping(UrlConst.REGISTER)
-	public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterRequestDto registerRequestDto) {
+	public RegisterDto registerUser(@Valid @RequestBody RegisterRequestDto registerRequestDto) {
 		if (userService.usernameTaken(registerRequestDto.getUsername())) {
-			return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+			return new RegisterDto("Username is already taken!");
 		}
 
 		if (userService.emailExists(registerRequestDto.getEmail())) {
-			return new ResponseEntity<>("Email Address already in use!", HttpStatus.BAD_REQUEST);
+			return new RegisterDto("Email Address already in use!");
 		}
 
 		// Creating user's account
 		userService.register(registerRequestDto);
 
-		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+		return new RegisterDto("User registered successfully");
 	}
 
 	@ApiOperation(value = "Returns Users", notes = "Returns all Users", response = String.class)

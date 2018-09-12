@@ -26,7 +26,7 @@
       </div>
 
       <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('surname').valid && registerForm.get('surname').touched}" data-validate="Surname must be at least 2 chars">
-        <input class="input100" type="text" name="name" placeholder="Surname" formControlName="surname">
+        <input class="input100" type="text" name="surname" placeholder="Surname" formControlName="surname">
         <span class="focus-input100"></span>
         <span class="symbol-input100">
 							<i class="fa fa-signature" aria-hidden="true"></i>
@@ -34,14 +34,14 @@
       </div>
 
       <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('username').valid && registerForm.get('username').touched}" data-validate="Username must be at least 3 chars">
-        <input class="input100" type="text" name="name" placeholder="Username" formControlName="username">
+        <input class="input100" type="text" name="username" placeholder="Username" formControlName="username">
         <span class="focus-input100"></span>
         <span class="symbol-input100">
 							<i class="fas fa-user-secret" aria-hidden="true"></i>
 						</span>
       </div>
 
-      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password').valid && registerForm.get('password').touched}" data-validate="Password must be at least 5 chars">
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password').valid && registerForm.get('password').touched}" data-validate="Password must be at least 6 chars">
         <input class="input100" type="password" name="password" formControlName="password">
         <span class="focus-input100"></span>
         <span class="symbol-input100">
@@ -49,7 +49,7 @@
 						</span>
       </div>
 
-      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password2').valid && registerForm.get('password2').touched}" >
+      <div class="wrap-input100" [ngClass]="{'ng-error': !registerForm.get('password2').valid && registerForm.get('password2').touched}" data-validate="Must be the same with password">
         <input class="input100" type="password" name="password2" placeholder="Retype Password" formControlName="password2">
         <span class="focus-input100"></span>
         <span class="symbol-input100">

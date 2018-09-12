@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import {AuthService} from "../../shared/auth/auth.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Register} from "../../shared/register/register.model";
+import {UserService} from "../../shared/user/user.service";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,8 @@ import {AuthService} from "../../shared/auth/auth.service";
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private authService: AuthService  ) { }
+  constructor(private _fb: FormBuilder,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this._fb.group({
@@ -18,17 +20,24 @@ export class RegisterComponent implements OnInit {
       name: [null, Validators.min(3)],
       surname: [null, Validators.min(2)],
       username: [null, Validators.min(3)],
-      password: [null, Validators.min(5)],
-      password2: [null, Validators.min(5)],
+      password: [null, Validators.min(6)],
+      password2: [null, Validators.min(6)],
       phone: [null],
       address: [null]
     });
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     if (this.registerForm.valid) {
+      let registerRequest = new Register(this.registerForm);
+      this.userService.register(registerRequest)
+        .then(response => {
+          console.log(response);
 
+          this.userService.loginUser(registerRequest.username, registerRequest.password);
+        })
+        .catch(err => console.log(err));
     }
-    console.log(form);
+    console.log(this.registerForm);
   }
 }

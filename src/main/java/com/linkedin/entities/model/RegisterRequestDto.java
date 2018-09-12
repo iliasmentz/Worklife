@@ -43,7 +43,7 @@ public class RegisterRequestDto {
 	@ApiModelProperty(value = "user password", example = "123456", position = 6)
 	private String password2;
 
-	@NotNull
+//	@NotNull
 	@ApiModelProperty(value = "user birthday (yyyy-mm-dd)", example = "1996-08-22", position = 7)
 	private Date birthdate;
 

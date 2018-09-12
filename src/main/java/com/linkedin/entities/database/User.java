@@ -43,7 +43,7 @@ public class User implements Serializable {
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@NotNull
+//	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "birthdate")
