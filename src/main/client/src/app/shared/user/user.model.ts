@@ -4,9 +4,12 @@ export class User {
   email: string;
   imgPath: string;
   name: string;
+  surname: string;
+  displayName: string;
   phoneNumber: string;
   userId: number;
   username: string;
+  dateCreated: Date;
 
   constructor(obj: User) {
 

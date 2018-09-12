@@ -11,8 +11,14 @@ export class UserService {
 
   constructor(private repoService: RepoService, private authService: AuthService, private router: Router) { }
 
-  getUserProfile() {
+  getUser() {
     return this.repoService.get('profile/')
+      .pipe(map(user => this.deserializeUser(user)))
+      .toPromise() as Promise<User>;
+  }
+
+  getUserProfile(username: string) {
+    return this.repoService.get('profile/' + username)
       .pipe(map(user => this.deserializeUser(user)))
       .toPromise() as Promise<User>;
   }
@@ -24,7 +30,7 @@ export class UserService {
         console.log(loginResponse);
         localStorage.setItem('access_token', loginResponse.access_token);
 
-        this.getUserProfile()
+        this.getUser()
           .then(currentUser => {
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             this.router.navigate(['']);

@@ -5,14 +5,19 @@ import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {RegisterComponent} from "./welcome/register/register.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {NewsfeedComponent} from "./newsfeed/newsfeed.component";
 
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
+      {path: 'profile/:username', component: ProfileComponent},
+      {path: 'profile', component: ProfileComponent},
+      {path: '', component: NewsfeedComponent, pathMatch: 'full'},
+    ]},
   {path: 'welcome', component: WelcomeComponent, children: [
-      {path: 'register', component: RegisterComponent },
-      {path: '', component: LoginComponent, pathMatch: 'full' }
-
+      {path: 'register', component: RegisterComponent},
+      {path: '', component: LoginComponent, pathMatch: 'full'}
     ]},
 ];
 

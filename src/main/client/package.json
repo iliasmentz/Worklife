@@ -25,6 +25,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^1.9.1",
+    "ngx-bootstrap": "^3.0.1",
     "particleground-light": "^1.0.6",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
