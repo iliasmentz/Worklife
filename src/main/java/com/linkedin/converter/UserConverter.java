@@ -19,6 +19,7 @@ public class UserConverter {
 		userDto.setAddress(user.getAddress() );
 		userDto.setPhoneNumber(user.getPhoneNumber() );
 		userDto.setImgPath(user.getImgPath() );
+		userDto.setDateCreated(user.getDateCreated());
 		return userDto;
 	}
 

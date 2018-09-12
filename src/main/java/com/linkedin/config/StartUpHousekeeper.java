@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 @Component
@@ -72,6 +73,10 @@ public class StartUpHousekeeper {
 		user.setEmail(randomUserName + "@gmaiil.com");
 		user.setBirthdate(new SimpleDateFormat("dd/MM/yyyy").parse(bday));
 
+		Date date = new Date();
+		String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
+		user.setDateCreated(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
+
 		userRepository.save(user);
 	}
 
@@ -93,6 +98,11 @@ public class StartUpHousekeeper {
 		user.setEmail("admin@admin.com");
 		String bday =  "22/08/1996";
 		user.setBirthdate(new SimpleDateFormat("dd/MM/yyyy").parse(bday));
+		Date date = new Date();
+		String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
+		user.setDateCreated(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
+
+
 		userRepository.save(user);
 
 	}

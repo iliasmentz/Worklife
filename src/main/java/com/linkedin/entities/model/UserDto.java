@@ -19,4 +19,5 @@ public class UserDto {
 	private String address;
 	private String phoneNumber;
 	private String imgPath;
+	private Date dateCreated;
 }

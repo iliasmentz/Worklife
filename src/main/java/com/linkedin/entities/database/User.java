@@ -49,6 +49,11 @@ public class User implements Serializable {
 	@Column(name = "birthdate")
 	private Date birthdate;
 
+	@Temporal(DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "date_created")
+	private Date dateCreated;
+
 	@Column(name = "address")
 	private String address;
 
