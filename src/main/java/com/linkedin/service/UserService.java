@@ -10,6 +10,10 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Data
 @Service
 public class UserService {
@@ -73,6 +77,20 @@ public class UserService {
 		user.setAddress(registerRequestDto.getAddress());
 		user.setImgPath(registerRequestDto.getImgPath());
 		user.setPhoneNumber(registerRequestDto.getPhoneNumber());
+
+
+	///den me afine na kanw build xwris ayth th paparia
+		try {
+			//The code you are trying to exception handle
+			Date date = new Date();
+			String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
+			user.setDateCreated(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
+		}
+		catch (Exception e) {
+			//The handling for the code
+		}
+
+
 		userRepository.save(user);
 	}
 

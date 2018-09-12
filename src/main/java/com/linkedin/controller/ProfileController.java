@@ -56,10 +56,6 @@ public class ProfileController {
 
     }
 
-
-
-
-
     @GetMapping("/{username}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
