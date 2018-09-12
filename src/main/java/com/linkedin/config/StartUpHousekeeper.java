@@ -61,6 +61,9 @@ public class StartUpHousekeeper {
 		loginRepository.save(login);
 
 		User user = new User();
+		user.setPhoneNumber("6943542441245");
+		user.setImgPath("/image_path.png");
+		user.setAddress("Ipokratous");
 		user.setUsername(randomUserName);
 		user.setId(login.getUserId());
 		user.setName(randomUserName.toUpperCase());
@@ -68,6 +71,7 @@ public class StartUpHousekeeper {
 		user.setUsername(randomUserName);
 		user.setEmail(randomUserName + "@gmaiil.com");
 		user.setBirthdate(new SimpleDateFormat("dd/MM/yyyy").parse(bday));
+
 		userRepository.save(user);
 	}
 
@@ -79,6 +83,9 @@ public class StartUpHousekeeper {
 		loginRepository.save(login);
 
 		User user = new User();
+		user.setPhoneNumber("6943542441245");
+		user.setImgPath("/image_path.png");
+		user.setAddress("Ipokratous");
 		user.setId(login.getUserId());
 		user.setName("Ilias");
 		user.setSurname("Mentzelos");

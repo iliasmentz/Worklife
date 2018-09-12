@@ -12,7 +12,10 @@ public class UserDto {
 	private Long userId;
 	private String name;
 	private String username;
+	private String surname;
+
 	private Date birthdate;
+	private String displayName;
 	private String address;
 	private String phoneNumber;
 	private String imgPath;
