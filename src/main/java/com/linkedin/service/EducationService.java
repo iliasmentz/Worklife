@@ -3,10 +3,13 @@ package com.linkedin.service;
 import com.linkedin.converter.EducationConverter;
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Education;
+import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.repo.EducationRepository;
 import com.linkedin.entities.model.education.EducationDto;
 import com.linkedin.entities.model.education.EducationRequestDto;
+import com.linkedin.errors.NotAuthorizedException;
+import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,15 +59,24 @@ public class EducationService {
 
 
 
-    public Education changeEducation(EducationRequestDto educationRequestDto, Long educationId) {
+    public Education changeEducation(EducationRequestDto educationRequestDto, Long educationId) throws Exception {
 
 
-        if(! educationRepository.existsById(educationId)) return null;
 
+        if(! educationRepository.existsById(educationId)) {
+            throw new ObjectNotFoundException(Education.class, educationId);
+        }
 
 
         Login login = AuthenticationFacade.authenticatedUser();
         Long userId = login.getUserId();
+
+        //we check if the user that is  not changing anothers user  Education
+        Education educationCheck = educationRepository.findById(educationId).orElse(null);
+        if(userId   != educationCheck.getUserId() ){
+            throw new NotAuthorizedException(Job.class);
+
+        }
 
         Education education = new Education();
         education.setEducationId(educationId);

@@ -62,7 +62,7 @@ public class EducationController {
 
     @ApiOperation(value = "Makes changes ton an existing education of our user (An den yparxei to educationId epistrefei null) " ,  response = EducationDto.class)
     @PutMapping ("/education/{educationId}")
-    public EducationDto changeEducation(  @Valid @RequestBody EducationRequestDto educationRequestDto,@PathVariable Long educationId) {
+    public EducationDto changeEducation(  @Valid @RequestBody EducationRequestDto educationRequestDto,@PathVariable Long educationId) throws Exception {
 
 
         Education education = educationService.changeEducation(educationRequestDto,educationId);

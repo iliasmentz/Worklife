@@ -40,6 +40,7 @@ public class ProfileService {
         User user = userService.getUser(login.getUserId()); //pairnoume ton User
 
 
+
         user.setName(userRequestDto.getName());
         user.setSurname(userRequestDto.getSurname());
         user.setBirthdate(userRequestDto.getBirthdate());
