@@ -241,6 +241,10 @@ iframe {
   margin-bottom: 10px;
 }
 
+.theme-default {
+  !important background-color: #666666; }
+
+
 .input100 {
   font-family: Poppins-Medium;
   font-size: 15px;

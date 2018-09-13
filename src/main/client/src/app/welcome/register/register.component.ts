@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Register} from "../../shared/register/register.model";
 import {UserService} from "../../shared/user/user.service";
+import {moment} from "ngx-bootstrap/chronos/test/chain";
 
 @Component({
   selector: 'app-register',
@@ -16,12 +17,13 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this._fb.group({
-      email: [null, Validators.email],
-      name: [null, Validators.min(3)],
-      surname: [null, Validators.min(2)],
-      username: [null, Validators.min(3)],
-      password: [null, Validators.min(6)],
-      password2: [null, Validators.min(6)],
+      email: [null, [Validators.required, Validators.email]],
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      surname: [null, [Validators.required, Validators.minLength(2)]],
+      username: [null, [Validators.required, Validators.minLength(3)]],
+      birthdate: [null, Validators.required],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      password2: [null, [Validators.required, Validators.minLength(6)]],
       phone: [null],
       address: [null]
     });
@@ -29,6 +31,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
+      console.log("STELNW" + this.registerForm.valid);
       let registerRequest = new Register(this.registerForm);
       this.userService.register(registerRequest)
         .then(response => {
@@ -38,6 +41,11 @@ export class RegisterComponent implements OnInit {
         })
         .catch(err => console.log(err));
     }
+    let date: Date;
+    date = this.registerForm.get('birthdate').value;
+    let dateString = moment(date).format('YYYY-MM-DD');
+
+    console.log('Bday: ' +(dateString));
     console.log(this.registerForm);
   }
 }

@@ -16,14 +16,15 @@ import {RepoService} from "./shared/repo/repo.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth/auth.interceptor";
 import {UserService} from "./shared/user/user.service";
-import { ProfileComponent } from './profile/profile.component';
-import { NewsfeedComponent } from './newsfeed/newsfeed.component';
-import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
-import { ExperienceComponent } from './profile/experience/experience.component';
-import { EducationComponent } from './profile/education/education.component';
-import { SkillsComponent } from './profile/skills/skills.component';
-import { PostsComponent } from './profile/posts/posts.component';
-import { FriendsComponent } from './profile/friends/friends.component';
+import {ProfileComponent} from './profile/profile.component';
+import {NewsfeedComponent} from './newsfeed/newsfeed.component';
+import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
+import {ExperienceComponent} from './profile/experience/experience.component';
+import {EducationComponent} from './profile/education/education.component';
+import {SkillsComponent} from './profile/skills/skills.component';
+import {PostsComponent} from './profile/posts/posts.component';
+import {FriendsComponent} from './profile/friends/friends.component';
+import {BsDatepickerModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FriendsComponent } from './profile/friends/friends.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,

@@ -18,7 +18,7 @@ export class Register {
     this.username = form.get('username').value;
     this.password = form.get('password').value;
     this.password2 = form.get('password2').value;
-    // this.birthdate = form.get('birthdate').value;
+    this.birthdate = form.get('birthdate').value;
     this.phone = form.get('phone').value;
     this.address = form.get('address').value;
   }
