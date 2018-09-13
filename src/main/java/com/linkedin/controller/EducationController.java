@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
+;
+
 @Api(tags = EducationController.tag)
 @RestController
 @RequestMapping("/api/profile/")
@@ -69,7 +71,6 @@ public class EducationController {
 			return null;
 		}
 		return educationConverter.toEducationDTO(education);
-
 	}
 
 	@ApiOperation(value = "Deletes an Education from profile ", response = EducationDto.class)
