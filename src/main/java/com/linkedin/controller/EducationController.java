@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(tags = EducationController.tag)
@@ -50,7 +51,7 @@ public class EducationController {
 
     @ApiOperation(value = "Adds a Education to hist profile and returns the New educationDto " ,  response = EducationDto.class)
     @PostMapping("/education")
-    public EducationDto createEducation(EducationRequestDto educationRequestDto) {
+    public EducationDto createEducation(@Valid @RequestBody EducationRequestDto educationRequestDto) {
 
 
         Education education = educationService.createEducation(educationRequestDto);
@@ -61,7 +62,7 @@ public class EducationController {
 
     @ApiOperation(value = "Makes changes ton an existing education of our user (An den yparxei to educationId epistrefei null) " ,  response = EducationDto.class)
     @PutMapping ("/education/{educationId}")
-    public EducationDto changeEducation(EducationRequestDto educationRequestDto,@PathVariable Long educationId) {
+    public EducationDto changeEducation(  @Valid @RequestBody EducationRequestDto educationRequestDto,@PathVariable Long educationId) {
 
 
         Education education = educationService.changeEducation(educationRequestDto,educationId);
