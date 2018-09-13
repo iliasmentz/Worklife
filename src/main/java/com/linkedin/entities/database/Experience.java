@@ -1,14 +1,11 @@
 package com.linkedin.entities.database;
 
 import lombok.Data;
+import lombok.Generated;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +13,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.DATE;
 
 @Data
-@Table(name = "position")
+@Table(name = "experience")
 @Entity
 @DynamicUpdate
 
@@ -24,6 +21,7 @@ public class Experience implements Serializable {
 
 	@Id
 	@Column(name = "experience_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long experienceId;
 
 	@Column(name = "user_id", nullable = false)

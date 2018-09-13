@@ -24,7 +24,7 @@ public class UserConverter {
 		userDto.setUserId(user.getId());
 		userDto.setName(user.getName());
 		userDto.setSurname(user.getSurname());
-		userDto.setDisplayName(user.getName() +' '+user.getSurname());
+		userDto.setDisplayName(user.getName() +' '+ user.getSurname());
 		userDto.setUsername(user.getUsername() );
 		userDto.setBirthdate(user.getBirthdate() );
 		userDto.setAddress(user.getAddress() );

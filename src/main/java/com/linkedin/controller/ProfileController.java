@@ -21,49 +21,47 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/profile/")
 public class ProfileController {
 
-    public  static final  String tag = "Profile Controller";
+	public static final String tag = "Profile Controller";
 
-    private final UserService userService;
-    private final ProfileService profileService;
-    private final UserConverter userConverter;
-    private final UserRepository userRepository;
+	private final UserService userService;
+	private final ProfileService profileService;
+	private final UserConverter userConverter;
+	private final UserRepository userRepository;
 
-    @Autowired
-    public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter, UserRepository userRepository){
-        this.userService = userService;
-        this.profileService = profileService;
-        this.userConverter = userConverter;
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter, UserRepository userRepository) {
+		this.userService = userService;
+		this.profileService = profileService;
+		this.userConverter = userConverter;
+		this.userRepository = userRepository;
+	}
 
-    @GetMapping("/")
-    @ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
-    public UserDto myProfile() {
-        Login login = AuthenticationFacade.authenticatedUser();
+	@GetMapping("/")
+	@ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
+	public UserDto myProfile() {
+		Login login = AuthenticationFacade.authenticatedUser();
 
-        return userConverter.toUserDto( userService.getUser(login.getUserId()));
-       // return new UserDto(userService.getUser(login.getUserId()));
-    }
+		return userConverter.toUserDto(userService.getUser(login.getUserId()));
+		// return new UserDto(userService.getUser(login.getUserId()));
+	}
 
-    @PutMapping("/")
-    @ApiOperation(value = "Profile", notes = "Changes User's profile info", response = UserDto.class)
-    public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
+	@PutMapping("/")
+	@ApiOperation(value = "Profile", notes = "Changes User's profile info", response = UserDto.class)
+	public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
 
-        //userService.emailExists();
+		//userService.emailExists();
 
-        profileService.updateProfile(userRequestDto);
-        return null;
+		profileService.updateProfile(userRequestDto);
+		return null;
+	}
 
-    }
+	@GetMapping("/{username}")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
+	})
+	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
+	public UserDto getProfile(@PathVariable String username) {
 
-    @GetMapping("/{username}")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
-    })
-    @ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
-    public UserDto getProfile(@PathVariable String username) {
-
-       return profileService.getUserDto(username);
-
-    }
+		return profileService.getUserDto(username);
+	}
 }

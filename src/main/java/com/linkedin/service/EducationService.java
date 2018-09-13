@@ -41,6 +41,15 @@ public class EducationService {
                 .collect(Collectors.toList());
     }
 
+
+	public List<EducationDto> getUsersEducation(Long userId) {
+
+	  return educationRepository.findByUserId(userId)
+		  .stream()
+		  .map(educationConverter::toEducationDTO)
+		  .collect(Collectors.toList());
+	}
+
     public Education createEducation(EducationRequestDto educationRequestDto){
         Login login = AuthenticationFacade.authenticatedUser();
         Long userId = login.getUserId();

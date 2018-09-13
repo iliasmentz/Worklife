@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@ApiModel(description = "education response object")
+@ApiModel(description = "education Response object")
 public class EducationDto {
 
 
