@@ -10,6 +10,11 @@ public class ObjectNotFoundException extends Exception {
 		this.id = id;
 	}
 
+	public ObjectNotFoundException(Class targetClass) {
+		this.targetClass = targetClass;
+		this.id = -1; //when id is not provided;
+	}
+
 	public Class getTargetClass() {
 		return targetClass;
 	}

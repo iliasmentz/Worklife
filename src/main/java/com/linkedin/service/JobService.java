@@ -7,6 +7,7 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.JobRepository;
 import com.linkedin.entities.model.jobs.JobDto;
 import com.linkedin.entities.model.jobs.JobRequestDto;
+import com.linkedin.errors.NotAuthorizedException;
 import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +62,13 @@ public class JobService {
 
             Job job = jobRepository.findById(jobId).orElse(null);
             if (job.getAuthorId() != userId) {
-                throw new Exception("Not Authorized to do this");
+                throw new NotAuthorizedException(Job.class);
             }
 
             jobRepository.deleteById(jobId);
         } else {
-            throw new Exception("Object Not Found");
+            throw new ObjectNotFoundException(Job.class,jobId);
+
         }
 
 
@@ -83,7 +85,7 @@ public class JobService {
 
             Job job = jobRepository.findById(jobId).orElse(null);
             if (job.getAuthorId() != userId) {
-                throw new Exception("Not Authorized to do this");
+                throw new NotAuthorizedException(Job.class);
             }
 
             //job = new Job();
@@ -97,7 +99,7 @@ public class JobService {
 
 
         } else {
-            throw new Exception("Object Not Found");
+            throw new ObjectNotFoundException(Job.class,jobId);
         }
 
 
