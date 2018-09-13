@@ -13,13 +13,17 @@ import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-
-;
 
 @Api(tags = EducationController.tag)
 @RestController
@@ -46,8 +50,8 @@ public class EducationController {
 
 	@ApiOperation(value = "Returns another User Education ", response = EducationDto.class)
 	@GetMapping("/education/{userId}")
-	public List<EducationDto> getUsersEducation(@PathVariable  Long userId) {
-	  return educationService.getUsersEducation(userId);
+	public List<EducationDto> getUsersEducation(@PathVariable Long userId) {
+		return educationService.getUsersEducation(userId);
 	}
 
 	@ApiOperation(value = "Adds a Education to hist profile and returns the New educationDto ", response = EducationDto.class)
@@ -74,7 +78,6 @@ public class EducationController {
 		if (!educationRepository.existsById(educationId)) {
 			return;
 		}
-
 		educationRepository.deleteById(educationId);
 	}
 
