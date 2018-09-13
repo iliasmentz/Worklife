@@ -63,35 +63,27 @@ public class ExperienceService {
 
   }
 
-  public ExperienceDto removeExperience(Long experienceId) throws Exception{
+  public void removeExperience(Long experienceId) throws Exception{
 
 
       if(experienceRepository.existsById(experienceId)){
 		Login login = AuthenticationFacade.authenticatedUser();
 		Long  userId = login.getUserId();
 
+		Experience experience =  experienceRepository.findById(experienceId).orElse(null);
+
+		if (experience.getUserId() != userId) {
+		  throw new NotAuthorizedException(Experience.class);
+		}
+
+		experienceRepository.delete(experience);
+
+
 	  }
 	  else{
 		throw new ObjectNotFoundException(Experience.class,experienceId);
 
 	  }
-
-
-	if (existsJob(jobId)) {
-	  //we check if the User that tries to erase the Job is re author of the Job
-	  Login login = AuthenticationFacade.authenticatedUser();
-	  Long  userId = login.getUserId();
-
-	  Job job = jobRepository.findById(jobId).orElse(null);
-	  if (job.getAuthorId() != userId) {
-		throw new NotAuthorizedException(Job.class);
-	  }
-
-	  jobRepository.deleteById(jobId);
-	} else {
-	  throw new ObjectNotFoundException(Job.class,jobId);
-
-	}
 
     }
 }

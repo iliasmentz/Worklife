@@ -46,9 +46,9 @@ public class ExperienceController {
 
   @ApiOperation(value = "Deletes a Users  Experience", response = ExperienceDto.class)
   @DeleteMapping("/{experienceId}")
-  public ExperienceDto deleteExperience(@Param("experienceId") Long experienceId){
+  public  void deleteExperience(@PathVariable Long experienceId) throws  Exception{
 
-	return  experienceService.removeExperience(experienceId);
+	experienceService.removeExperience(experienceId);
   }
 
 }
