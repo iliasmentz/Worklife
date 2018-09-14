@@ -19,85 +19,82 @@ import java.util.stream.Collectors;
 
 @Service
 public class EducationService {
-    private EducationRepository educationRepository;
-    private EducationConverter educationConverter;
+	private EducationRepository educationRepository;
+	private EducationConverter educationConverter;
 
 
+	@Autowired
+	public EducationService(EducationRepository educationRepository, UserConverter userConverter, EducationConverter educationConverter) {
+		this.educationRepository = educationRepository;
+		this.educationConverter = educationConverter;
+	}
 
-    @Autowired
-    public EducationService(EducationRepository educationRepository, UserConverter userConverter, EducationConverter educationConverter) {
-        this.educationRepository = educationRepository;
-        this.educationConverter = educationConverter;
-    }
+	//returns list of Education for a the specific User
+	public List<EducationDto> getUsersEducation() {
+		Login login = AuthenticationFacade.authenticatedUser();
 
-    //returns list of Education for a the specific User
-    public List<EducationDto> getUsersEducation() {
-        Login login = AuthenticationFacade.authenticatedUser();
-
-        Long userId = login.getUserId();
-        return educationRepository.findByUserId(userId)
-                .stream()
-                .map(educationConverter::toEducationDTO)
-                .collect(Collectors.toList());
-    }
+		Long userId = login.getUserId();
+		return educationRepository.findByUserId(userId)
+				.stream()
+				.map(educationConverter::toEducationDto)
+				.collect(Collectors.toList());
+	}
 
 
 	public List<EducationDto> getUsersEducation(Long userId) {
 
-	  return educationRepository.findByUserId(userId)
-		  .stream()
-		  .map(educationConverter::toEducationDTO)
-		  .collect(Collectors.toList());
+		return educationRepository.findByUserId(userId)
+				.stream()
+				.map(educationConverter::toEducationDto)
+				.collect(Collectors.toList());
 	}
 
-    public Education createEducation(EducationRequestDto educationRequestDto){
-        Login login = AuthenticationFacade.authenticatedUser();
-        Long userId = login.getUserId();
+	public Education createEducation(EducationRequestDto educationRequestDto) {
+		Login login = AuthenticationFacade.authenticatedUser();
+		Long userId = login.getUserId();
 
-        Education education = new Education();
-        education.setUniversity_name(educationRequestDto.getUniversityName());
-        education.setUniversityDegree(educationRequestDto.getUniversityDegree());
-        education.setUserId(userId);
-        education.setEndingDate(educationRequestDto.getEndingDate());
-        education.setStartingDate(educationRequestDto.getStartingDate());
-        education.setVisible(educationRequestDto.getVisible());
-
-
-        educationRepository.save(education);
-        return education;
-    }
+		Education education = new Education();
+		education.setUniversityName(educationRequestDto.getUniversityName());
+		education.setUniversityDegree(educationRequestDto.getUniversityDegree());
+		education.setUserId(userId);
+		education.setEndDate(educationRequestDto.getEndDate());
+		education.setStartDate(educationRequestDto.getStartDate());
+		education.setVisible(educationRequestDto.getVisible());
 
 
-
-    public Education changeEducation(EducationRequestDto educationRequestDto, Long educationId) throws Exception {
-
-
-
-        if(! educationRepository.existsById(educationId)) {
-            throw new ObjectNotFoundException(Education.class, educationId);
-        }
+		educationRepository.save(education);
+		return education;
+	}
 
 
-        Login login = AuthenticationFacade.authenticatedUser();
-        Long userId = login.getUserId();
+	public Education changeEducation(EducationRequestDto educationRequestDto, Long educationId) throws Exception {
 
-        //we check if the user that is  not changing anothers user  Education
-        Education educationCheck = educationRepository.findById(educationId).orElse(null);
-        if(userId   != educationCheck.getUserId() ){
-            throw new NotAuthorizedException(Job.class);
 
-        }
+		if (!educationRepository.existsById(educationId)) {
+			throw new ObjectNotFoundException(Education.class, educationId);
+		}
 
-        Education education = new Education();
-        education.setEducationId(educationId);
-        education.setUniversity_name(educationRequestDto.getUniversityName());
-        education.setUniversityDegree(educationRequestDto.getUniversityDegree());
-        education.setUserId(userId);
-        education.setEndingDate(educationRequestDto.getEndingDate());
-        education.setStartingDate(educationRequestDto.getStartingDate());
-        education.setVisible(educationRequestDto.getVisible());
 
-        educationRepository.save(education);
-        return education;
-    }
+		Login login = AuthenticationFacade.authenticatedUser();
+		Long userId = login.getUserId();
+
+		//we check if the user that is  not changing anothers user  Education
+		Education educationCheck = educationRepository.findById(educationId).orElse(null);
+		if (userId != educationCheck.getUserId()) {
+			throw new NotAuthorizedException(Job.class);
+
+		}
+
+		Education education = new Education();
+		education.setEducationId(educationId);
+		education.setUniversityName(educationRequestDto.getUniversityName());
+		education.setUniversityDegree(educationRequestDto.getUniversityDegree());
+		education.setUserId(userId);
+		education.setEndDate(educationRequestDto.getEndDate());
+		education.setStartDate(educationRequestDto.getStartDate());
+		education.setVisible(educationRequestDto.getVisible());
+
+		educationRepository.save(education);
+		return education;
+	}
 }

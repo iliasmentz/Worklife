@@ -4,8 +4,8 @@ export class Education {
   id: number;
   universityDegree: string;
   universityName: string;
-  startingDate: Date;
-  endingDate: Date;
+  startDate: Date;
+  endDate: Date;
 
   constructor(obj: User) {
 

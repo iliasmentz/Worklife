@@ -7,8 +7,8 @@
           <span class="menu-text">
             <a>{{ experience.title }}</a> at <a>{{ experience.company }}</a>
             <span class="menu-info">
-              <span class="menu-date"> {{ experience.startingDate | amDateFormat: 'MMM, YYYY' }} ~
-                {{ experience.endingDate != null ? (experience.endingDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span> </li>
+              <span class="menu-date"> {{ experience.startDate | amDateFormat: 'MMM, YYYY' }} ~
+                {{ experience.endDate != null ? (experience.endDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span> </li>
       </ul>
     </div>
   </div>

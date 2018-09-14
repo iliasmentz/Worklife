@@ -60,7 +60,7 @@ public class EducationController {
 	@PostMapping("/education")
 	public EducationDto createEducation(@Valid @RequestBody EducationRequestDto educationRequestDto) {
 		Education education = educationService.createEducation(educationRequestDto);
-		return educationConverter.toEducationDTO(education);
+		return educationConverter.toEducationDto(education);
 	}
 
 	@ApiOperation(value = "Makes changes ton an existing education of our user (An den yparxei to educationId epistrefei null) ", response = EducationDto.class)
@@ -70,7 +70,7 @@ public class EducationController {
 		if (education == null) {
 			return null;
 		}
-		return educationConverter.toEducationDTO(education);
+		return educationConverter.toEducationDto(education);
 	}
 
 	@ApiOperation(value = "Deletes an Education from profile ", response = EducationDto.class)

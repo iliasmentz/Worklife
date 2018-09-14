@@ -1,6 +1,5 @@
 package com.linkedin.entities.model.education;
 
-
 import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -26,11 +25,11 @@ public class EducationRequestDto {
 
 	@NotNull
 	@ApiModelProperty(value = "starting date", example = "2018-01-22", position = 3)
-	private Date startingDate;
+	private Date startDate;
 
 	@NotNull
 	@ApiModelProperty(value = "ending date", example = "2020-01-22", position = 4)
-	private Date endingDate;
+	private Date endDate;
 
 	@NotNull
 	@ApiModelProperty(value = "Visible(if is public, private or friendsonly)", example = "Private", position = 7)

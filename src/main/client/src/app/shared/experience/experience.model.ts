@@ -2,8 +2,8 @@ export class Experience {
   experienceId: number;
   title: string;
   company: string;
-  startingDate: Date;
-  endingDate: Date;
+  startDate: Date;
+  endDate: Date;
 
   constructor(obj: Experience) {
     Object.keys(obj).forEach(key => {
