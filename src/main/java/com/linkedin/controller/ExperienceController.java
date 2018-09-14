@@ -37,6 +37,13 @@ public class ExperienceController {
 		return  experienceService.getExperiences();
   }
 
+  @ApiOperation(value = "Rerutns all Experiences of the user", response = ExperienceDto.class)
+  @GetMapping("/{userId}")
+  public List<ExperienceDto> getUsersExperiences(@PathVariable Long userId){
+    return  experienceService.getUsersExperiences(userId);
+  }
+
+
   @ApiOperation(value = "Creates a new Experience", response = ExperienceDto.class)
   @PostMapping("/")
   public ExperienceDto createExperiences(@Valid @RequestBody ExperienceRequestDto experienceRequestDto){

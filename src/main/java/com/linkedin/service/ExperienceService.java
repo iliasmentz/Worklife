@@ -38,12 +38,17 @@ public class ExperienceService {
 	  return experienceRepository.findByUserId(userId).stream()
 		  .map(experienceConverter::toExperienceDto)
 		  .collect(Collectors.toList());
+	}
 
-
+  	public List<ExperienceDto> getUsersExperiences(Long userId){
+	  return experienceRepository.findByUserId(userId).stream()
+		  .map(experienceConverter::toExperienceDto)
+		  .collect(Collectors.toList());
 
 	}
 
-  public ExperienceDto createExperience(ExperienceRequestDto experienceRequestDto) {
+
+	public ExperienceDto createExperience(ExperienceRequestDto experienceRequestDto) {
 
 	Login login = AuthenticationFacade.authenticatedUser();
 	Long  userId = login.getUserId();
