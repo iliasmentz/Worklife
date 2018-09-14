@@ -21,10 +21,13 @@ import {NewsfeedComponent} from './newsfeed/newsfeed.component';
 import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
 import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
-import {SkillsComponent} from './profile/skills/skills.component';
-import {PostsComponent} from './profile/posts/posts.component';
-import {FriendsComponent} from './profile/friends/friends.component';
 import {BsDatepickerModule} from "ngx-bootstrap";
+import {EducationService} from "./profile/education/education.service";
+import {MomentModule} from "angular2-moment";
+import {SkillsComponent} from "./profile/skills/skills.component";
+import {PostsComponent} from "./profile/posts/posts.component";
+import {FriendsComponent} from "./profile/friends/friends.component";
+
 
 @NgModule({
   declarations: [
@@ -46,13 +49,14 @@ import {BsDatepickerModule} from "ngx-bootstrap";
   imports: [
     BrowserModule,
     FormsModule,
+    MomentModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService,
+    Globals, AuthGuard, AuthService, RepoService, UserService, EducationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
