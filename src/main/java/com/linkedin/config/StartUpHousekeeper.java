@@ -1,6 +1,7 @@
 package com.linkedin.config;
 
 import com.linkedin.constants.Role;
+import com.linkedin.dataentry.DatabaseCsvReader;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.LoginRepository;
@@ -22,15 +23,17 @@ public class StartUpHousekeeper {
 	private final UserRepository userRepository;
 	private final LoginRepository loginRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final DatabaseCsvReader databaseCsvReader;
 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String mode;
 
 	@Autowired
-	public StartUpHousekeeper(UserRepository userRepository, LoginRepository loginRepository, PasswordEncoder passwordEncoder) {
+	public StartUpHousekeeper(UserRepository userRepository, LoginRepository loginRepository, PasswordEncoder passwordEncoder, DatabaseCsvReader databaseCsvReader) {
 		this.userRepository = userRepository;
 		this.loginRepository = loginRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.databaseCsvReader = databaseCsvReader;
 	}
 
 	@EventListener(ContextRefreshedEvent.class)
@@ -38,6 +41,7 @@ public class StartUpHousekeeper {
 		if ("create".equals(mode)) {
 			createAdmin();
 			createSomeUsers();
+			databaseCsvReader.readFiles();
 		}
 	}
 
