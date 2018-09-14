@@ -1,5 +1,6 @@
 package com.linkedin.entities.database;
 
+import com.linkedin.constants.Visible;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,5 +36,10 @@ public class Post implements Serializable {
 
 	@Column(name = "context", nullable = false)
 	private String context;
+
+
+	@NotNull
+	@Column(name = "visible")
+	private Visible visible;
 
 }

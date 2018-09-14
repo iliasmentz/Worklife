@@ -1,9 +1,11 @@
 package com.linkedin.entities.model.Experience;
 
+import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -28,4 +30,8 @@ public class ExperienceRequestDto {
   @NotNull
   @ApiModelProperty(value = "Date ended", example = "2018-01-01", position = 4)
   private Date endDate;
+
+  @NotNull
+  @Column(name = "visible")
+  private Visible visible;
 }

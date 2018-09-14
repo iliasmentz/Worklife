@@ -7,13 +7,13 @@ import lombok.Data;
 @Data
 public class NotAuthorizedException extends Exception {
 
-    private Class targetClass;
-    private Object id;
+  private Class targetClass;
+  private Object id;
 
-    public NotAuthorizedException(Class targetClass) {
-        this.targetClass = targetClass;
-        this.id = id;
-    }
+  public NotAuthorizedException(Class targetClass) {
+	this.targetClass = targetClass;
+	this.id = id;
+  }
 
 
 }

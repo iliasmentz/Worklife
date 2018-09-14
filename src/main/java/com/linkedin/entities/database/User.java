@@ -40,26 +40,27 @@ public class User implements Serializable {
 	@Column(name = "username")
 	private String username;
 
+	@NotNull
 	@Column(name = "email", nullable = false)
 	private String email;
 
-//	@NotNull
+	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "birthdate")
 	private Date birthdate;
-
+	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "date_created")
 	private Date dateCreated;
-
+	@NotNull
 	@Column(name = "address")
 	private String address;
-
+	@NotNull
 	@Column(name = "phone_number")
 	private String phoneNumber;
-
+	@NotNull
 	@Column(name = "img_path")
 	private String imgPath;
 }

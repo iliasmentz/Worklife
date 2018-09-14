@@ -60,6 +60,7 @@ public class EducationService {
         education.setUserId(userId);
         education.setEndingDate(educationRequestDto.getEndingDate());
         education.setStartingDate(educationRequestDto.getStartingDate());
+        education.setVisible(educationRequestDto.getVisible());
 
 
         educationRepository.save(education);
@@ -94,7 +95,7 @@ public class EducationService {
         education.setUserId(userId);
         education.setEndingDate(educationRequestDto.getEndingDate());
         education.setStartingDate(educationRequestDto.getStartingDate());
-
+        education.setVisible(educationRequestDto.getVisible());
 
         educationRepository.save(education);
         return education;

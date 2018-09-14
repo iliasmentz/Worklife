@@ -50,6 +50,7 @@ public class SkillService {
 	skill.setUserId(login.getUserId());
 	skill.setLevel(skillRequestDto.getLevel());
 	skill.setName(skillRequestDto.getName());
+	skill.setVisible(skillRequestDto.getVisible());
 	skillRepository.save(skill);
 	return skillConverter.toSkillDto(skill);
 
@@ -89,6 +90,7 @@ public class SkillService {
 
 	skillToUpdate.setName(skillRequestDto.getName());
 	skillToUpdate.setLevel(skillRequestDto.getLevel());
+	skillToUpdate.setVisible(skillRequestDto.getVisible());
 
 	skillRepository.save(skillToUpdate);
 	return skillConverter.toSkillDto(skillToUpdate);

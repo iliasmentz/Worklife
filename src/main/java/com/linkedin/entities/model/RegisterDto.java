@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @ApiModel(description = "register request object")
 public class RegisterDto {
+
 	@ApiModelProperty(value = "status", example = "success", position = 1)
 	private String status;
 

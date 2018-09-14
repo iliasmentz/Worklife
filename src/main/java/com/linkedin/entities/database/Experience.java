@@ -1,5 +1,6 @@
 package com.linkedin.entities.database;
 
+import com.linkedin.constants.Visible;
 import lombok.Data;
 import lombok.Generated;
 import org.hibernate.annotations.DynamicUpdate;
@@ -31,13 +32,13 @@ public class Experience implements Serializable {
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "starting_date")
-	private Date startingDate;
+	private Date startDate;
 
 	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "ending_date")
-	private Date endingDate;
+	private Date endDate;
 
 
 	@NotNull
@@ -48,4 +49,8 @@ public class Experience implements Serializable {
 	@NotNull
 	@Column(name = "company")
 	private String company;
+
+  @NotNull
+  @Column(name = "visible")
+  private Visible visible;
 }

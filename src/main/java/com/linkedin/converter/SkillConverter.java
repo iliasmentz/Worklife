@@ -23,7 +23,7 @@ public class SkillConverter {
     	skillDto.setUserId(skill.getUserId());
     	skillDto.setLevel(skill.getLevel());
     	skillDto.setName(skill.getName());
-
+		skillDto.setVisible(skill.getVisible());
     	return skillDto;
 	}
 }

@@ -2,11 +2,13 @@ package com.linkedin.entities.database;
 
 
 import com.linkedin.constants.SkillLevel;
+import com.linkedin.constants.Visible;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -27,6 +29,10 @@ public class Skill {
 
   @Column(name = "level", nullable = false)
   private SkillLevel level;
+
+  @NotNull
+  @Column(name = "visible")
+  private Visible visible;
 
 
 }

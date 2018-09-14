@@ -15,6 +15,7 @@ public class EducationConverter {
        educationDto.setUniversityDegree(education.getUniversityDegree());
        educationDto.setUniversityName(education.getUniversity_name());
        educationDto.setStartingDate(education.getStartingDate());
+       educationDto.setVisible(education.getVisible());
        return educationDto;
 
     }

@@ -31,13 +31,13 @@ public class ExperienceController {
   }
 
 
-  @ApiOperation(value = "Rerutns all Experiences of the user", response = ExperienceDto.class)
+  @ApiOperation(value = "Rerutns all Experiences of the User", response = ExperienceDto.class)
   @GetMapping("/")
   public List<ExperienceDto> getExperiences(){
 		return  experienceService.getExperiences();
   }
 
-  @ApiOperation(value = "Rerutns all Experiences of the user", response = ExperienceDto.class)
+  @ApiOperation(value = "Rerutns all Experiences of another User", response = ExperienceDto.class)
   @GetMapping("/{userId}")
   public List<ExperienceDto> getUsersExperiences(@PathVariable Long userId){
     return  experienceService.getUsersExperiences(userId);

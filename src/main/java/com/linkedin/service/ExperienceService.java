@@ -2,7 +2,6 @@ package com.linkedin.service;
 
 import com.linkedin.converter.ExperienceConverter;
 import com.linkedin.entities.database.Experience;
-import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.repo.ExperienceRepository;
 import com.linkedin.entities.model.Experience.ExperienceDto;
@@ -55,11 +54,13 @@ public class ExperienceService {
 
 	Experience experience = new Experience();
 	experience.setCompany(experienceRequestDto.getCompany());
-	experience.setEndingDate(experienceRequestDto.getEndDate());
-	experience.setStartingDate(experienceRequestDto.getStartDate()
+	experience.setEndDate(experienceRequestDto.getEndDate());
+	experience.setStartDate(experienceRequestDto.getStartDate()
 	);
 	experience.setTitle(experienceRequestDto.getTitle());
 	experience.setUserId(userId);
+	experience.setVisible(experienceRequestDto.getVisible());
+
 
 	experienceRepository.save(experience);
 	return experienceConverter.toExperienceDto(experience);

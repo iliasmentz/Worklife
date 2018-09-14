@@ -1,6 +1,5 @@
 package com.linkedin.converter;
 
-import com.linkedin.controller.ExperienceController;
 import com.linkedin.entities.database.Experience;
 import com.linkedin.entities.model.Experience.ExperienceDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,10 @@ public class ExperienceConverter {
 
 		experienceDto.setCompany(experience.getCompany());
 	  	experienceDto.setTitle(experience.getTitle());
-	  	experienceDto.setStatingDate(experience.getStartingDate());
-	  	experienceDto.setEndingDate(experience.getEndingDate());
+	  	experienceDto.setStartDate(experience.getStartDate());
+	  	experienceDto.setEndDate(experience.getEndDate());
 	  	experienceDto.setExperienceId(experience.getExperienceId());
+	  	experienceDto.setVisible(experience.getVisible());
 	  	return experienceDto;
 	}
 }
