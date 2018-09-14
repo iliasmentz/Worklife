@@ -1,5 +1,6 @@
 package com.linkedin.entities.model.Post;
 
+
 import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,19 +9,12 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @ApiModel(description = "PostDto object ")
-public class PostDto {
-
-  @NotNull
-  @ApiModelProperty(value = "postId", example = "11", position = 1)
-  private Long postId;
-
-
+public class RequestPostDto {
   @NotNull
   @ApiModelProperty(value = "creatorId", example = "11", position = 2)
   private Long creatorId;
@@ -37,5 +31,5 @@ public class PostDto {
   @NotBlank
   @ApiModelProperty(value = "visible", example = "Public", position = 5)
   private Visible visible;
-}
 
+}
