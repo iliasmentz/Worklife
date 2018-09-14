@@ -27,6 +27,7 @@ import {MomentModule} from "angular2-moment";
 import {SkillsComponent} from "./profile/skills/skills.component";
 import {PostsComponent} from "./profile/posts/posts.component";
 import {FriendsComponent} from "./profile/friends/friends.component";
+import {ExperienceService} from "./profile/experience/experience.service";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {FriendsComponent} from "./profile/friends/friends.component";
     BsDatepickerModule.forRoot(),
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService, EducationService,
+    Globals, AuthGuard, AuthService, RepoService, UserService,
+    EducationService, ExperienceService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

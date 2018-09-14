@@ -17,23 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
-
 @Api(tags = ExperienceController.tag)
 @RestController
 @RequestMapping("/api/profile/experience/")
 public class ExperienceController {
 	public static final String tag = "Experience Controller";
-
-
-	public final ExperienceService experienceService;
-
+	private final ExperienceService experienceService;
 
 	@Autowired
 	public ExperienceController(ExperienceService experienceService) {
-
 		this.experienceService = experienceService;
 	}
 
+	@ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
+	@GetMapping("/{userId}")
+	public List<ExperienceDto> getExperiences(@PathVariable Long userId) {
+		return experienceService.getUsersExperiences(userId);
+	}
 
 	@ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
 	@GetMapping("/")
@@ -41,17 +41,9 @@ public class ExperienceController {
 		return experienceService.getExperiences();
 	}
 
-	@ApiOperation(value = "Rerutns all Experiences of another User", response = ExperienceDto.class)
-	@GetMapping("/{userId}")
-	public List<ExperienceDto> getUsersExperiences(@PathVariable Long userId) {
-		return experienceService.getUsersExperiences(userId);
-	}
-
-
 	@ApiOperation(value = "Creates a new Experience", response = ExperienceDto.class)
 	@PostMapping("/")
 	public ExperienceDto createExperiences(@Valid @RequestBody ExperienceRequestDto experienceRequestDto) {
-
 		return experienceService.createExperience(experienceRequestDto);
 	}
 

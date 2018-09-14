@@ -31,13 +31,12 @@ public class ExperienceService {
 
 
 	public List<ExperienceDto> getExperiences() {
-		Login login = AuthenticationFacade.authenticatedUser();
-		Long userId = login.getUserId();
-
+		Long userId = AuthenticationFacade.getUserId();
 		return experienceRepository.findByUserId(userId).stream()
 				.map(experienceConverter::toExperienceDto)
 				.collect(Collectors.toList());
 	}
+
 
 	public List<ExperienceDto> getUsersExperiences(Long userId) {
 		return experienceRepository.findByUserId(userId).stream()
@@ -63,21 +62,21 @@ public class ExperienceService {
 	}
 
 	public void removeExperience(Long experienceId) throws Exception {
-
-
 		if (experienceRepository.existsById(experienceId)) {
-			Login login = AuthenticationFacade.authenticatedUser();
-			Long userId = login.getUserId();
-			Experience experience = experienceRepository.findById(experienceId).orElse(null);
+			if (experienceRepository.existsById(experienceId)) {
+				Login login = AuthenticationFacade.authenticatedUser();
+				Long userId = login.getUserId();
+				Experience experience = experienceRepository.findById(experienceId).orElse(null);
 
-			if (experience.getUserId() != userId) {
-				throw new NotAuthorizedException(Experience.class);
+				if (experience.getUserId() != userId) {
+					throw new NotAuthorizedException(Experience.class);
+				}
+
+				experienceRepository.delete(experience);
+			} else {
+				throw new ObjectNotFoundException(Experience.class, experienceId);
 			}
 
-			experienceRepository.delete(experience);
-		} else {
-			throw new ObjectNotFoundException(Experience.class, experienceId);
 		}
-
 	}
 }

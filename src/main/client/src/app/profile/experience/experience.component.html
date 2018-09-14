@@ -2,22 +2,13 @@
     <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-file-text-o mgr-10 profile-icon"></i> EXPERIENCE</h3>
     <div class="content-list content-menu">
       <ul class="list-wrapper">
-        <li class="mgbt-xs-10"> <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
+        <li class="mgbt-xs-10" *ngFor="let experience of experiences">
+          <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
           <span class="menu-text">
-            <a>Owner</a> at <a>Vendroid Ltd.</a>
+            <a>{{ experience.title }}</a> at <a>{{ experience.company }}</a>
             <span class="menu-info">
-              <span class="menu-date"> March 2013 ~ Now</span></span> </span> </li>
-        <li class="mgbt-xs-10"> <span class="menu-icon vd_green"><i class=" fa  fa-circle-o"></i></span>
-          <span class="menu-text">
-            <a>CEO</a> at <a>Mc. Dondon</a>
-            <span class="menu-info">
-              <span class="menu-date"> March 2011 ~ February 2013</span></span> </span> </li>
-        <li class="mgbt-xs-10"> <span class="menu-icon vd_green"><i class=" fa  fa-circle-o"></i></span>
-          <span class="menu-text">
-            <a>Web Designer</a> at <a>Web Design Company Ltd.</a>
-            <span class="menu-info">
-              <span class="menu-date"> March 2010 ~ February 2011</span></span> </span> </li>
-        <li class="mgbt-xs-10"> <span class="menu-icon vd_green"><i class=" fa  fa-circle-o"></i></span> <span class="menu-text"> <a>Sales</a> at <a>Sales Company Ltd.</a> <span class="menu-info"><span class="menu-date"> March 2009 ~ February 2010</span></span> </span> </li>
+              <span class="menu-date"> {{ experience.startingDate | amDateFormat: 'MMM, YYYY' }} ~
+                {{ experience.endingDate != null ? (experience.endingDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span> </li>
       </ul>
     </div>
   </div>
