@@ -21,12 +21,11 @@ export class BasicInfoComponent implements OnInit {
   openEditModal() {
 
     const options: ModalOptions = {
-      class: 'modal-sm',
       initialState: {
         title: 'ILIAS',
       }
     };
 
-    this._modal.show(BasicInfoModalComponent,options);
+    this._modal.show(BasicInfoModalComponent, options);
   }
 }
