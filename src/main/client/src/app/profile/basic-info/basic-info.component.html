@@ -1,6 +1,16 @@
-<div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" (click)="openEditModal()"> <i class="fa fa-pencil append-icon"></i> Edit </a> </div>
+<div *ngIf="!editMode" class="vd_info tr">
+  <button class="btn btn-warning" (click)="editMode=!editMode"><i
+    class="fa fa-pencil append-icon"></i> Edit
+  </button>
+</div>
+
+<div *ngIf="editMode" class="vd_info tr">
+  <button class="btn btn-warning" form="basic-info">Save</button>
+</div>
+
+
 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> ABOUT</h3>
-<div class="row">
+<div *ngIf="!editMode" class="row">
   <div class="col-sm-6">
     <div class="row mgbt-xs-0">
       <label class="col-xs-5 control-label">First Name:</label>
@@ -58,3 +68,79 @@
     </div>
   </div>
 </div>
+
+<!--Edit mode-->
+<form *ngIf="editMode" id="basic-info" [formGroup]="basicInfoForm" (ngSubmit)="onSubmit(basicInfoForm)">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">First Name:</label>
+        <div class="col-xs-7 controls"><input formControlName="name"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">Last Name:</label>
+        <div class="col-xs-7 controls"><input formControlName="surname"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">User Name:</label>
+        <div class="col-xs-7 controls"><input formControlName="username"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">Email:</label>
+        <div class="col-xs-7 controls"><input formControlName="email"></div>
+        <!-- col-sm-10 -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">City:</label>
+        <div class="col-xs-7 controls"><input formControlName="address"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">Country:</label>
+        <div class="col-xs-7 controls"><input formControlName="country"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">Birthday:</label>
+        <div class="col-xs-7 controls"><input formControlName="birthdate"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="row mgbt-xs-0">
+        <label class="col-xs-5 control-label">Phone:</label>
+        <div class="col-xs-7 controls"><input formControlName="phoneNumber"></div>
+        <!-- col-sm-10 -->
+      </div>
+    </div>
+  </div>
+</form>
