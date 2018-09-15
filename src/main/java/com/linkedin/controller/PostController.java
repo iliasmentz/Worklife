@@ -8,6 +8,7 @@ import com.linkedin.service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +36,19 @@ public class PostController {
   @GetMapping("/")
   @ApiOperation(value = "Posts", notes = "Returns All Posts of all Users", response = PostDto.class)
   public List<PostDto> getAllPosts() {
-	AuthenticationFacade.authenticatedUser();
 	return postService.getAllPosts();
+  }
+
+  @GetMapping("/{postId}")
+  @ApiOperation(value = "Posts", notes = "Returns Single Post", response = PostDto.class)
+  public PostDto getSinglePost(@Valid @PathVariable Long postId) throws Exception{
+	return postService.getPost(postId);
+  }
+
+  @GetMapping("/users/{userId}")
+  @ApiOperation(value = "Posts", notes = "Returns All Posts of a single User", response = PostDto.class)
+  public List<PostDto> getUsersPosts(@Valid @PathVariable Long userId) throws Exception{
+	return postService.getUsersPost(userId);
   }
 
   @PostMapping("/")
@@ -50,5 +62,12 @@ public class PostController {
   public PostDto updatePost(@Valid @PathVariable Long postId, @RequestBody RequestPostDto requestPostDto) throws Exception {
 	return postService.updatePost(postId, requestPostDto);
   }
+
+  @DeleteMapping("/{postId}")
+  @ApiOperation(value = "Posts", notes = "Deletes a  Post", response = PostDto.class)
+  public void deletePost(@Valid @PathVariable Long postId) throws Exception {
+	postService.deletePost(postId);
+  }
+
 
 }
