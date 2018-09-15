@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../shared/user/user.model";
+import {BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
+import {BasicInfoModalComponent} from './basic-info-modal/basic-info-modal.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-basic-info',
@@ -10,9 +13,44 @@ export class BasicInfoComponent implements OnInit {
 
   @Input() user: User;
 
-  constructor() { }
+  editMode: boolean = false;
 
-  ngOnInit() {
+  basicInfoForm: FormGroup;
+
+  constructor(private _modal: BsModalService,
+              private _fb: FormBuilder) {
   }
 
+  ngOnInit() {
+    this.basicInfoForm = this._initForm();
+  }
+
+  onSubmit(form: FormGroup) {
+    this.editMode = !this.editMode;
+    console.log(form.getRawValue());
+  }
+
+  openEditModal() {
+
+    const options: ModalOptions = {
+      initialState: {
+        title: 'ILIAS',
+      }
+    };
+
+    this._modal.show(BasicInfoModalComponent, options);
+  }
+
+  private _initForm = () => {
+    return this._fb.group({
+      name: [this.user.name],
+      surname: [this.user.surname],
+      username: [this.user.username],
+      email: [this.user.email],
+      address: [this.user.address],
+      country: [null],
+      birthdate: [this.user.birthdate],
+      phoneNumber: [this.user.phoneNumber],
+    })
+  }
 }
