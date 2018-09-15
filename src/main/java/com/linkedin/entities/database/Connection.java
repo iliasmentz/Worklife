@@ -26,7 +26,7 @@ public class Connection implements Serializable {
 
 	@Id
 	@Column(name = "connection_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@JoinColumn(name = "request_user_id")

@@ -25,7 +25,7 @@ import static javax.persistence.TemporalType.DATE;
 public class Post implements Serializable {
 	@Id
 	@Column(name = "post_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long postId;
 
 	@Column(name = "creator_id", nullable = false)
@@ -37,11 +37,11 @@ public class Post implements Serializable {
 	@Column(name = "post_date")
 	private Date postDate;
 
-	@Column(name = "context", nullable = false)
+	@Column(columnDefinition = "text", name = "context", nullable = false)
 	private String context;
 
-
-	@NotNull
+	//Todo na to doume
+	//@NotNull
 	@Column(name = "visible")
 	private Visible visible;
 

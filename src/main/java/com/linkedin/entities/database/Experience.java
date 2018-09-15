@@ -27,7 +27,7 @@ public class Experience implements Serializable {
 
 	@Id
 	@Column(name = "experience_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long experienceId;
 
 	@Column(name = "user_id", nullable = false)

@@ -1,7 +1,8 @@
 package com.linkedin.entities.database;
 
-import com.linkedin.constants.Visible;
+
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -11,34 +12,39 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@Table(name = "skill")
+@Table(name = "Comment")
 @Entity
 @DynamicUpdate
-public class Skill implements Serializable {
+public class Comment implements Serializable {
+
   @Id
-  @Column(name = "skill_id")
+  @Column(name = "comment_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long skillId;
-  @NotNull
-  @Column(name = "user_id", nullable = false)
-  private Long userId;
+
+  private Long commentId;
 
   @NotNull
-  @Column(name = "name", nullable = false)
-  private String name;
+  @Column(name = "commenter_id")
+  private Long commenterId;
 
   @NotNull
-  @Column(name = "level", nullable = false)
-  private Integer level;
+  @Column(name = "post_id")
+  private Long postId;
+
+  @NotBlank
+  @Column(name = "context")
+  private String context;
 
   @NotNull
-  @Column(name = "visible")
-  private Visible visible;
+  @Column(name = "commentDate")
+  private Date commentDate;
 
 
 }

@@ -16,7 +16,7 @@ import java.util.Date;
 @ApiModel(description = "PostDto object ")
 public class RequestPostDto {
   @NotNull
-  @ApiModelProperty(value = "creatorId", example = "11", position = 2)
+  @ApiModelProperty(value = "commenterId", example = "11", position = 2)
   private Long creatorId;
 
 

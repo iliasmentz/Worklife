@@ -22,7 +22,7 @@ public class PostDto {
 
 
   @NotNull
-  @ApiModelProperty(value = "creatorId", example = "11", position = 2)
+  @ApiModelProperty(value = "commenterId", example = "11", position = 2)
   private Long creatorId;
 
 
