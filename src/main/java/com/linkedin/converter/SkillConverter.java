@@ -11,7 +11,6 @@ public class SkillConverter {
 	public SkillDto toSkillDto(Skill skill) {
 		SkillDto skillDto = new SkillDto();
 		skillDto.setSkillId(skill.getSkillId());
-		skillDto.setUserId(skill.getUserId());
 		skillDto.setLevel(skill.getLevel());
 		skillDto.setName(skill.getName());
 		skillDto.setVisible(skill.getVisible());
