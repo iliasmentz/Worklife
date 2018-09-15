@@ -17,9 +17,6 @@ public class SkillDto {
 	@NotNull
 	@ApiModelProperty(value = "skill_Id", example = "1", position = 1)
 	private Long skillId;
-	@NotNull
-	@ApiModelProperty(value = "user_id", example = "1", position = 2)
-	private Long userId;
 
 	@NotBlank
 	@ApiModelProperty(value = "name", example = "Data Mining", position = 3)
@@ -32,5 +29,4 @@ public class SkillDto {
 	@NotNull
 	@ApiModelProperty(value = "visible", example = "Public", position = 5)
 	private Visible visible;
-
 }

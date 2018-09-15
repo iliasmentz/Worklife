@@ -14,10 +14,6 @@ import javax.validation.constraints.NotNull;
 @ApiModel(description = "SkillRequestDto object ")
 public class SkillRequestDto {
 
-	@NotNull
-	@ApiModelProperty(value = "user_id", example = "1", position = 1)
-	private Long userId;
-
 	@NotBlank
 	@ApiModelProperty(value = "name", example = "Data Mining", position = 2)
 	private String name;

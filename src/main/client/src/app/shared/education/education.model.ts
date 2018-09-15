@@ -1,5 +1,3 @@
-import {User} from "../user/user.model";
-
 export class Education {
   id: number;
   universityDegree: string;
@@ -7,7 +5,7 @@ export class Education {
   startDate: Date;
   endDate: Date;
 
-  constructor(obj: User) {
+  constructor(obj: Education) {
 
     Object.keys(obj).forEach(key => {
       this[key] = obj[key];
