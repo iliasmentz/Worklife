@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Register} from "../../shared/register/register.model";
 import {UserService} from "../../shared/user/user.service";
-import {moment} from "ngx-bootstrap/chronos/test/chain";
 
 @Component({
   selector: 'app-register',
@@ -41,11 +40,5 @@ export class RegisterComponent implements OnInit {
         })
         .catch(err => console.log(err));
     }
-    let date: Date;
-    date = this.registerForm.get('birthdate').value;
-    let dateString = moment(date).format('YYYY-MM-DD');
-
-    console.log('Bday: ' +(dateString));
-    console.log(this.registerForm);
   }
 }

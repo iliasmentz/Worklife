@@ -1,10 +1,72 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
+  <h4 class="modal-title pull-left">Update your basic info</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  This is a first modal
-  <button type="button" class="btn btn-primary">Update</button>
-</div>
+<form id="basic-info" [formGroup]="basicInfoForm" (ngSubmit)="onSubmit(basicInfoForm)">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">First Name:</label>
+          <div class="col-xs-7 controls"><input formControlName="name"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Last Name:</label>
+          <div class="col-xs-7 controls"><input formControlName="surname"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Email:</label>
+          <div class="col-xs-7 controls"><input formControlName="email"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Address:</label>
+          <div class="col-xs-7 controls"><input formControlName="address"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Birthday:</label>
+          <div class="col-xs-7 controls"><input formControlName="birthdate" bsDatepicker
+                                                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Phone:</label>
+          <div class="col-xs-7 controls"><input formControlName="phoneNumber"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success">Update</button>
+  </div>
+</form>

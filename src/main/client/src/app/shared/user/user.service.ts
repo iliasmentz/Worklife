@@ -5,9 +5,12 @@ import {RepoService} from "../repo/repo.service";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
 import {Register} from "../register/register.model";
+import {UserDto} from "./user-dto.model";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class UserService {
+  user = new Subject();
 
   constructor(private repoService: RepoService, private authService: AuthService, private router: Router) { }
 
@@ -39,6 +42,12 @@ export class UserService {
             console.log("can't get the user: " + err);
           })
       })
+  }
+
+  updateUser(userRequest: UserDto) {
+    return this.repoService.put("profile/", userRequest)
+      .pipe(map(user => this.deserializeUser(user)))
+      .toPromise() as Promise<User>;
   }
 
   register(register: Register) {

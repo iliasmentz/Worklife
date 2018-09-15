@@ -1,5 +1,10 @@
 <div class="col-sm-5">
-  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-flask mgr-10 profile-icon"></i> SKILL</h3>
+  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-flask mgr-10 profile-icon"></i> SKILLS
+    <button type="button" *ngIf="myProfile()" class="btn btn-sm btn-primary pull-right">
+      <i class="fa fa-plus" style="margin-right: 5px"></i>
+      <span style="font-weight: bold"></span></button>
+  </h3>
+
   <div class="skill-list" *ngFor="let skill of skills">
     <div class="skill-name"> {{ skill.name }} </div>
     <div class="progress progress-striped progress-sm active">

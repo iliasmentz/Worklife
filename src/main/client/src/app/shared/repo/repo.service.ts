@@ -24,15 +24,11 @@ export class RepoService {
       .post(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body, {headers: headers})
   }
 
-  put(url: string, body: any = null) {
+  put(url: string, body: any = null): Observable<Object> {
     return this._http
       .put(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body)
   }
 
-  patch(url: string, body: any = null) {
-    return this._http
-      .patch(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body)
-  }
 
   delete(url: string) {
     return this._http

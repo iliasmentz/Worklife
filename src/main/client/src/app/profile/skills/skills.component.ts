@@ -21,7 +21,12 @@ export class SkillsComponent implements OnInit {
       });
   }
 
-  getType(value) {
+  myProfile(): boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    return user.userId === this.userId;
+  }
+
+  getType(value): string {
     let type: string;
     console.log(value);
     if (value === 1) {

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {UserService} from "../shared/user/user.service";
+import {User} from "../shared/user/user.model";
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +18,13 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(
     (params: Params) => {
       this.username = params['username'];
-      console.log(this.username);
+
       if(this.username == null) {
         this.user = JSON.parse(localStorage.getItem('currentUser'));
+        this.userService.user.subscribe(
+          (updatedUser: User) => {
+            this.user = updatedUser;
+          })
       } else {
         this.userService.getUserProfile(this.username)
           .then(profileUser => {
