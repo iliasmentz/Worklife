@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {UserService} from "../shared/user/user.service";
 import {User} from "../shared/user/user.model";
@@ -9,7 +9,7 @@ import {User} from "../shared/user/user.model";
   styleUrls: ['./css/bootstrap.css', './css/font-awesome.css', './css/theme.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   user = JSON.parse(localStorage.getItem('currentUser'));
   username: string;
   constructor(private route: ActivatedRoute, private userService: UserService) { }
@@ -37,5 +37,11 @@ export class ProfileComponent implements OnInit {
     }
     );
   }
+
+  ngOnDestroy(): void {
+    this.userService.user.unsubscribe();
+  }
+
+
 
 }

@@ -21,7 +21,7 @@ import {NewsfeedComponent} from './newsfeed/newsfeed.component';
 import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
 import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
-import {BsDatepickerModule, BsModalRef, ModalModule, ProgressbarModule} from "ngx-bootstrap";
+import {BsDatepickerModule, BsDropdownModule, BsModalRef, ModalModule, ProgressbarModule} from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
 import {SkillsComponent} from "./profile/skills/skills.component";
@@ -30,6 +30,7 @@ import {FriendsComponent} from "./profile/friends/friends.component";
 import {ExperienceService} from "./profile/experience/experience.service";
 import {SkillService} from "./profile/skills/skill.service";
 import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/basic-info-modal.component';
+import {SkillsModalComponent} from "./profile/skills/skills-modal/skills-modal.component";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/bas
     SkillsComponent,
     PostsComponent,
     FriendsComponent,
-    BasicInfoModalComponent
+    BasicInfoModalComponent,
+    SkillsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +61,12 @@ import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/bas
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     ProgressbarModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
   entryComponents: [
-    BasicInfoModalComponent
+    BasicInfoModalComponent,
+    SkillsModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,

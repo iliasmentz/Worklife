@@ -24,6 +24,6 @@ public class SkillRequestDto {
 
 	@NotNull
 	@ApiModelProperty(value = "visible", example = "Public", position = 5)
-	private Visible visible;
+	private Integer visible;
 
 }

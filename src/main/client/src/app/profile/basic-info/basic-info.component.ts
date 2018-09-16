@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../shared/user/user.model";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {BasicInfoModalComponent} from './basic-info-modal/basic-info-modal.component';
@@ -15,7 +15,7 @@ const options: ModalOptions = {
   templateUrl: './basic-info.component.html',
   styleUrls: ['../css/bootstrap.css', '../css/font-awesome.css', '../css/theme.css']
 })
-export class BasicInfoComponent implements OnInit {
+export class BasicInfoComponent implements OnInit, OnDestroy {
   @Input() user: User;
   editMode: boolean = false;
 
@@ -45,5 +45,10 @@ export class BasicInfoComponent implements OnInit {
 
     this._modal.show(BasicInfoModalComponent, {...options, initialState});
   }
+
+  ngOnDestroy(): void {
+    this.userService.user.unsubscribe();
+  }
+
 
 }

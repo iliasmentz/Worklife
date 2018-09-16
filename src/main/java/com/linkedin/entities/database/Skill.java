@@ -38,7 +38,7 @@ public class Skill implements Serializable {
 
   @NotNull
   @Column(name = "visible")
-  private Visible visible;
+  private Integer visible;
 
 
 }
