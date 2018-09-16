@@ -21,7 +21,6 @@ import static javax.persistence.TemporalType.DATE;
 @Table(name = "job")
 @Entity
 @DynamicUpdate
-
 public class Job implements Serializable {
 
 	@Id

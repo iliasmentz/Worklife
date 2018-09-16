@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,26 +24,28 @@ import static javax.persistence.TemporalType.DATE;
 @Entity
 @DynamicUpdate
 public class Post implements Serializable {
-	@Id
-	@Column(name = "post_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long postId;
+  @Id
+  @Column(name = "post_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long postId;
 
-	@Column(name = "creator_id", nullable = false)
-	private Long creatorId;
+  @NotNull
+  @Column(name = "creator_id", nullable = false)
+  private Long creatorId;
 
-	@NotNull
-	@Temporal(DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "post_date")
-	private Date postDate;
+  @NotNull
+  @Temporal(DATE)
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  @Column(name = "post_date")
+  private Date postDate;
 
-	@Column(columnDefinition = "text", name = "context", nullable = false)
-	private String context;
+  @NotBlank
+  @Column(columnDefinition = "text", name = "context", nullable = false)
+  private String context;
 
-	//Todo na to doume
-	//@NotNull
-	@Column(name = "visible")
-	private Visible visible;
+  //Todo na to doume
+  //@NotNull
+  @Column(name = "visible")
+  private Visible visible;
 
 }
