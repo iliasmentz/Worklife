@@ -19,7 +19,6 @@ export class RepoService {
 
   post(url: string, body: any = null) {
     let headers = new HttpHeaders();
-    console.log(headers);
     return this._http
       .post(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body, {headers: headers})
   }

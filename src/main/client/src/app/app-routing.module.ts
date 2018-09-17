@@ -5,14 +5,12 @@ import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {RegisterComponent} from "./welcome/register/register.component";
-import {ProfileComponent} from "./profile/profile.component";
 import {NewsfeedComponent} from "./newsfeed/newsfeed.component";
-
+import {PROFILE_ROUTE} from "./profile/profile.route";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
-      {path: 'profile/:username', component: ProfileComponent},
-      {path: 'profile', component: ProfileComponent},
+      PROFILE_ROUTE,
       {path: '', component: NewsfeedComponent, pathMatch: 'full'},
     ]},
   {path: 'welcome', component: WelcomeComponent, children: [
@@ -23,7 +21,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: false})
+    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: false}),
   ],
   exports: [
     RouterModule

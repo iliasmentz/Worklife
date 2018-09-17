@@ -4,8 +4,8 @@ import com.linkedin.converter.ExperienceConverter;
 import com.linkedin.entities.database.Experience;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.repo.ExperienceRepository;
-import com.linkedin.entities.model.Experience.ExperienceDto;
-import com.linkedin.entities.model.Experience.ExperienceRequestDto;
+import com.linkedin.entities.model.experience.ExperienceDto;
+import com.linkedin.entities.model.experience.ExperienceRequestDto;
 import com.linkedin.errors.NotAuthorizedException;
 import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
@@ -63,20 +63,42 @@ public class ExperienceService {
 
 	public void removeExperience(Long experienceId) throws Exception {
 		if (experienceRepository.existsById(experienceId)) {
-			if (experienceRepository.existsById(experienceId)) {
-				Login login = AuthenticationFacade.authenticatedUser();
-				Long userId = login.getUserId();
-				Experience experience = experienceRepository.findById(experienceId).orElse(null);
+			Login login = AuthenticationFacade.authenticatedUser();
+			Long userId = login.getUserId();
+			Experience experience = experienceRepository.findById(experienceId).orElse(null);
 
-				if (experience.getUserId() != userId) {
-					throw new NotAuthorizedException(Experience.class);
-				}
-
-				experienceRepository.delete(experience);
-			} else {
-				throw new ObjectNotFoundException(Experience.class, experienceId);
+			if (userId.equals(experience.getUserId())) {
+				throw new NotAuthorizedException(Experience.class);
 			}
 
+			experienceRepository.delete(experience);
+		} else {
+			throw new ObjectNotFoundException(Experience.class, experienceId);
 		}
+
+	}
+
+	public ExperienceDto updateExperience(Long experienceId, ExperienceRequestDto experienceRequestDto) throws NotAuthorizedException, ObjectNotFoundException {
+		if (!experienceRepository.existsById(experienceId)) {
+			throw new ObjectNotFoundException(Experience.class, experienceId);
+		}
+
+		Long userId = AuthenticationFacade.getUserId();
+
+		//we check if the user is updating hist experiences
+		Experience experienceToUpdate = experienceRepository.findById(experienceId).orElse(null);
+		if (!userId.equals(experienceToUpdate != null ? experienceToUpdate.getUserId() : null)) {
+			throw new NotAuthorizedException(Experience.class);
+		}
+
+		experienceToUpdate.setTitle(experienceRequestDto.getTitle());
+		experienceToUpdate.setCompany(experienceRequestDto.getCompany());
+		experienceToUpdate.setStartDate(experienceRequestDto.getStartDate());
+		experienceToUpdate.setEndDate(experienceRequestDto.getEndDate());
+		experienceToUpdate.setVisible(experienceRequestDto.getVisible());
+
+		experienceRepository.save(experienceToUpdate);
+		return experienceConverter.toExperienceDto(experienceToUpdate);
+
 	}
 }

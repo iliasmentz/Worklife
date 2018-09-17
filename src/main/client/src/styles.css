@@ -14,3 +14,8 @@
   color: #444;
   border-top: solid #d2d6de;
 }
+
+.btn.btn-worklife {
+  background-color: #4d636f !important;
+  color: #FFF !important
+}

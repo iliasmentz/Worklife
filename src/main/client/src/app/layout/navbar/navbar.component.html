@@ -17,7 +17,8 @@
       </div>
     </div>
     <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" (click)="logout()" title="Logout"><i class="fa fa-sign-out"></i></a>
-    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" routerLink="/profile" title="My Account">
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+       [routerLink]="['/profile', username]" title="My Account">
       <img [src]="defaultPhoto" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
     </a>
   </div>

@@ -1,6 +1,5 @@
 package com.linkedin.entities.model.education;
 
-import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.util.Date;
 public class EducationDto {
 	@NotNull
 	@ApiModelProperty(value = "education id", example = "1234", position = 1)
-	private Long id;
+	private Long educationId;
 
 	@NotBlank
 	@ApiModelProperty(value = "university degree", example = "Bachelor", position = 2)
@@ -30,13 +29,12 @@ public class EducationDto {
 	@ApiModelProperty(value = "starting date", example = "2018-01-22", position = 5)
 	private Date startDate;
 
-	@NotNull
 	@ApiModelProperty(value = "ending date", example = "2018-01-22", position = 6)
 	private Date endDate;
 
 	@NotNull
 	@ApiModelProperty(value = "Visible(if is public, private or friendsonly)", example = "Private", position = 7)
-	private Visible visible;
+	private Integer visible;
 }
 
 

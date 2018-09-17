@@ -1,6 +1,5 @@
 package com.linkedin.entities.database;
 
-import com.linkedin.constants.Visible;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -20,25 +19,25 @@ import java.io.Serializable;
 @Entity
 @DynamicUpdate
 public class Skill implements Serializable {
-  @Id
-  @Column(name = "skill_id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long skillId;
-  @NotNull
-  @Column(name = "user_id", nullable = false)
-  private Long userId;
+	@Id
+	@Column(name = "skill_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long skillId;
+	@NotNull
+	@Column(name = "user_id", nullable = false)
+	private Long userId;
 
-  @NotNull
-  @Column(name = "name", nullable = false)
-  private String name;
+	@NotNull
+	@Column(name = "name", nullable = false)
+	private String name;
 
-  @NotNull
-  @Column(name = "level", nullable = false)
-  private Integer level;
+	@NotNull
+	@Column(name = "level", nullable = false)
+	private Integer level;
 
-  @NotNull
-  @Column(name = "visible")
-  private Visible visible;
+	@NotNull
+	@Column(name = "visible")
+	private Integer visible;
 
 
 }
