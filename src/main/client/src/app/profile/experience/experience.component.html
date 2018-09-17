@@ -1,15 +1,34 @@
-  <div class="col-sm-7 mgbt-xs-20">
-    <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-file-text-o mgr-10 profile-icon"></i> EXPERIENCE</h3>
-    <div class="content-list content-menu">
-      <ul class="list-wrapper">
-        <li class="mgbt-xs-10" *ngFor="let experience of experiences">
-          <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
-          <span class="menu-text">
+<div class="col-sm-7 mgbt-xs-20">
+  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-file-text-o mgr-10 profile-icon"></i>
+    EXPERIENCE
+    <button type="button" *ngIf="myProfile()"
+            class="btn btn-worklife pull-right"
+            (click)="openAddModal()">
+      <i class="fa fa-plus"></i>
+      <span style="font-weight: bold"></span></button>
+  </h3>
+  <div class="content-list content-menu">
+    <ul class="list-wrapper">
+      <li class="mgbt-xs-10" *ngFor="let experience of experiences">
+        <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
+        <span class="menu-text">
             <a>{{ experience.title }}</a> at <a>{{ experience.company }}</a>
+          <button type="button"
+                  *ngIf="myProfile()"
+                  class="btn btn-xs btn-danger pull-right"
+                  (click)="deleteExperience(experience.experienceId)">
+          <i class="fa fa-trash"></i>
+          <span style="font-weight: bold"></span></button>
+        <button type="button" *ngIf="myProfile()"
+                class="btn btn-xs btn-worklife pull-right"
+                (click)="openEditModal(experience.experienceId)">
+          <i class="fa fa-pencil"></i>
+          <span style="font-weight: bold"></span></button>
             <span class="menu-info">
               <span class="menu-date"> {{ experience.startDate | amDateFormat: 'MMM, YYYY' }} ~
-                {{ experience.endDate != null ? (experience.endDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span> </li>
-      </ul>
-    </div>
+                {{ experience.endDate != null ? (experience.endDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span>
+      </li>
+    </ul>
   </div>
+</div>
 

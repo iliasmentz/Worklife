@@ -17,7 +17,7 @@ const options: ModalOptions = {
 })
 export class SkillsComponent implements OnInit, OnDestroy {
   @Input() userId: number;
-  skills: Skill[];
+  @Input() skills: Skill[];
 
 
   constructor(private _modal: BsModalService,
@@ -25,19 +25,18 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.skillService.getSkill(this.userId)
-      .then(skills => {
-        this.skills = skills;
-      });
-    this.skillService.skill.subscribe((newSkill: Skill) => {
-      let updateItem = this.skills.find(x => x.skillId === newSkill.skillId);
-      if (updateItem != null) {
-        let index = this.skills.indexOf(updateItem);
-        this.skills[index] = newSkill;
-      } else {
-        this.skills.push(newSkill);
-      }
-    })
+
+    if (this.myProfile()) {
+      this.skillService.skill.subscribe((newSkill: Skill) => {
+        let updateItem = this.skills.find(x => x.skillId === newSkill.skillId);
+        if (updateItem != null) {
+          let index = this.skills.indexOf(updateItem);
+          this.skills[index] = newSkill;
+        } else {
+          this.skills.push(newSkill);
+        }
+      })
+    }
   }
 
   myProfile(): boolean {
@@ -72,7 +71,10 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.skillService.skill.unsubscribe();
+    if (this.myProfile()) {
+      // this.skillService.skill.unsubscribe();
+    }
+    this.skills.length = 0;
   }
 
   getType(value): string {

@@ -4,12 +4,12 @@ export class Experience {
   company: string;
   startDate: Date;
   endDate: Date;
+  visible: number;
 
   constructor(obj: Experience) {
     Object.keys(obj).forEach(key => {
       this[key] = obj[key];
     });
-    console.log(obj);
   }
 }
 

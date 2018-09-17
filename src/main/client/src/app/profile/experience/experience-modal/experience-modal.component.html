@@ -1,0 +1,80 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left"> {{mode}} your skill</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form id="basic-info" [formGroup]="experienceForm" (ngSubmit)="onSubmit(experienceForm)">
+  <div class="modal-body form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Position:</label>
+          <div class="col-xs-7 controls"><input class="form-control" formControlName="title"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Company:</label>
+          <div class="col-xs-7 controls"><input class="form-control" formControlName="company"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Date started:</label>
+          <div class="col-xs-7 controls"><input class="form-control" formControlName="startDate" bsDatepicker
+                                                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Current job?</label>
+          <div class="col-xs-7 controls">
+            <input type="checkbox" [checked]="present" (change)="present = !present"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label" *ngIf="!present">Date ended:</label>
+          <div class="col-xs-7 controls" *ngIf="!present">
+            <input class="form-control" formControlName="endDate"
+                   bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
+          </div>
+        </div>
+        <!--col-sm-10-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-5 control-label">Visible:</label>
+          <div class="col-xs-7 controls">
+            <select class="form-control" formControlName="visible">
+              <option [ngValue]="0">Private</option>
+              <option [ngValue]="1">Public</option>
+            </select>
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success">{{mode}}</button>
+  </div>
+</form>

@@ -9,16 +9,13 @@ import {EducationService} from "./education.service";
 })
 export class EducationComponent implements OnInit {
   @Input() userId: number;
-  educations: Education[];
+  @Input() educations: Education[];
 
 
   constructor(private educationService: EducationService) { }
 
   ngOnInit() {
-    this.educationService.getEducation(this.userId)
-      .then(educations => {
-        this.educations = educations;
-      });
+
   }
 
 }

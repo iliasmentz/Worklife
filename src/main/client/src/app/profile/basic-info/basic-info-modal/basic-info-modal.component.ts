@@ -32,7 +32,6 @@ export class BasicInfoModalComponent implements OnInit {
 
 
   private _initForm = () => {
-    console.log("STO INIT : " + this.user);
     return this._fb.group({
       name: [this.user.name],
       surname: [this.user.surname],

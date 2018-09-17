@@ -34,8 +34,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
 
   myProfile(): boolean {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
-    return user.userId === this.user.userId;
+    let myUser = JSON.parse(localStorage.getItem('currentUser'));
+    return myUser.userId === this.user.userId;
   }
 
   openEditModal() {
@@ -47,7 +47,9 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userService.user.unsubscribe();
+    if (this.myProfile()) {
+      this.userService.user.unsubscribe();
+    }
   }
 
 

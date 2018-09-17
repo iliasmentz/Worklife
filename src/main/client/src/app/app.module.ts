@@ -31,6 +31,11 @@ import {ExperienceService} from "./profile/experience/experience.service";
 import {SkillService} from "./profile/skills/skill.service";
 import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/basic-info-modal.component';
 import {SkillsModalComponent} from "./profile/skills/skills-modal/skills-modal.component";
+import {EducationResolver} from "./profile/resolvers/education.resolver";
+import {ProfileResolver} from "./profile/profile.resolver";
+import {SkillsResolver} from "./profile/resolvers/skills.resolver";
+import {ExperienceResolver} from "./profile/resolvers/experience.resolver";
+import {ExperienceModalComponent} from "./profile/experience/experience-modal/experience-modal.component";
 
 
 @NgModule({
@@ -50,7 +55,8 @@ import {SkillsModalComponent} from "./profile/skills/skills-modal/skills-modal.c
     PostsComponent,
     FriendsComponent,
     BasicInfoModalComponent,
-    SkillsModalComponent
+    SkillsModalComponent,
+    ExperienceModalComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +72,12 @@ import {SkillsModalComponent} from "./profile/skills/skills-modal/skills-modal.c
   ],
   entryComponents: [
     BasicInfoModalComponent,
-    SkillsModalComponent
+    SkillsModalComponent, ExperienceModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
     EducationService, ExperienceService, SkillService, BsModalRef,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

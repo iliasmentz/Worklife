@@ -30,12 +30,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log("STELNW" + this.registerForm.valid);
       let registerRequest = new Register(this.registerForm);
       this.userService.register(registerRequest)
-        .then(response => {
-          console.log(response);
-
+        .then(() => {
           this.userService.loginUser(registerRequest.username, registerRequest.password);
         })
         .catch(err => console.log(err));

@@ -56,7 +56,6 @@ export class SkillsModalComponent implements OnInit {
     skillRequest.load(form);
 
     if (this.mode === 'Update') {
-      console.log(this.skill);
       this.skillService.updateSkill(this.skill.skillId, skillRequest)
         .then(skill => {
           this.skill = skill;

@@ -1,7 +1,10 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../shared/user/user.service";
 import {User} from "../shared/user/user.model";
+import {Skills} from "../shared/skills/skill.model";
+import {Educations} from "../shared/education/education.model";
+import {Experiences} from "../shared/experience/experience.model";
 
 @Component({
   selector: 'app-profile',
@@ -10,38 +13,30 @@ import {User} from "../shared/user/user.model";
   encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  user = JSON.parse(localStorage.getItem('currentUser'));
+  user: User;
   username: string;
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  skills: Skills;
+  educations: Educations;
+  experiences: Experiences;
+
+  constructor(private route: ActivatedRoute, private userService: UserService) {
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(
-    (params: Params) => {
-      this.username = params['username'];
-
-      if(this.username == null) {
-        this.user = JSON.parse(localStorage.getItem('currentUser'));
-        this.userService.user.subscribe(
-          (updatedUser: User) => {
-            this.user = updatedUser;
-          })
-      } else {
-        this.userService.getUserProfile(this.username)
-          .then(profileUser => {
-            this.user = profileUser;
-          })
-          .catch(err => {
-            console.log("user does not exist " + this.username);
-          })
+    this.route.data.subscribe(resolvedData => {
+      this.user = resolvedData['user'];
+      this.skills = resolvedData['skills'];
+      this.educations = resolvedData['educations'];
+      this.experiences = resolvedData['experiences'];
       }
-    }
-    );
+    )
   }
 
   ngOnDestroy(): void {
-    this.userService.user.unsubscribe();
+    if (this.username == null) {
+      // this.userService.user.unsubscribe();
+    }
   }
-
 
 
 }

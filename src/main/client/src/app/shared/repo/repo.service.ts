@@ -30,7 +30,6 @@ export class RepoService {
 
 
   delete(url: string) {
-    console.log("DELETE");
     return this._http
       .delete(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`)
   }

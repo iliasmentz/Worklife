@@ -30,7 +30,6 @@ export class UserService {
     this.authService.loginUser(username, password)
       .then(loginResponse => {
 
-        console.log(loginResponse);
         localStorage.setItem('access_token', loginResponse.access_token);
 
         this.getUser()
