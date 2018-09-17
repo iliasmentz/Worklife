@@ -7,7 +7,7 @@ export class SkillDto {
 
   constructor() {}
 
-  load(form: FormGroup) {
+  public load(form: FormGroup) {
     this.name = form.get('name').value;
     this.level = form.get('level').value;
     this.visible = form.get('visible').value;
