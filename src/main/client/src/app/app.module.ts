@@ -36,6 +36,7 @@ import {ProfileResolver} from "./profile/profile.resolver";
 import {SkillsResolver} from "./profile/resolvers/skills.resolver";
 import {ExperienceResolver} from "./profile/resolvers/experience.resolver";
 import {ExperienceModalComponent} from "./profile/experience/experience-modal/experience-modal.component";
+import {EducationModalComponent} from "./profile/education/education-modal/education-modal.component";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {ExperienceModalComponent} from "./profile/experience/experience-modal/ex
     FriendsComponent,
     BasicInfoModalComponent,
     SkillsModalComponent,
-    ExperienceModalComponent
+    ExperienceModalComponent,
+    EducationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,9 @@ import {ExperienceModalComponent} from "./profile/experience/experience-modal/ex
   ],
   entryComponents: [
     BasicInfoModalComponent,
-    SkillsModalComponent, ExperienceModalComponent
+    SkillsModalComponent,
+    ExperienceModalComponent,
+    EducationModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,

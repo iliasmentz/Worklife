@@ -15,7 +15,7 @@ import java.util.Date;
 public class EducationDto {
 	@NotNull
 	@ApiModelProperty(value = "education id", example = "1234", position = 1)
-	private Long id;
+	private Long educationId;
 
 	@NotBlank
 	@ApiModelProperty(value = "university degree", example = "Bachelor", position = 2)

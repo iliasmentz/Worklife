@@ -8,7 +8,6 @@ import {Subject} from "rxjs";
 @Injectable()
 export class ExperienceService {
   experience = new Subject();
-  present: boolean;
 
   constructor(private repoService: RepoService) { }
 

@@ -7,49 +7,49 @@
 <form id="basic-info" [formGroup]="basicInfoForm" (ngSubmit)="onSubmit(basicInfoForm)">
   <div class="modal-body">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">First Name:</label>
-          <div class="col-xs-7 controls"><input formControlName="name"></div>
+          <label class="col-xs-4 control-label">First Name:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="name"></div>
           <!-- col-sm-10 -->
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Last Name:</label>
-          <div class="col-xs-7 controls"><input formControlName="surname"></div>
-          <!-- col-sm-10 -->
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-sm-6">
-        <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Email:</label>
-          <div class="col-xs-7 controls"><input formControlName="email"></div>
-          <!-- col-sm-10 -->
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Address:</label>
-          <div class="col-xs-7 controls"><input formControlName="address"></div>
+          <label class="col-xs-4 control-label">Last Name:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="surname"></div>
           <!-- col-sm-10 -->
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-6">
+
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Birthday:</label>
-          <div class="col-xs-7 controls"><input formControlName="birthdate" bsDatepicker
+          <label class="col-xs-4 control-label">Email:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="email"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Address:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="address"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Birthday:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="birthdate" bsDatepicker
                                                 [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
           </div>
           <!-- col-sm-10 -->
@@ -57,10 +57,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Phone:</label>
-          <div class="col-xs-7 controls"><input formControlName="phoneNumber"></div>
+          <label class="col-xs-4 control-label">Phone:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="phoneNumber"></div>
           <!-- col-sm-10 -->
         </div>
       </div>

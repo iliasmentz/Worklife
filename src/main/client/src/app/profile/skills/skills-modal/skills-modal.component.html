@@ -7,19 +7,19 @@
 <form id="basic-info" [formGroup]="skillForm" (ngSubmit)="onSubmit(skillForm)">
   <div class="modal-body">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Skill name:</label>
-          <div class="col-xs-7 controls"><input class="form-control" formControlName="name"></div>
+          <label class="col-xs-4 control-label">Skill name:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="name"></div>
           <!-- col-sm-10 -->
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Level:</label>
-          <div class="col-xs-7 controls">
+          <label class="col-xs-4 control-label">Level:</label>
+          <div class="col-xs-8 controls">
             <select  class="form-control" formControlName="level">
               <option [ngValue]="1">Fundamental</option>
               <option [ngValue]="2">Basic</option>
@@ -34,10 +34,10 @@
 
     <div class="row">
 
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="row mgbt-xs-0">
-          <label class="col-xs-5 control-label">Visible:</label>
-          <div class="col-xs-7 controls">
+          <label class="col-xs-4 control-label">Visible:</label>
+          <div class="col-xs-8 controls">
             <select  class="form-control" formControlName="visible">
               <option [ngValue]="0">Private</option>
               <option [ngValue]="1">Public</option>

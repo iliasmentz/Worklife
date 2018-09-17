@@ -73,6 +73,5 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     if (this.myProfile()) {
       // this.experienceService.experience.unsubscribe();
     }
-    this.experiences.length = 0;
   }
 }

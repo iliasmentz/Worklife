@@ -3,6 +3,7 @@ import {User} from "../../shared/user/user.model";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {BasicInfoModalComponent} from './basic-info-modal/basic-info-modal.component';
 import {UserService} from "../../shared/user/user.service";
+import {Subscription} from "rxjs";
 
 
 const options: ModalOptions = {
@@ -18,6 +19,7 @@ const options: ModalOptions = {
 export class BasicInfoComponent implements OnInit, OnDestroy {
   @Input() user: User;
   editMode: boolean = false;
+  userSub: Subscription;
 
 
   constructor(private _modal: BsModalService,
@@ -26,7 +28,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.myProfile()) {
-      this.userService.user.subscribe(
+      this.userSub = this.userService.user.subscribe(
         (updatedUser: User) => {
           this.user = updatedUser;
         })
@@ -48,7 +50,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.myProfile()) {
-      this.userService.user.unsubscribe();
+      // this.userSub.unsubscribe();
     }
   }
 

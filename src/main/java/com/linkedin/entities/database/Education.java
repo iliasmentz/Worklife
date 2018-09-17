@@ -37,7 +37,6 @@ public class Education implements Serializable {
 	@Column(name = "start_date")
 	private Date startDate;
 
-	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "end_date")
