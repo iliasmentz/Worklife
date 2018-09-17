@@ -10,8 +10,9 @@
   <div class="content-list content-menu">
     <ul class="list-wrapper">
       <li class="mgbt-xs-10" *ngFor="let experience of experiences">
-        <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
-        <span class="menu-text">
+        <div *ngIf="myProfile() || experience.visible">
+          <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
+          <span class="menu-text">
             <a>{{ experience.title }}</a> at <a>{{ experience.company }}</a>
           <button type="button"
                   *ngIf="myProfile()"
@@ -27,6 +28,7 @@
             <span class="menu-info">
               <span class="menu-date"> {{ experience.startDate | amDateFormat: 'MMM, YYYY' }} ~
                 {{ experience.endDate != null ? (experience.endDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span>
+        </div>
       </li>
     </ul>
   </div>

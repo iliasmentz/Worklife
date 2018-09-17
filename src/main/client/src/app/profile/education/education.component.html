@@ -10,8 +10,9 @@
   <div class="content-list content-menu">
     <ul class="list-wrapper">
       <li class="mgbt-xs-10" *ngFor="let education of educations">
-        <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
-        <span class="menu-text">
+        <div *ngIf="myProfile() || education.visible">
+          <span class="menu-icon vd_green"><i class="fa  fa-circle-o"></i></span>
+          <span class="menu-text">
           <a>{{ education.universityDegree}}</a> at
           <a>{{ education.universityName }}</a>
           <button type="button"
@@ -28,6 +29,7 @@
           <span class="menu-info">
             <span class="menu-date"> {{ education.startDate | amDateFormat: 'MMM, YYYY'}} ~
             {{ education.endDate != null ? (education.endDate | amDateFormat: 'MMM, YYYY') : 'Present'}}</span></span> </span>
+        </div>
       </li>
     </ul>
   </div>
