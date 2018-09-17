@@ -3,6 +3,7 @@ import {ExperienceService} from "./experience.service";
 import {Experience} from "../../shared/experience/experience.model";
 import {BsModalService, ModalOptions} from "ngx-bootstrap";
 import {ExperienceModalComponent} from "./experience-modal/experience-modal.component";
+import {ActivatedRoute, Params} from "@angular/router";
 
 const options: ModalOptions = {
   class: 'modal-m',
@@ -19,23 +20,32 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   @Input() userId: number;
   @Input() experiences: Experience[];
 
-  constructor(private _modal: BsModalService,
+  constructor(private route: ActivatedRoute,
+              private _modal: BsModalService,
               private experienceService: ExperienceService) {
   }
 
   ngOnInit() {
-    if (this.myProfile()) {
-      this.experienceService.experience.subscribe((newExperience: Experience) => {
-        let updateItem = this.experiences.find(x => x.experienceId === newExperience.experienceId);
-        if (updateItem != null) {
-          let index = this.experiences.indexOf(updateItem);
-          this.experiences[index] = newExperience;
-        } else {
-          this.experiences.push(newExperience);
-        }
-      })
-    }
+    this.route.params.subscribe((params: Params) => {
+      if (this.myProfileUsername(params['username'])) {
+        this.experienceService.experience.subscribe((newExperience: Experience) => {
+          let updateItem = this.experiences.find(x => x.experienceId === newExperience.experienceId);
+          if (updateItem != null) {
+            let index = this.experiences.indexOf(updateItem);
+            this.experiences[index] = newExperience;
+          } else {
+            this.experiences.push(newExperience);
+          }
+        })
+      }
+    });
   }
+
+  myProfileUsername(username: string): boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    return user.username === username;
+  }
+
 
   myProfile(): boolean {
     let user = JSON.parse(localStorage.getItem('currentUser'));

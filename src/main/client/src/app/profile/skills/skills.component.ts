@@ -3,6 +3,7 @@ import {Skill} from "../../shared/skills/skill.model";
 import {SkillService} from "./skill.service";
 import {SkillsModalComponent} from "./skills-modal/skills-modal.component";
 import {BsModalService, ModalOptions} from "ngx-bootstrap";
+import {ActivatedRoute, Params} from "@angular/router";
 
 
 const options: ModalOptions = {
@@ -20,24 +21,33 @@ export class SkillsComponent implements OnInit, OnDestroy {
   @Input() skills: Skill[];
 
 
-  constructor(private _modal: BsModalService,
+  constructor(private route: ActivatedRoute,
+              private _modal: BsModalService,
               private skillService: SkillService) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      if (this.myProfileUsername(params['username'])) {
+        this.skillService.skill.subscribe((newSkill: Skill) => {
+          let updateItem = this.skills.find(x => x.skillId === newSkill.skillId);
+          if (updateItem != null) {
+            let index = this.skills.indexOf(updateItem);
+            this.skills[index] = newSkill;
+          } else {
+            this.skills.push(newSkill);
+          }
+        })
 
-    if (this.myProfile()) {
-      this.skillService.skill.subscribe((newSkill: Skill) => {
-        let updateItem = this.skills.find(x => x.skillId === newSkill.skillId);
-        if (updateItem != null) {
-          let index = this.skills.indexOf(updateItem);
-          this.skills[index] = newSkill;
-        } else {
-          this.skills.push(newSkill);
-        }
-      })
-    }
+      }
+    });
   }
+
+  myProfileUsername(username: string): boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    return user.username === username;
+  }
+
 
   myProfile(): boolean {
     let user = JSON.parse(localStorage.getItem('currentUser'));

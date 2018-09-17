@@ -28,8 +28,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.skills = resolvedData['skills'];
       this.educations = resolvedData['educations'];
       this.experiences = resolvedData['experiences'];
+      if (this.myProfile()) {
+        this.userService.user.subscribe((updatedUser: User) => {
+          this.user = updatedUser;
+        })
       }
-    )
+    })
+  }
+
+  myProfile(): boolean {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser.userId === this.user.userId;
   }
 
   ngOnDestroy(): void {
