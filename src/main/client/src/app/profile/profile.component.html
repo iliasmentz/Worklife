@@ -2,7 +2,6 @@
 
 <div class="vd_title-section clearfix">
   <div class="vd_panel-header no-subtitle">
-    <h1>User Profile Page</h1>
   </div>
 </div>
 <div class="vd_content-section clearfix">
@@ -10,12 +9,14 @@
 
     <div class="col-sm-3">
       <div class="panel widget light-widget panel-bd-top">
-        <div class="panel-heading no-title"> </div>
+        <div class="panel-heading no-title"></div>
         <div class="panel-body">
-          <div class="text-center vd_info-parent"> <img alt="example image" src="../../assets/img/user.svg"> </div>
+          <div class="text-center vd_info-parent"><img alt="example image" [src]="'assets/img/user.svg'"></div>
           <div class="row">
-            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i class="fa fa-check-circle append-icon" ></i>Friends</a> </div>
-            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i class="fa fa-envelope append-icon"></i>Send Message</a> </div>
+            <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+              class="fa fa-check-circle append-icon"></i>Friends</a></div>
+            <div class="col-xs-12"><a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
+              class="fa fa-envelope append-icon"></i>Send Message</a></div>
           </div>
           <h2 class="font-semibold mgbt-xs-5">{{ user.displayName }}</h2>
           <h4>Owner at Our Company, Inc.</h4>
@@ -28,7 +29,7 @@
               </tr>
               <tr>
                 <td>Member Since</td>
-                <td> {{ user.dateCreated | date: 'mediumDate' }} </td>
+                <td> {{ user.dateCreated | amDateFormat: 'MMM, YYYY' }}</td>
               </tr>
               </tbody>
             </table>
@@ -46,17 +47,17 @@
       <div id="profile-tab" class="tab-pane active ">
         <div class="pd-20">
           <app-basic-info [user]="user"></app-basic-info>
-          <hr class="pd-10"  />
+          <hr class="pd-10"/>
           <div class="row">
-          <app-experience [userId]="user.userId"></app-experience>
-          <app-education [userId]="user.userId"></app-education>
+            <app-experience [userId]="user.userId" [experiences]="experiences"></app-experience>
+            <app-education [userId]="user.userId" [educations]="educations"></app-education>
           </div>
           <!-- row -->
-          <hr class="pd-10"  />
+          <hr class="pd-10"/>
           <div class="row">
             <app-posts></app-posts>
             <!-- col-sm-7 -->
-            <app-skills [userId]="user.userId"></app-skills>
+            <app-skills [userId]="user.userId" [skills]="skills"></app-skills>
             <!-- col-sm-7 -->
           </div>
           <!-- row -->

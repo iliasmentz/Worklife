@@ -1,6 +1,5 @@
-package com.linkedin.entities.model.Experience;
+package com.linkedin.entities.model.experience;
 
-import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,10 +25,9 @@ public class ExperienceRequestDto {
 	@ApiModelProperty(value = "Date started", example = "2010-01-01", position = 3)
 	private Date startDate;
 
-	@NotNull
 	@ApiModelProperty(value = "Date ended", example = "2018-01-01", position = 4)
 	private Date endDate;
 
 	@NotNull
-	private Visible visible;
+	private Integer visible;
 }

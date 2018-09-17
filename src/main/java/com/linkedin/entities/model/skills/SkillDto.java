@@ -1,6 +1,5 @@
 package com.linkedin.entities.model.skills;
 
-import com.linkedin.constants.Visible;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -28,5 +27,5 @@ public class SkillDto {
 
 	@NotNull
 	@ApiModelProperty(value = "visible", example = "Public", position = 5)
-	private Visible visible;
+	private Integer visible;
 }

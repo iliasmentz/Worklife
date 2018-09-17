@@ -1,7 +1,7 @@
 package com.linkedin.converter;
 
 import com.linkedin.entities.database.Experience;
-import com.linkedin.entities.model.Experience.ExperienceDto;
+import com.linkedin.entities.model.experience.ExperienceDto;
 import org.springframework.stereotype.Component;
 
 @Component

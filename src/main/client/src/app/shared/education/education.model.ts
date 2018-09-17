@@ -1,9 +1,10 @@
 export class Education {
-  id: number;
+  educationId: number;
   universityDegree: string;
   universityName: string;
   startDate: Date;
   endDate: Date;
+  visible: number;
 
   constructor(obj: Education) {
 

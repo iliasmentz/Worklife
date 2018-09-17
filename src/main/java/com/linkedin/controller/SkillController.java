@@ -1,6 +1,5 @@
 package com.linkedin.controller;
 
-import com.linkedin.entities.database.Skill;
 import com.linkedin.entities.model.skills.SkillDto;
 import com.linkedin.entities.model.skills.SkillRequestDto;
 import com.linkedin.service.SkillService;
@@ -34,19 +33,19 @@ public class SkillController {
 	}
 
 	@GetMapping("/")
-	@ApiOperation(value = "Skill", notes = "Returns User's List of Skills", response = Skill.class)
+	@ApiOperation(value = "Skill", notes = "Returns User's List of Skills", response = SkillDto.class)
 	public List<SkillDto> getSkills() {
 		return skillService.getSkills();
 	}
 
 	@GetMapping("/{userId}")
-	@ApiOperation(value = "Skill", notes = "Returns anothers User's List of Skills", response = Skill.class)
+	@ApiOperation(value = "Skill", notes = "Returns another's user List of Skills", response = SkillDto.class)
 	public List<SkillDto> getSkills(@PathVariable Long userId) {
 		return skillService.getSkills(userId);
 	}
 
 	@PostMapping("/")
-	@ApiOperation(value = "Skill", notes = "Creates a new skill for the User", response = Skill.class)
+	@ApiOperation(value = "Skill", notes = "Creates a new skill for the User", response = SkillDto.class)
 	public SkillDto createSkill(@Valid @RequestBody SkillRequestDto skillRequestDto) {
 
 		return skillService.createSkill(skillRequestDto);
@@ -54,15 +53,15 @@ public class SkillController {
 	}
 
 	@PutMapping("/{skillId}")
-	@ApiOperation(value = "Skill", notes = "Updates a skill of the User", response = Skill.class)
-	public SkillDto deleteSkill(@PathVariable Long skillId, @Valid @RequestBody SkillRequestDto skillRequestDto) throws Exception {
+	@ApiOperation(value = "Skill", notes = "Updates a skill of the User", response = SkillDto.class)
+	public SkillDto updateSkill(@PathVariable Long skillId, @Valid @RequestBody SkillRequestDto skillRequestDto) throws Exception {
 
 		return skillService.updateSkill(skillId, skillRequestDto);
 
 	}
 
 	@DeleteMapping("/{skillId}")
-	@ApiOperation(value = "Skill", notes = "Deletes a skill of the User", response = Skill.class)
+	@ApiOperation(value = "Skill", notes = "Deletes a skill of the User")
 	public void deleteSkill(@PathVariable Long skillId) throws Exception {
 
 		skillService.deleteSkill(skillId);

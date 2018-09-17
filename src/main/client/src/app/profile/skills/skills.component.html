@@ -1,9 +1,36 @@
-<div class="col-sm-5">
-  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-flask mgr-10 profile-icon"></i> SKILL</h3>
+<div class="col-sm-5" xmlns="http://www.w3.org/1999/html">
+  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-flask mgr-10 profile-icon"></i> SKILLS
+    <button type="button" *ngIf="myProfile()"
+            class="btn btn-worklife pull-right"
+            (click)="openAddModal()">
+      <i class="fa fa-plus"></i>
+      <span style="font-weight: bold"></span></button>
+  </h3>
+  <hr>
   <div class="skill-list" *ngFor="let skill of skills">
-    <div class="skill-name"> {{ skill.name }} </div>
-    <div class="progress progress-striped progress-sm active">
-      <progressbar class="progress-striped active" [value]="skill.level*20" [type]="getType(skill.level)">{{ skill.level * 20 }}%</progressbar>
+    <div *ngIf="myProfile() || skill.visible">
+      <div class="skill-name">
+        <h3>{{ skill.name | titlecase }}
+          <button type="button" *ngIf="myProfile()"
+                  class="btn btn-xs btn-danger pull-right"
+                  (click)="deleteSkill(skill.skillId)">
+            <i class="fa fa-trash"></i>
+            <span style="font-weight: bold"></span></button>
+          <button type="button" *ngIf="myProfile()"
+                  class="btn btn-xs btn-worklife pull-right"
+                  (click)="openEditModal(skill.skillId)">
+            <i class="fa fa-pencil"></i>
+            <span style="font-weight: bold"></span></button>
+        </h3>
+      </div>
+      <h5>({{ getText(skill.level) }})</h5>
+      <div class="progress progress progress-sm active">
+        <progressbar class="progress active"
+                     [value]="skill.level*20"
+                     [type]="getType(skill.level)">
+
+        </progressbar>
+      </div>
     </div>
   </div>
 </div>

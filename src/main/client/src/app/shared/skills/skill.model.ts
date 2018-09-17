@@ -1,7 +1,7 @@
 import {User} from "../user/user.model";
 
 export class Skill {
-  id: number;
+  skillId: number;
   name: string;
   level: number;
   visible: string;

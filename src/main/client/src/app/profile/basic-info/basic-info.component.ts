@@ -1,56 +1,46 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../shared/user/user.model";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {BasicInfoModalComponent} from './basic-info-modal/basic-info-modal.component';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute} from "@angular/router";
+
+
+const options: ModalOptions = {
+  class: 'modal-m',
+  backdrop: 'static',
+};
 
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
   styleUrls: ['../css/bootstrap.css', '../css/font-awesome.css', '../css/theme.css']
 })
-export class BasicInfoComponent implements OnInit {
-
+export class BasicInfoComponent implements OnInit, OnDestroy {
   @Input() user: User;
-
   editMode: boolean = false;
 
-  basicInfoForm: FormGroup;
-
-  constructor(private _modal: BsModalService,
-              private _fb: FormBuilder) {
+  constructor(private route: ActivatedRoute,
+              private _modal: BsModalService) {
   }
 
   ngOnInit() {
-    this.basicInfoForm = this._initForm();
   }
 
-  onSubmit(form: FormGroup) {
-    this.editMode = !this.editMode;
-    console.log(form.getRawValue());
+  myProfile(): boolean {
+    let myUser = JSON.parse(localStorage.getItem('currentUser'));
+    return myUser.userId === this.user.userId;
   }
 
   openEditModal() {
-
-    const options: ModalOptions = {
-      initialState: {
-        title: 'ILIAS',
-      }
+    const initialState = {
+      user: this.user
     };
 
-    this._modal.show(BasicInfoModalComponent, options);
+    this._modal.show(BasicInfoModalComponent, {...options, initialState});
   }
 
-  private _initForm = () => {
-    return this._fb.group({
-      name: [this.user.name],
-      surname: [this.user.surname],
-      username: [this.user.username],
-      email: [this.user.email],
-      address: [this.user.address],
-      country: [null],
-      birthdate: [this.user.birthdate],
-      phoneNumber: [this.user.phoneNumber],
-    })
+  ngOnDestroy(): void {
   }
+
+
 }

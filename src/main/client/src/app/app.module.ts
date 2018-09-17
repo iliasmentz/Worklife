@@ -21,7 +21,7 @@ import {NewsfeedComponent} from './newsfeed/newsfeed.component';
 import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
 import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
-import {BsDatepickerModule, ModalModule, ProgressbarModule} from "ngx-bootstrap";
+import {BsDatepickerModule, BsDropdownModule, BsModalRef, ModalModule, ProgressbarModule} from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
 import {SkillsComponent} from "./profile/skills/skills.component";
@@ -30,6 +30,13 @@ import {FriendsComponent} from "./profile/friends/friends.component";
 import {ExperienceService} from "./profile/experience/experience.service";
 import {SkillService} from "./profile/skills/skill.service";
 import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/basic-info-modal.component';
+import {SkillsModalComponent} from "./profile/skills/skills-modal/skills-modal.component";
+import {EducationResolver} from "./profile/resolvers/education.resolver";
+import {ProfileResolver} from "./profile/profile.resolver";
+import {SkillsResolver} from "./profile/resolvers/skills.resolver";
+import {ExperienceResolver} from "./profile/resolvers/experience.resolver";
+import {ExperienceModalComponent} from "./profile/experience/experience-modal/experience-modal.component";
+import {EducationModalComponent} from "./profile/education/education-modal/education-modal.component";
 
 
 @NgModule({
@@ -48,7 +55,10 @@ import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/bas
     SkillsComponent,
     PostsComponent,
     FriendsComponent,
-    BasicInfoModalComponent
+    BasicInfoModalComponent,
+    SkillsModalComponent,
+    ExperienceModalComponent,
+    EducationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,14 +69,19 @@ import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/bas
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     ProgressbarModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
-  entryComponents:[
-    BasicInfoModalComponent
+  entryComponents: [
+    BasicInfoModalComponent,
+    SkillsModalComponent,
+    ExperienceModalComponent,
+    EducationModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService,
+    EducationService, ExperienceService, SkillService, BsModalRef,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -76,3 +91,4 @@ import {BasicInfoModalComponent} from './profile/basic-info/basic-info-modal/bas
 })
 export class AppModule {
 }
+

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Register} from "../../shared/register/register.model";
 import {UserService} from "../../shared/user/user.service";
-import {moment} from "ngx-bootstrap/chronos/test/chain";
 
 @Component({
   selector: 'app-register',
@@ -31,21 +30,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log("STELNW" + this.registerForm.valid);
       let registerRequest = new Register(this.registerForm);
       this.userService.register(registerRequest)
-        .then(response => {
-          console.log(response);
-
+        .then(() => {
           this.userService.loginUser(registerRequest.username, registerRequest.password);
         })
         .catch(err => console.log(err));
     }
-    let date: Date;
-    date = this.registerForm.get('birthdate').value;
-    let dateString = moment(date).format('YYYY-MM-DD');
-
-    console.log('Bday: ' +(dateString));
-    console.log(this.registerForm);
   }
 }
