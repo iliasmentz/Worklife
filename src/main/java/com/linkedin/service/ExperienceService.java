@@ -63,21 +63,19 @@ public class ExperienceService {
 
 	public void removeExperience(Long experienceId) throws Exception {
 		if (experienceRepository.existsById(experienceId)) {
-			if (experienceRepository.existsById(experienceId)) {
-				Login login = AuthenticationFacade.authenticatedUser();
-				Long userId = login.getUserId();
-				Experience experience = experienceRepository.findById(experienceId).orElse(null);
+			Login login = AuthenticationFacade.authenticatedUser();
+			Long userId = login.getUserId();
+			Experience experience = experienceRepository.findById(experienceId).orElse(null);
 
-				if (userId.equals(experience.getUserId())) {
-					throw new NotAuthorizedException(Experience.class);
-				}
-
-				experienceRepository.delete(experience);
-			} else {
-				throw new ObjectNotFoundException(Experience.class, experienceId);
+			if (userId.equals(experience.getUserId())) {
+				throw new NotAuthorizedException(Experience.class);
 			}
 
+			experienceRepository.delete(experience);
+		} else {
+			throw new ObjectNotFoundException(Experience.class, experienceId);
 		}
+
 	}
 
 	public ExperienceDto updateExperience(Long experienceId, ExperienceRequestDto experienceRequestDto) throws NotAuthorizedException, ObjectNotFoundException {

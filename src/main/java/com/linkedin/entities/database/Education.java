@@ -1,6 +1,5 @@
 package com.linkedin.entities.database;
 
-import com.linkedin.constants.Visible;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,5 +53,5 @@ public class Education implements Serializable {
 
 	@NotNull
 	@Column(name = "visible")
-	private Visible visible;
+	private Integer visible;
 }

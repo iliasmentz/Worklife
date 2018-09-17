@@ -1,15 +1,10 @@
 package com.linkedin.controller;
 
 import com.linkedin.converter.EducationConverter;
-import com.linkedin.converter.JobConverter;
-import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Education;
-import com.linkedin.entities.database.repo.EducationRepository;
 import com.linkedin.entities.model.education.EducationDto;
 import com.linkedin.entities.model.education.EducationRequestDto;
 import com.linkedin.service.EducationService;
-import com.linkedin.service.JobService;
-import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +27,13 @@ import java.util.List;
 @RequestMapping("/api/profile/")
 public class EducationController {
 	public static final String tag = "Education Controller";
-	public final EducationRepository educationRepository;
 
 	private final EducationConverter educationConverter;
 	private final EducationService educationService;
 
 	@Autowired
-	public EducationController(JobService jobService, JobConverter jobConverter, UserService userService, EducationConverter educationConverter, UserConverter userConverter, UserService userService1, EducationRepository educationRepository, EducationService educationService) {
+	public EducationController(EducationConverter educationConverter, EducationService educationService) {
 		this.educationConverter = educationConverter;
-		this.educationRepository = educationRepository;
 		this.educationService = educationService;
 	}
 
@@ -75,11 +68,8 @@ public class EducationController {
 
 	@ApiOperation(value = "Deletes an Education from profile ", response = EducationDto.class)
 	@DeleteMapping("/education/{educationId}")
-	public void deleteEducation(@PathVariable Long educationId) {
-		if (!educationRepository.existsById(educationId)) {
-			return;
-		}
-		educationRepository.deleteById(educationId);
+	public void deleteEducation(@PathVariable Long educationId) throws Exception {
+		educationService.removeEducation(educationId);
 	}
 
 }

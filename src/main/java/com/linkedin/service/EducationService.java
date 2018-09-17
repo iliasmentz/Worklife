@@ -80,9 +80,8 @@ public class EducationService {
 
 		//we check if the user that is  not changing anothers user  Education
 		Education educationCheck = educationRepository.findById(educationId).orElse(null);
-		if (userId != educationCheck.getUserId()) {
+		if (!userId.equals(educationCheck != null ? educationCheck.getUserId() : null)) {
 			throw new NotAuthorizedException(Job.class);
-
 		}
 
 		Education education = new Education();
@@ -97,4 +96,22 @@ public class EducationService {
 		educationRepository.save(education);
 		return education;
 	}
+
+	public void removeEducation(Long educationId) throws Exception {
+		if (educationRepository.existsById(educationId)) {
+			Login login = AuthenticationFacade.authenticatedUser();
+			Long userId = login.getUserId();
+			Education education = educationRepository.findById(educationId).orElse(null);
+
+			if (userId.equals(education != null ? education.getUserId() : null)) {
+				throw new NotAuthorizedException(Education.class);
+			}
+
+			educationRepository.delete(education);
+		} else {
+			throw new ObjectNotFoundException(Education.class, educationId);
+		}
+
+	}
+
 }
