@@ -14,6 +14,7 @@ public class PostConverter {
 	postDto.setContext(post.getContext());
 	postDto.setCreatorId(post.getCreatorId());
 	postDto.setVisible(post.getVisible());
+	postDto.setNumberOfLikes(post.getNumberOfLikes());
 	return postDto;
   }
 

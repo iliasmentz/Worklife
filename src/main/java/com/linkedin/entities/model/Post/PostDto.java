@@ -37,5 +37,10 @@ public class PostDto {
   @NotBlank
   @ApiModelProperty(value = "visible", example = "Public", position = 5)
   private Visible visible;
+
+  @NotNull
+  @ApiModelProperty(value = "numberOfLikes", example = "12", position = 6)
+  private Long numberOfLikes;
+
 }
 

@@ -30,7 +30,7 @@ public class Post implements Serializable {
   private Long postId;
 
   @NotNull
-  @Column(name = "creator_id", nullable = false)
+  @Column(name = "creator_id")
   private Long creatorId;
 
   @NotNull
@@ -40,12 +40,17 @@ public class Post implements Serializable {
   private Date postDate;
 
   @NotBlank
-  @Column(columnDefinition = "text", name = "context", nullable = false)
+  @Column(columnDefinition = "text", name = "context")
   private String context;
+
+  @NotNull
+  @Column(name = "number_of_likes")
+  private Long numberOfLikes;
 
   //Todo na to doume
   //@NotNull
   @Column(name = "visible")
   private Visible visible;
+
 
 }

@@ -22,26 +22,20 @@ public class LikeController {
   private final LikeService likeService;
 
   @Autowired
-  public LikeController(LikeService likeService){
+  public LikeController(LikeService likeService) {
 
 	this.likeService = likeService;
   }
 
   @ApiOperation(value = "Creates a new like for a specific post", response = LikeDto.class)
   @PostMapping("/{postId}")
-  public LikeDto createNewLike(@PathVariable Long postId) {
-    return likeService.createNewLike(postId);
+  public LikeDto createNewLike(@PathVariable Long postId) throws Exception {
+	return likeService.createNewLike(postId);
   }
 
   @ApiOperation(value = "Returns all Likes of a Post", response = LikeDto.class)
   @GetMapping("/{postId}")
   public List<LikeDto> getPostLikes(@PathVariable Long postId) {
 	return likeService.getPostLikes(postId);
-  }
-
-  @ApiOperation(value = "Returns the number of likes of a Post", response = LikeDto.class)
-  @GetMapping("/likes-number/{postId}")
-  public Integer getNumberPostLikes(@PathVariable Long postId) {
-	return likeService.getNumberPostLikes(postId);
   }
 }

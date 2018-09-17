@@ -48,6 +48,8 @@ public class PostService {
 	post.setCreatorId(userId);
 	post.setPostDate(requestPostDto.getPostDate());
 	post.setVisible(requestPostDto.getVisible());
+	Integer zero = 0 ;
+	post.setNumberOfLikes(zero.longValue());
 
 	postRepository.save(post);
 	return postConverter.toPostDto(post);
@@ -94,9 +96,11 @@ public class PostService {
 	if (!userRepository.existsById(userId)) {
 	  throw new ObjectNotFoundException(User.class, userId);
 	}
-	return postRepository.findByUserId(userId)
+	return postRepository.findAllByCreatorIdOrderByPostDateDesc(userId)
 		.stream()
 		.map(postConverter::toPostDto)
 		.collect(Collectors.toList());
   }
+
+
 }

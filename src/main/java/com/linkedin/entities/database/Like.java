@@ -13,21 +13,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
-@Table(name = "like")
+@Table(name = "like_post")
 @Entity
 @DynamicUpdate
-public class Like  implements Serializable {
+public class Like implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "like_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long likeId;
 
-  @NotNull
   @Column(name = "user_id")
   private Long userId;
 
-  @NotNull
   @Column(name = "post_id")
   private Long postId;
 

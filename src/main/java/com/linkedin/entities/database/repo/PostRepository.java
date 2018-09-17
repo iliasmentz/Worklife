@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-  @Query(value = "select e from Post e where e.creatorId = :userId")
-  List<Post> findByUserId(@Param("userId")Long userId);
+  List<Post> findAllByCreatorIdOrderByPostDateDesc(@Param("userId")Long userId);
+
 }
