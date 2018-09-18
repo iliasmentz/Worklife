@@ -13,6 +13,7 @@ import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,7 @@ public class PostService {
 
 	post.setContext(requestPostDto.getContext());
 	post.setCreatorId(userId);
-	post.setPostDate(requestPostDto.getPostDate());
+	post.setPostDate(new Date());
 	post.setVisible(requestPostDto.getVisible());
 	Integer zero = 0 ;
 	post.setNumberOfLikes(zero.longValue());
@@ -65,7 +66,7 @@ public class PostService {
 	  throw new NotAuthorizedException(Post.class);
 	}
 	postToUpdate.setVisible(requestPostDto.getVisible());
-	postToUpdate.setPostDate(requestPostDto.getPostDate());
+	postToUpdate.setPostDate(new Date());
 	postToUpdate.setContext(requestPostDto.getContext());
 	postToUpdate.setCreatorId(userId);
 	postRepository.save(postToUpdate);

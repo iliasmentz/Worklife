@@ -50,7 +50,7 @@ public class Post implements Serializable {
   //Todo na to doume
   //@NotNull
   @Column(name = "visible")
-  private Visible visible;
+  private Integer visible;
 
 
 }

@@ -15,21 +15,14 @@ import java.util.Date;
 @NoArgsConstructor
 @ApiModel(description = "PostDto object ")
 public class RequestPostDto {
-  @NotNull
-  @ApiModelProperty(value = "commenterId", example = "11", position = 2)
-  private Long creatorId;
 
-
-  @NotNull
-  @ApiModelProperty(value = "postDate (yyyy-mm-dd)", example = "2018-01-12", position = 3)
-  private Date postDate;
 
   @NotBlank
-  @ApiModelProperty(value = "context", example = "Check out our Brand new offices", position = 4)
+  @ApiModelProperty(value = "context", example = "Check out our Brand new offices", position = 1)
   private String context;
 
   @NotBlank
-  @ApiModelProperty(value = "visible", example = "Public", position = 5)
-  private Visible visible;
+  @ApiModelProperty(value = "visible", example = "Public", position = 2)
+  private Integer visible;
 
 }
