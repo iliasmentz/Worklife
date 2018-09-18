@@ -40,6 +40,7 @@ import {EducationModalComponent} from "./profile/education/education-modal/educa
 import {PostsResolver} from "./profile/resolvers/posts.resolver";
 import {PostService} from "./shared/posts/post.service";
 import {ScrollbarModule} from "ngx-scrollbar";
+import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {ScrollbarModule} from "ngx-scrollbar";
     BasicInfoModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import {ScrollbarModule} from "ngx-scrollbar";
     BasicInfoModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,

@@ -10,11 +10,20 @@
                 <div *ngIf="myProfile() || post.visible ">
                   <span class="menu-icon vd_green">
                     <i class=" fa fa-book"></i></span>
-                  <span class="menu-text"> {{ post.context }}<span class="menu-info"><span class="menu-date">
+                  <span class="menu-text"> {{ post.context }}<span class="menu-info">
+                    <a (click)="showLikes()" style="cursor: pointer;">{{ post.numberOfLikes }} likes</a>
+                    <span class="menu-date">
+
               ~ {{ (today | amDifference: post.postDate :'days' : true)| number:'1.0-0'}} days ago
               <button type="button" *ngIf="myProfile()" class="btn btn-xs btn-danger pull-right"
                       (click)="deletePost(post.postId)">
             <i class="fa fa-trash"></i>
+            <span style="font-weight: bold"></span>
+              </button>
+                       <button type="button" *ngIf="myProfile()"
+                               class="btn btn-xs btn-worklife pull-right"
+                               (click)="openEditModal(post.postId)">
+            <i class="fa fa-pencil"></i>
             <span style="font-weight: bold"></span></button>
             </span></span> </span>
                 </div>
