@@ -41,6 +41,7 @@ import {PostsResolver} from "./profile/resolvers/posts.resolver";
 import {PostService} from "./shared/posts/post.service";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
+import {PostFormComponent} from './newsfeed/post-form/post-form.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {PostModalComponent} from "./profile/posts/post-modal/post-modal.componen
     SkillsModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
-    PostModalComponent
+    PostModalComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
