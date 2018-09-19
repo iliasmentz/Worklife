@@ -10,7 +10,7 @@ export class EducationDto {
   constructor() {
   }
 
-  load(present: boolean, form: FormGroup) {
+  public load(present: boolean, form: FormGroup) {
     this.universityDegree = form.get('universityDegree').value;
     this.universityName = form.get('universityName').value;
     this.startDate = form.get('startDate').value;

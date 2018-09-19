@@ -37,6 +37,11 @@ import {SkillsResolver} from "./profile/resolvers/skills.resolver";
 import {ExperienceResolver} from "./profile/resolvers/experience.resolver";
 import {ExperienceModalComponent} from "./profile/experience/experience-modal/experience-modal.component";
 import {EducationModalComponent} from "./profile/education/education-modal/education-modal.component";
+import {PostsResolver} from "./profile/resolvers/posts.resolver";
+import {PostService} from "./shared/posts/post.service";
+import {ScrollbarModule} from "ngx-scrollbar";
+import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
+import {PostFormComponent} from './newsfeed/post-form/post-form.component';
 
 
 @NgModule({
@@ -58,7 +63,9 @@ import {EducationModalComponent} from "./profile/education/education-modal/educa
     BasicInfoModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +74,7 @@ import {EducationModalComponent} from "./profile/education/education-modal/educa
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    ScrollbarModule,
     BsDatepickerModule.forRoot(),
     ProgressbarModule.forRoot(),
     ModalModule.forRoot(),
@@ -76,12 +84,13 @@ import {EducationModalComponent} from "./profile/education/education-modal/educa
     BasicInfoModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService, BsModalRef,
-    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver,
+    EducationService, ExperienceService, SkillService, PostService, BsModalRef,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

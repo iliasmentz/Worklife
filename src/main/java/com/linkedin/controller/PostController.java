@@ -1,9 +1,7 @@
 package com.linkedin.controller;
 
 import com.linkedin.entities.model.Post.PostDto;
-import com.linkedin.entities.model.Post.RequestPostDto;
-import com.linkedin.entities.model.UserDto;
-import com.linkedin.security.AuthenticationFacade;
+import com.linkedin.entities.model.Post.PostRequestDto;
 import com.linkedin.service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,20 +22,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/posts/")
 public class PostController {
-  public static final String tag = "Post Controller";
-  private PostService postService;
+	public static final String tag = "Post Controller";
+	private PostService postService;
 
-  @Autowired
-  public PostController(PostService postService) {
+	@Autowired
+	public PostController(PostService postService) {
 
-	this.postService = postService;
-  }
+		this.postService = postService;
+	}
 
-  @GetMapping("/")
-  @ApiOperation(value = "Posts", notes = "Returns All Posts of all Users", response = PostDto.class)
-  public List<PostDto> getAllPosts() {
-	return postService.getAllPosts();
-  }
+	@GetMapping("/")
+	@ApiOperation(value = "Posts", notes = "Returns All Posts of all Users", response = PostDto.class)
+	public List<PostDto> getAllPosts() {
+		return postService.getAllPosts();
+	}
 
   @GetMapping("/{postId}")
   @ApiOperation(value = "Posts", notes = "Returns Single Post", response = PostDto.class)
@@ -45,31 +43,28 @@ public class PostController {
 	return postService.getPost(postId);
   }
 
-  @GetMapping("/users/{userId}")
-  @ApiOperation(value = "Posts", notes = "Returns All Posts of a single User", response = PostDto.class)
-  public List<PostDto> getUsersPosts(@Valid @PathVariable Long userId) throws Exception{
-	return postService.getUsersPost(userId);
-  }
+	@GetMapping("/users/{userId}")
+	@ApiOperation(value = "Posts", notes = "Returns All Posts of a single User", response = PostDto.class)
+	public List<PostDto> getUsersPosts(@Valid @PathVariable Long userId) throws Exception {
+		return postService.getUsersPost(userId);
+	}
 
-  @PostMapping("/")
-  @ApiOperation(value = "Posts", notes = "Creates a new Post", response = PostDto.class)
-  public PostDto createNewPost(@RequestBody RequestPostDto requestPostDto) {
-	return postService.createNewPost(requestPostDto);
-  }
+	@PostMapping("/")
+	@ApiOperation(value = "Posts", notes = "Creates a new Post", response = PostDto.class)
+	public PostDto createNewPost(@RequestBody PostRequestDto postRequestDto) {
+		return postService.createNewPost(postRequestDto);
+	}
 
-  @PutMapping("/{postId}")
-  @ApiOperation(value = "Posts", notes = "Updates a  Post", response = PostDto.class)
-  public PostDto updatePost(@Valid @PathVariable Long postId, @RequestBody RequestPostDto requestPostDto) throws Exception {
-	return postService.updatePost(postId, requestPostDto);
-  }
+	@PutMapping("/{postId}")
+	@ApiOperation(value = "Posts", notes = "Updates a  Post", response = PostDto.class)
+	public PostDto updatePost(@Valid @PathVariable Long postId, @RequestBody PostRequestDto postRequestDto) throws Exception {
+		return postService.updatePost(postId, postRequestDto);
+	}
 
   @DeleteMapping("/{postId}")
   @ApiOperation(value = "Posts", notes = "Deletes a  Post", response = PostDto.class)
   public void deletePost(@Valid @PathVariable Long postId) throws Exception {
 	postService.deletePost(postId);
   }
-
-
-
 
 }

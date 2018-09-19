@@ -5,6 +5,7 @@ import {User} from "../shared/user/user.model";
 import {Skills} from "../shared/skills/skill.model";
 import {Educations} from "../shared/education/education.model";
 import {Experiences} from "../shared/experience/experience.model";
+import {Posts} from "../shared/posts/post.model";
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   skills: Skills;
   educations: Educations;
   experiences: Experiences;
+  posts: Posts;
 
   constructor(private route: ActivatedRoute, private userService: UserService) {
   }
@@ -28,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.skills = resolvedData['skills'];
       this.educations = resolvedData['educations'];
       this.experiences = resolvedData['experiences'];
+      this.posts = resolvedData['posts'];
       if (this.myProfile()) {
         this.userService.user.subscribe((updatedUser: User) => {
           this.user = updatedUser;
