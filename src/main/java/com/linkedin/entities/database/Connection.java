@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,22 +25,24 @@ import java.util.Date;
 @DynamicUpdate
 public class Connection implements Serializable {
 
-	@Id
-	@Column(name = "connection_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  @Id
+  @Column(name = "connection_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long connectionId;
 
-	@JoinColumn(name = "request_user_id")
-	@ManyToOne(targetEntity = User.class)
-	private User userRequested;
 
-	@JoinColumn(name = "accept_user_id")
-	@ManyToOne(targetEntity = User.class)
-	private User userAccepted;
+  @NotNull
+  @Column(name = "user_requested_id")
+  private Long userRequestedId;
 
-	@Column(name = "user_id")
-	private Date dateOfAccept;
+  @NotNull
+  @Column(name = "user_accepted_id")
+  private Long userAcceptedId;
 
-	@Column(name = "connection_request_id")
-	private Long connectionRequest;
+  @NotNull
+  @Column(name = "date_of_accept")
+  private Date dateOfAccept;
+
+  @Column(name = "connection_request_id")
+  private Long connectionRequestId;
 }

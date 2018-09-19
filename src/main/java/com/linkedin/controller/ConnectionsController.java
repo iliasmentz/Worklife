@@ -3,6 +3,7 @@ package com.linkedin.controller;
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.User;
 import com.linkedin.entities.model.UserDto;
+import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
 import com.linkedin.service.ConnectionService;
@@ -40,7 +41,7 @@ public class ConnectionsController {
 		this.userConverter = userConverter;
 	}
 
-	@ApiOperation(value = "Get Connections", notes = "Return's connections of a user", response = UserDto.class)
+	/*@ApiOperation(value = "Get Connections", notes = "Return's connections of a user", response = UserDto.class)
 	@ApiImplicitParams({
 					@ApiImplicitParam(name = "userId", value = "user's id", required = true, dataType = "long", example = "1"),
 	})
@@ -53,9 +54,25 @@ public class ConnectionsController {
 						.stream()
 						.map(userConverter::toUserDto)
 						.collect(Collectors.toList());
-	}
+	}*/
 
-	@ApiOperation(value = "Request Connection", notes = "Creates a new connection request", response = Void.class)
+  @ApiOperation(value = "Return Connections of Another User", notes = "Return Connections of Another User", response = ConnectionDto.class)
+  @ApiImplicitParams({
+	  @ApiImplicitParam(name = "userId", value = "user's id", required = true, dataType = "Long", example = "1"),
+  })
+  @GetMapping("/network/connections/{userId}")
+  public List<ConnectionDto> getUserConnections(@PathVariable Long userId) throws Exception {
+	return connectionService.getUserConnections(userId);
+  }
+
+
+  @ApiOperation(value = "Get Connections of current loged in User", notes = "Get Connections of current loged in User", response = ConnectionDto.class)
+  @GetMapping("/network/connections/")
+  public List<ConnectionDto> myProfile() throws Exception {
+	return connectionService.getMyConnections();
+  }
+
+/*	@ApiOperation(value = "Request Connection", notes = "Creates a new connection request", response = Void.class)
 	@ApiImplicitParams({
 					@ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "String", example = "johnDoe"),
 	})
@@ -77,6 +94,6 @@ public class ConnectionsController {
 
 	private User getConnectedUser() {
 		return userService.getUser(AuthenticationFacade.getUserId());
-	}
+	}*/
 
 }

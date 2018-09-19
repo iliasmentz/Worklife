@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 
-	@Query(value = "select c from Connection c where c.userRequested.id = :userId or c.userAccepted.id = :userId")
-	public List<Connection> getUsersConnections(@Param("userId")Long userId);
+//	@Query(value = "select c from Connection c where c.userRequested.id = :userId or c.userAccepted.id = :userId")
+//	public List<Connection> getUsersConnections(@Param("userId")Long userId);
+
+	List<Connection> findAllByUserRequestedIdOrUserAcceptedId(Long userId1,Long userId2); //ayto epistrefei ola me userId1 == UserRequested h userId2 == UserAccepted
 
 }

@@ -4,6 +4,7 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserSimpleDto;
+import com.linkedin.errors.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,8 +36,10 @@ public class UserConverter {
 	}
 
 
-	public UserSimpleDto toUserSimpleDto(Long id) {
-		User user = userRepository.getOne(id);
+	public UserSimpleDto toUserSimpleDto(Long userId){
+
+	  	User user = userRepository.findById(userId).orElse(null);
+		//User user = userRepository.findAllById(userId);
 		UserSimpleDto userDto = new UserSimpleDto();
 		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
 		userDto.setUserId(user.getId());
