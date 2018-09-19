@@ -4,6 +4,7 @@ import {PostDto} from "../../shared/posts/post-dto.model";
 import {PostService} from "../../shared/posts/post.service";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {FileUploadModalComponent} from '../../file-upload-modal/file-upload-modal.component';
+import {isNull} from 'util';
 
 const options: ModalOptions = {
   class: 'modal-sm',
@@ -55,8 +56,25 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(postForm: FormGroup) {
     if (postForm.valid) {
-      let postRequest = new PostDto();
+
+      const file = postForm.get('file').value;
+      let postRequest = new PostDto() as PostDto;
       postRequest.load(this.postForm);
+
+      if (!isNull(file)) {
+
+        let formData = new FormData();
+        Object.keys(postRequest).forEach(key => {
+          formData.append(key, postRequest[key]);
+        });
+
+        formData.append('file', file, file.name);
+
+        this.postService.addPost(formData)
+          .then(() => {
+          });
+        return;
+      }
       this.postService.addPost(postRequest)
         .then(() => {
         });

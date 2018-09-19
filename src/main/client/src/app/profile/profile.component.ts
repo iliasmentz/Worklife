@@ -8,6 +8,8 @@ import {Experiences} from "../shared/experience/experience.model";
 import {Posts} from "../shared/posts/post.model";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {FileUploadModalComponent} from '../file-upload-modal/file-upload-modal.component';
+import {FileInfo} from '../shared/file-upload/file-info.model';
+import {FileUploadService} from '../shared/fiile-upload/file-upload.service';
 
 const options: ModalOptions = {
   class: 'modal-sm',
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
+              private _uploadService: FileUploadService,
               private _modal: BsModalService) {
   }
 
@@ -60,9 +63,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   openFileUploadModal() {
+    const submit = (fileInfo: FileInfo) => {
+      let formData = new FormData();
+
+      formData.append('file', fileInfo.file, fileInfo.name);
+
+      return this._uploadService.upload(formData)
+        .then((response) => {
+          this.user.imgPath = response.fileDownloadUri;
+        })
+        .catch((err) => console.log(err));
+    };
+
     const initialState = {
       submitButton: 'Upload',
-      title:'Upload file'
+      title: 'Upload file',
+      submit: submit
     };
 
     this._modal.show(FileUploadModalComponent, {...options, initialState});
