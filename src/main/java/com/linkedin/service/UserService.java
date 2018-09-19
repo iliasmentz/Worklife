@@ -6,10 +6,13 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.LoginRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.RegisterRequestDto;
+import com.linkedin.entities.model.UploadFileResponse;
+import com.linkedin.security.AuthenticationFacade;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,12 +23,14 @@ public class UserService {
 	private final LoginRepository loginRepository;
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final FileService fileService;
 
 	@Autowired
-	public UserService(LoginRepository loginRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public UserService(LoginRepository loginRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, FileService fileService) {
 		this.loginRepository = loginRepository;
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.fileService = fileService;
 	}
 
 	public User getUser(String username) {
@@ -98,7 +103,12 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-
-
-
+	public UploadFileResponse savePhoto(MultipartFile file) {
+		UploadFileResponse uploadFileResponse = fileService.uploadFile(file, "user-", true);
+		User user = getUser(AuthenticationFacade.getUserId());
+		user.setImgPath(uploadFileResponse.getFileName());
+		save(user);
+		return uploadFileResponse;
+	}
+	
 }

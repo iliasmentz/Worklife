@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/swagger-resources/**",
 				"/configuration/**",
 				"/swagger-ui.html",
+				"/downloadFile/**",
 				"/webjars/**");
 				//"/**");//here we allow all routes without security
 					//TODO remove this because security doesnt work with this 
@@ -49,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/oauth/token").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
-				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html","/api/jobs/").permitAll()
+				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html","/api/jobs/", "/downloadFile/**").permitAll()
 
 		;
 	}

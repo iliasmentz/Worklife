@@ -62,6 +62,11 @@ public class User implements Serializable {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
+	/**
+	 * Image path is just a string with image file name
+	 * For example user-1312-my_photo.png, 
+	 * without '/'
+	 */
 	@Column(name = "img_path")
 	private String imgPath;
 }
