@@ -1,0 +1,30 @@
+label.btn.btn-default.btn-file {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  width: 78px;
+  input {
+    display: none;
+  }
+}
+
+input {
+  border-right: 0;
+
+  &[readonly] {
+    background: transparent;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+#clear.input-group-addon {
+  border-left: 0;
+  cursor: pointer;
+}
+
+#download.input-group-addon {
+  border-left: 1px solid rgb(210, 214, 222);
+  i.fa.fa-download {
+    cursor: not-allowed;
+  }
+}

@@ -6,6 +6,13 @@ import {Skills} from "../shared/skills/skill.model";
 import {Educations} from "../shared/education/education.model";
 import {Experiences} from "../shared/experience/experience.model";
 import {Posts} from "../shared/posts/post.model";
+import {BsModalService, ModalOptions} from 'ngx-bootstrap';
+import {FileUploadModalComponent} from '../file-upload-modal/file-upload-modal.component';
+
+const options: ModalOptions = {
+  class: 'modal-sm',
+  backdrop: 'static',
+};
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +28,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   experiences: Experiences;
   posts: Posts;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) {
+  constructor(private route: ActivatedRoute,
+              private userService: UserService,
+              private _modal: BsModalService) {
   }
 
   ngOnInit() {
@@ -50,5 +59,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  openFileUploadModal() {
+    const initialState = {
+      submitButton: 'Upload',
+      title:'Upload file'
+    };
+
+    this._modal.show(FileUploadModalComponent, {...options, initialState});
+  }
 
 }
