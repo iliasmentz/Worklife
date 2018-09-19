@@ -14,7 +14,7 @@
                     <a (click)="showLikes()" style="cursor: pointer;">{{ post.numberOfLikes }} likes</a>
                     <span class="menu-date">
 
-              ~ {{ (today | amDifference: post.postDate :'days' : true)| number:'1.0-0'}} days ago
+              ~ {{ post.postDate | amTimeAgo}}
               <button type="button" *ngIf="myProfile()" class="btn btn-xs btn-danger pull-right"
                       (click)="deletePost(post.postId)">
             <i class="fa fa-trash"></i>
