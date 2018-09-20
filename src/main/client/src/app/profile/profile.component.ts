@@ -70,7 +70,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
       return this._uploadService.upload(formData)
         .then((response) => {
-          this.user.imgPath = response.fileDownloadUri;
+          this.user.imagePath = response.fileDownloadUri;
+          let user: User = JSON.parse(localStorage.getItem('currentUser'));
+          user.imagePath = response.fileDownloadUri;
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this._uploadService.imagePath.next(response.fileDownloadUri);
         })
         .catch((err) => console.log(err));
     };
