@@ -4,6 +4,7 @@ import {SkillsResolver} from "./resolvers/skills.resolver";
 import {ProfileResolver} from "./profile.resolver";
 import {ExperienceResolver} from "./resolvers/experience.resolver";
 import {EducationResolver} from "./resolvers/education.resolver";
+import {PostsResolver} from "./resolvers/posts.resolver";
 
 
 const resolveLatestProf = {
@@ -11,6 +12,7 @@ const resolveLatestProf = {
   educations: EducationResolver,
   experiences: ExperienceResolver,
   skills: SkillsResolver,
+  posts: PostsResolver,
 
 };
 

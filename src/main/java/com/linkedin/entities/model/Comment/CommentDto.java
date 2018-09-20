@@ -1,7 +1,6 @@
 package com.linkedin.entities.model.Comment;
 
-
-import com.linkedin.constants.Visible;
+import com.linkedin.entities.model.UserSimpleDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,28 +14,27 @@ import java.util.Date;
 @NoArgsConstructor
 @ApiModel(description = "CommentDto response object ")
 public class CommentDto {
-  @NotNull
-  @ApiModelProperty(value = "commentId", example = "11", position = 1)
-  private Long commentId;
+	@NotNull
+	@ApiModelProperty(value = "commentId", example = "11", position = 1)
+	private Long commentId;
 
 
-  @NotNull
-  @ApiModelProperty(value = "postId", example = "11", position = 2)
-  private Long postId;
+	@NotNull
+	@ApiModelProperty(value = "postId", example = "11", position = 2)
+	private Long postId;
 
-  @NotNull
-  @ApiModelProperty(value = "commenterId", example = "11", position = 3)
-  private Long commenterId;
+	@NotNull
+	@ApiModelProperty(value = "commenter", position = 3)
+	private UserSimpleDto commenter;
 
 
-  @NotNull
-  @ApiModelProperty(value = "commentDate (yyyy-mm-dd)", example = "2018-01-12", position = 4)
-  private Date commentDate;
+	@NotNull
+	@ApiModelProperty(value = "commentDate (yyyy-mm-dd)", example = "2018-01-12", position = 4)
+	private Date commentDate;
 
-  @NotBlank
-  @ApiModelProperty(value = "context", example = "This Post is the greatest thing ever ", position = 5)
-  private String context;
-
+	@NotBlank
+	@ApiModelProperty(value = "context", example = "This Post is the greatest thing ever ", position = 5)
+	private String context;
 
 
 }

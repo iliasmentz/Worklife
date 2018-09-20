@@ -63,7 +63,7 @@ public class StartUpHousekeeper {
 
 		User user = new User();
 		user.setPhoneNumber("6943542441245");
-		user.setImgPath("/image_path.png");
+		user.setImgPath("CEO.jpg");
 		user.setAddress("Ipokratous");
 		user.setUsername(randomUserName);
 		user.setId(login.getUserId());
@@ -89,7 +89,7 @@ public class StartUpHousekeeper {
 
 		User user = new User();
 		user.setPhoneNumber("6943542441245");
-		user.setImgPath("/image_path.png");
+		user.setImgPath("CEO.jpg");
 		user.setAddress("Ipokratous");
 		user.setId(login.getUserId());
 		user.setName("Ilias");

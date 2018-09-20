@@ -10,7 +10,7 @@ export class ExperienceDto {
   constructor() {
   };
 
-  load(present: boolean, form: FormGroup) {
+  public load(present: boolean, form: FormGroup) {
     this.title = form.get('title').value;
     this.company = form.get('company').value;
     this.startDate = form.get('startDate').value;

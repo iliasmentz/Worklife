@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">{{title}}</h4>
+</div>
+
+<div class="modal-body">
+
+  <form id="file-form" [formGroup]="fileForm" (ngSubmit)="onSubmit(fileForm)">
+    <app-single-file-upload formControlName="file"></app-single-file-upload>
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success loader" form="file-form"
+          [disabled]="!this.fileForm.get('file').value">
+    {{submitButton}}
+  </button>
+</div>

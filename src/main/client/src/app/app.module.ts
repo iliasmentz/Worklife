@@ -21,7 +21,14 @@ import {NewsfeedComponent} from './newsfeed/newsfeed.component';
 import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
 import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
-import {BsDatepickerModule, BsDropdownModule, BsModalRef, ModalModule, ProgressbarModule} from "ngx-bootstrap";
+import {
+  AccordionModule,
+  BsDatepickerModule,
+  BsDropdownModule,
+  BsModalRef,
+  ModalModule,
+  ProgressbarModule
+} from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
 import {SkillsComponent} from "./profile/skills/skills.component";
@@ -37,28 +44,52 @@ import {SkillsResolver} from "./profile/resolvers/skills.resolver";
 import {ExperienceResolver} from "./profile/resolvers/experience.resolver";
 import {ExperienceModalComponent} from "./profile/experience/experience-modal/experience-modal.component";
 import {EducationModalComponent} from "./profile/education/education-modal/education-modal.component";
+import {PostsResolver} from "./profile/resolvers/posts.resolver";
+import {PostService} from "./shared/posts/post.service";
+import {ScrollbarModule} from "ngx-scrollbar";
+import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
+import {PostFormComponent} from './newsfeed/post-form/post-form.component';
+import {SingleFileUploadComponent} from './shared/file-upload/single-file-upload.component';
+import {FileUploadModalComponent} from './file-upload-modal/file-upload-modal.component';
+import {FileUploadService} from './shared/fiile-upload/file-upload.service';
+import {PostListComponent} from './newsfeed/post-list/post-list.component';
+import {CommentService} from "./shared/comments/comment.service";
+import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
+import {LikeService} from "./shared/likes/like.service";
+import {LikeComponent} from './newsfeed/post-list/like/like.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    WelcomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-    NewsfeedComponent,
     BasicInfoComponent,
-    ExperienceComponent,
-    EducationComponent,
-    SkillsComponent,
-    PostsComponent,
-    FriendsComponent,
     BasicInfoModalComponent,
+    EducationComponent,
+    EducationModalComponent,
+    ExperienceComponent,
+    ExperienceModalComponent,
+    FileUploadModalComponent,
+    FriendsComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    NewsfeedComponent,
+    PostFormComponent,
+    PostModalComponent,
+    PostsComponent,
+    ProfileComponent,
+    RegisterComponent,
+    SingleFileUploadComponent,
+    SkillsComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent,
+    PostFormComponent,
+    PostListComponent,
+    CommentComponent,
+    LikeComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -67,21 +98,28 @@ import {EducationModalComponent} from "./profile/education/education-modal/educa
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    ScrollbarModule,
     BsDatepickerModule.forRoot(),
     ProgressbarModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   entryComponents: [
     BasicInfoModalComponent,
+    FileUploadModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    PostModalComponent,
+    CommentComponent,
+    LikeComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService, BsModalRef,
-    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver,
+    EducationService, ExperienceService, SkillService, LikeService,
+    PostService, CommentService, BsModalRef, FileUploadService,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

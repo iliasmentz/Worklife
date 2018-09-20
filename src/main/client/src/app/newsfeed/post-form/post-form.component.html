@@ -1,0 +1,28 @@
+<div class="w3-row-padding">
+  <div class="w3-col m12">
+    <div class="w3-card w3-round w3-white">
+      <div class="w3-container w3-padding">
+        <h6 class="w3-opacity">Make a Post</h6>
+        <form id="basic-info" [formGroup]="postForm" (ngSubmit)="onSubmit(postForm)">
+
+        <textarea rows="2" contenteditable="true"
+                  placeholder="What's on your mind?"
+                  class="col-md-12 w3-border w3-padding" formControlName="context"></textarea>
+
+          <select class="form-group w3-select col-sm-3" formControlName="visible">
+            <option [ngValue]="0">&#xf0ac; Private</option>
+            <option [ngValue]="1">&#xf21b; Public</option>
+          </select>
+          <button type="submit" form="basic-info" class="col-md-2 btn btn-success pull-right"><i
+            class="fa fa-pencil"></i>  Post
+          </button>
+
+        </form>
+        <button style="margin-right: 10px" (click)="openUploadFileModal()"
+                class="col-md-3 btn btn-success pull-right"><i
+          class="fa fa-upload"></i>  Upload file
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
