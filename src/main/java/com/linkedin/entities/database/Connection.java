@@ -40,8 +40,8 @@ public class Connection implements Serializable {
   private Long userAcceptedId;
 
   @NotNull
-  @Column(name = "date_of_accept")
-  private Date dateOfAccept;
+  @Column(name = "create_date")
+  private Date createDate;
 
   @Column(name = "connection_request_id")
   private Long connectionRequestId;

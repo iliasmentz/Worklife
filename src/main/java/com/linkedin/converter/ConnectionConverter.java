@@ -24,7 +24,7 @@ public class ConnectionConverter {
 	ConnectionDto connectionDto = new ConnectionDto();
 	connectionDto.setConnectionId(connection.getConnectionId());
 	connectionDto.setConnectionRequestId(connection.getConnectionRequestId());
-	connectionDto.setDateOfAccept(connection.getDateOfAccept());
+	connectionDto.setCreateDate(connection.getCreateDate());
 	connectionDto.setUserAccepted(userConverter.toUserSimpleDto(connection.getUserAcceptedId()));
 	connectionDto.setUserRequested(userConverter.toUserSimpleDto(connection.getUserRequestedId()));
 

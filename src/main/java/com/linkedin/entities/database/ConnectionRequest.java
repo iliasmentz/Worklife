@@ -25,24 +25,24 @@ import java.util.Date;
 
 public class ConnectionRequest implements Serializable {
 
-	@Id
-	@Column(name = "connection_request_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long connectionRequestId;
+  @Id
+  @Column(name = "connection_request_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long connectionRequestId;
 
-	/*@NotNull
-	@Column("user_requested_id")
-	private Long userRequestedId;
+  @NotNull
+  @Column(name = "user_requested_id")
+  private Long userRequestedId;
 
-	@NotNull
-	@Column("user_target_id")
-	private Long userTargetId;*/
+  @NotNull
+  @Column(name = "user_target_id")
+  private Long userTargetId;
 
-	@NotNull
-	@Column(name = "date_of_request")
-	private Date dateOfRequest;
+  @NotNull
+  @Column(name = "date_of_request")
+  private Date dateOfRequest;
 
-	@NotNull
-	@Column(name = "accepted") //True or False
-	private boolean accepted;
+  @NotNull
+  @Column(name = "status") //True(accept) or False(reject)
+  private Long status; //0->pending , 1 -> accepted , 2 ->rejected
 }

@@ -28,8 +28,8 @@ public class ConnectionDto {
   private UserSimpleDto userAccepted;
 
   @NotNull
-  @ApiModelProperty(value = "dateOfAccepted", example = "2018-01-12", position = 4)
-  private Date dateOfAccept;
+  @ApiModelProperty(value = "create_date", example = "2018-01-12", position = 4)
+  private Date createDate;
 
   @ApiModelProperty(value = "connectionRequestId", example = "1", position = 4)
   private Long connectionRequestId;

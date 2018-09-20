@@ -1,4 +1,4 @@
-ConnectionId,UserRequestedId,UserAcceptedId,DateOfAccept
+ConnectionId,UserRequestedId,UserAcceptedId,CreateDate
 1,5,43,12/1/2017
 2,10,39,9/16/2018
 3,17,44,7/21/2018
