@@ -11,7 +11,8 @@
       <div class="panel widget light-widget panel-bd-top">
         <div class="panel-heading no-title"></div>
         <div class="panel-body">
-          <div class="text-center vd_info-parent"><img alt="example image" [src]="'assets/img/user.svg'"></div>
+          <div (click)="openFileUploadModal()" class="text-center vd_info-parent"><img alt="example image"
+                                                                                       [src]="user.imagePath"></div>
           <div class="row">
             <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
               class="fa fa-check-circle append-icon"></i>Friends</a></div>

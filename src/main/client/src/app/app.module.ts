@@ -49,6 +49,9 @@ import {PostService} from "./shared/posts/post.service";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
 import {PostFormComponent} from './newsfeed/post-form/post-form.component';
+import {SingleFileUploadComponent} from './shared/file-upload/single-file-upload.component';
+import {FileUploadModalComponent} from './file-upload-modal/file-upload-modal.component';
+import {FileUploadService} from './shared/fiile-upload/file-upload.service';
 import {PostListComponent} from './newsfeed/post-list/post-list.component';
 import {CommentService} from "./shared/comments/comment.service";
 import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
@@ -59,20 +62,25 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    WelcomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-    NewsfeedComponent,
     BasicInfoComponent,
-    ExperienceComponent,
-    EducationComponent,
-    SkillsComponent,
-    PostsComponent,
-    FriendsComponent,
     BasicInfoModalComponent,
+    EducationComponent,
+    EducationModalComponent,
+    ExperienceComponent,
+    ExperienceModalComponent,
+    FileUploadModalComponent,
+    FriendsComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    NewsfeedComponent,
+    PostFormComponent,
+    PostModalComponent,
+    PostsComponent,
+    ProfileComponent,
+    RegisterComponent,
+    SingleFileUploadComponent,
+    SkillsComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
@@ -80,7 +88,8 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
     PostFormComponent,
     PostListComponent,
     CommentComponent,
-    LikeComponent
+    LikeComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +107,7 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
   ],
   entryComponents: [
     BasicInfoModalComponent,
+    FileUploadModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
@@ -108,7 +118,7 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
     EducationService, ExperienceService, SkillService, LikeService,
-    PostService, CommentService, BsModalRef,
+    PostService, CommentService, BsModalRef, FileUploadService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
     {
       provide: HTTP_INTERCEPTORS,
