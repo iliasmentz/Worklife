@@ -111,4 +111,8 @@ public class ConnectionService {
 //		.collect(Collectors.toList());
 return null;
   }
+
+  	//logged User creates a new ConnectionRequest with the 
+	public ConnectionRequestDto createNewConnectionRequest(Long userId) {
+	}
 }

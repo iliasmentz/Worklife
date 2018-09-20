@@ -96,13 +96,13 @@ public class ConnectionsController {
 
 
 
-  @ApiOperation(value = "Request Connection", notes = "Creates a new connection request", response = Void.class)
+  @ApiOperation(value = "Creates a new connection request", notes = "Creates a new connection request", response = Void.class)
   @ApiImplicitParams( {
 	  @ApiImplicitParam(name = "userId", value = "users_id", required = true, dataType = "Long", example = "10"),
   })
   @PostMapping("/network/connections/requests/create/{userId}")
-  public void createConnectionRequest(@PathVariable Long userId) {
-    connectionService.createNewConnectionRequest(Long userId);
+  public ConnectionRequestDto createConnectionRequest(@PathVariable Long userId) {
+    return connectionService.createNewConnectionRequest(userId);
   }
 
 
@@ -111,7 +111,7 @@ public class ConnectionsController {
 	  @ApiImplicitParam(name = "connectionId", value = "connections Id", required = true, dataType = "Long", example = "152"),
   })
   @DeleteMapping("/network/connections/{connectionId}")
-  public void createConnectionRequest(@PathVariable Long connectionId) throws Exception {
+  public void deleteConnection(@PathVariable Long connectionId) throws Exception {
 	connectionService.deleteConnection(connectionId);
   }
 }
