@@ -101,6 +101,7 @@ public class ConnectionService {
 	return connectionRequestRepository.findAllByUserTargetId(userId)
 		.stream()
 		.map(connectionRequestConverter::toConnectionRequestDto)
+		.filter(x->x.getStatus() == 0 )
 		.collect(Collectors.toList());
 
 
@@ -114,7 +115,7 @@ public class ConnectionService {
 	  Long loggedUserId = AuthenticationFacade.authenticatedUser().getUserId();
 
 	  connectionRequest.setDateOfRequest(new Date());
-	  //connectionRequest.setStatus(0); //pending to start with
+	  connectionRequest.setStatus(0); //pending to start with
 	  connectionRequest.setUserRequestedId(loggedUserId);
 	  connectionRequest.setUserTargetId(userId);
 
@@ -128,12 +129,42 @@ public class ConnectionService {
   //returns the connectionRequests that user with userid  did to the loged user
   public List<ConnectionRequestDto> getConnectionRequestsFromUser(Long userId) {
 	Long logedInUserId = AuthenticationFacade.authenticatedUser().getUserId();
-//	return connectionRequestRepository.findAllByUserTargetIdAAndUserRequestedId(logedInUserId, userId)
-//		.stream()
-//		.map(connectionRequestConverter::toConnectionRequestDto)
-//		.collect(Collectors.toList());
-return null;
+	return connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(logedInUserId, userId)
+		.stream()
+		.map(connectionRequestConverter::toConnectionRequestDto)
+		.filter(x->x.getStatus() == 0 )
+		.collect(Collectors.toList());
+///return null;
   }
 
 
+  public ConnectionDto acceptToConnectionRequest(Long connectionRequestId) throws Exception{
+	if(!connectionRequestRepository.existsById(connectionRequestId)){
+	  throw new ObjectNotFoundException(ConnectionRequest.class, connectionRequestId);
+	}
+    ConnectionRequest connectionRequest = connectionRequestRepository.findById(connectionRequestId).orElse(null);
+    connectionRequest.setStatus(1); //accept
+	connectionRequestRepository.save(connectionRequest);
+
+	//apothikebw sto connections
+
+	Connection connection= new Connection();
+	connection.setConnectionRequestId(connectionRequestId);
+	connection.setCreateDate(connectionRequest.getDateOfRequest());
+	connection.setUserAcceptedId(connectionRequest.getUserTargetId());
+	connection.setUserRequestedId(connectionRequest.getUserRequestedId());
+	connectionRepository.save(connection);
+	return connectionConverter.toConnectionDto(connection);
+
+  }
+
+  public void rejectConnectionRequest(Long connectionRequestId) throws Exception{
+    if(!connectionRequestRepository.existsById(connectionRequestId)){
+      throw new ObjectNotFoundException(ConnectionRequest.class, connectionRequestId);
+	}
+
+	ConnectionRequest connectionRequest = connectionRequestRepository.findById(connectionRequestId).orElse(null);
+	connectionRequest.setStatus(2); //reject
+	connectionRequestRepository.save(connectionRequest);
+  }
 }

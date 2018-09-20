@@ -87,22 +87,31 @@ public class ConnectionsController {
 	return connectionService.getConnectionRequestsFromUser(userId);
   }
 
-  @ApiOperation(value = "The user accepts of rejects a ConnectionRequest from another User", notes = "returns the connection request that user with userid  did to the loged user", response = ConnectionDto.class)
-  @PostMapping("/network/connections/requests/respond/{userId}/")
-  public List<ConnectionRequestDto> getConnectionRequestsFromUser(@PathVariable Long userId  , @RequestParam("status") Long status) throws Exception {
-	return connectionService.getConnectionRequestsFromUser(userId);
-  }
-
-
-
-
   @ApiOperation(value = "Creates a new connection request", notes = "Creates a new connection request", response = ConnectionRequestDto.class)
   @ApiImplicitParams( {
 	  @ApiImplicitParam(name = "userId", value = "users_id", required = true, dataType = "Long", example = "10"),
   })
   @PostMapping("/network/connections/requests/create/{userId}")
-  public ConnectionRequestDto createConnectionRequest(@PathVariable Long userId)  throws Exception{
-    return connectionService.createNewConnectionRequest( userId);
+  public ConnectionRequestDto createConnectionRequest(@PathVariable Long userId) throws Exception {
+	return connectionService.createNewConnectionRequest(userId);
+  }
+
+  @ApiOperation(value = "Accepts a connection request", notes = "Accepts a connection request")
+  @ApiImplicitParams( {
+	  @ApiImplicitParam(name = "connectionRequestId", value = "connectionRequestId", required = true, dataType = "Long", example = "10"),
+  })
+  @PostMapping("/network/connections/requests/respond/{connectionRequestId}/accept")
+  public ConnectionDto acceptToConnectionRequest(@PathVariable Long connectionRequestId) throws Exception {
+	 return connectionService.acceptToConnectionRequest(connectionRequestId);
+  }
+
+  @ApiOperation(value = "Rejects a connection request", notes = "Rejects a connection request")
+  @ApiImplicitParams( {
+	  @ApiImplicitParam(name = "connectionRequestId", value = "connectionRequestId", required = true, dataType = "Long", example = "10"),
+  })
+  @PostMapping("/network/connections/requests/respond/{connectionRequestId}/reject")
+  public void rejectConnectionRequest(@PathVariable Long connectionRequestId) throws Exception {
+	connectionService.rejectConnectionRequest(connectionRequestId);
   }
 
 
