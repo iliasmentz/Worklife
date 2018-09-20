@@ -9,15 +9,15 @@ import {AuthService} from "../../shared/auth/auth.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  defaultPhoto = '/assets/img/user.svg';
+  user: User;
   username: string;
 
   constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
-    let user: User = JSON.parse(localStorage.getItem('currentUser'));
-    this.username = user.username;
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.username = this.user.username;
   }
 
   logout() {

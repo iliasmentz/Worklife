@@ -1,12 +1,10 @@
-import {User} from "../user/user.model";
-
 export class Skill {
   skillId: number;
   name: string;
   level: number;
   visible: string;
 
-  constructor(obj: User) {
+  constructor(obj: Skill) {
 
     Object.keys(obj).forEach(key => {
       this[key] = obj[key];

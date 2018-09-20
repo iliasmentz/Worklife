@@ -52,6 +52,8 @@ import {PostFormComponent} from './newsfeed/post-form/post-form.component';
 import {PostListComponent} from './newsfeed/post-list/post-list.component';
 import {CommentService} from "./shared/comments/comment.service";
 import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
+import {LikeService} from "./shared/likes/like.service";
+import {LikeComponent} from './newsfeed/post-list/like/like.component';
 
 
 @NgModule({
@@ -77,7 +79,8 @@ import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
     PostModalComponent,
     PostFormComponent,
     PostListComponent,
-    CommentComponent
+    CommentComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
@@ -99,11 +102,13 @@ import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
     ExperienceModalComponent,
     EducationModalComponent,
     PostModalComponent,
-    CommentComponent
+    CommentComponent,
+    LikeComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService, PostService, CommentService, BsModalRef,
+    EducationService, ExperienceService, SkillService, LikeService,
+    PostService, CommentService, BsModalRef,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
     {
       provide: HTTP_INTERCEPTORS,
