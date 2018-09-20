@@ -27,17 +27,16 @@ public class ConnectionService {
   private final ConnectionConverter connectionConverter;
   private final ConnectionRequestConverter connectionRequestConverter;
   private final UserRepository userRepository;
-  private final ConnectionRequestDto connectionRequestDto;
+
 
   @Autowired
-  public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, ConnectionRequestConverter connectionRequestConverter, UserRepository userRepository, ConnectionRequestDto connectionRequestDto) {
+  public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, ConnectionRequestConverter connectionRequestConverter, UserRepository userRepository) {
 	this.connectionRepository = connectionRepository;
 	this.connectionRequestRepository = connectionRequestRepository;
 	this.connectionConverter = connectionConverter;
 	this.connectionRequestConverter = connectionRequestConverter;
 	this.userRepository = userRepository;
 	  //this.connectionRequestDto = connectionRequestDto;
-	  this.connectionRequestDto = connectionRequestDto;
   }
 
 //	public List<ConnectionDto> getUserConnections(Long userId) {
