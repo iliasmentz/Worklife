@@ -3,7 +3,7 @@
 <div class="w3-top">
   <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Worklife</a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" routerLink=""><i class="fa fa-home w3-margin-right"></i>Worklife</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Newsfeed"><i class="fa fa-globe"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Network"><i class="fa fa-users"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
@@ -16,8 +16,10 @@
         <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
       </div>
     </div>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-      <img [src]="defaultPhoto" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" (click)="logout()" title="Logout"><i class="fa fa-sign-out"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+       [routerLink]="['/profile', username]" title="My Account">
+      <img [src]="user.imagePath" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
     </a>
   </div>
 </div>

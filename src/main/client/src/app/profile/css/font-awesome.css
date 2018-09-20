@@ -1,0 +1,86 @@
+/*!
+ *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../../../assets/fonts/fontawesome-webfont.eot?v=4.1.0');
+  src: url('../../../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), url('../../../assets/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), url('../../../assets/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), url('../../../assets/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal
+}
+
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.fa-fw {
+  width: 1.28571429em;
+  text-align: center
+}
+
+.fa-star:before {
+  content: "\f005"
+}
+
+.fa-user:before {
+  content: "\f007"
+}
+
+.fa-book:before {
+  content: "\f02d"
+}
+
+.fa-pencil:before {
+  content: "\f040"
+}
+
+.fa-check-circle:before {
+  content: "\f058"
+}
+
+.fa-cogs:before {
+  content: "\f085"
+}
+
+.fa-trophy:before {
+  content: "\f091"
+}
+
+.fa-globe:before {
+  content: "\f0ac"
+}
+
+.fa-users:before {
+  content: "\f0c0"
+}
+
+.fa-flask:before {
+  content: "\f0c3"
+}
+
+.fa-envelope:before {
+  content: "\f0e0"
+}
+
+.fa-suitcase:before {
+  content: "\f0f2"
+}
+
+.fa-file-text-o:before {
+  content: "\f0f6"
+}
+
+.fa-angle-double-right:before {
+  content: "\f101"
+}
+
+.fa-circle-o:before {
+  content: "\f10c"
+}

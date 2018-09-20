@@ -1,45 +1,53 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-
-import {RepoResponse} from './repo-response';
+import {LoginCredentials} from "../auth/login-credentials.model";
 
 @Injectable()
 export class RepoService {
 
-  private API_ENDPOINT = '/api/';
+  private API_ENDPOINT = 'http://localhost:8080/';
+  private API_PREFIX = 'api/';
 
   constructor(private _http: HttpClient) {
   }
 
   get(url: string): Observable<Object> {
     return this._http
-      .get(`${this.API_ENDPOINT}${url}`)
-      .pipe(map((resp: RepoResponse) => resp.data));
+      .get(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`)
   }
 
   post(url: string, body: any = null) {
+    let headers = new HttpHeaders();
     return this._http
-      .post(`${this.API_ENDPOINT}${url}`, body)
-      .pipe(map((resp: RepoResponse) => resp.data));
+      .post(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body, {headers: headers})
   }
 
-  put(url: string, body: any = null) {
+  put(url: string, body: any = null): Observable<Object> {
     return this._http
-      .put(`${this.API_ENDPOINT}${url}`, body)
-      .pipe(map((resp: RepoResponse) => resp.data));
+      .put(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`, body)
   }
 
-  patch(url: string, body: any = null) {
-    return this._http
-      .patch(`${this.API_ENDPOINT}${url}`, body)
-      .pipe(map((resp: RepoResponse) => resp.data));
-  }
 
   delete(url: string) {
     return this._http
-      .delete(`${this.API_ENDPOINT}${url}`)
-      .pipe(map((resp: RepoResponse) => resp.data));
+      .delete(`${this.API_ENDPOINT}${this.API_PREFIX}${url}`)
+  }
+
+  public login(creds: LoginCredentials) {
+    let data = {
+      "username": creds.username,
+      "password": creds.password,
+      "grant_type": "password"
+    };
+    const headers = new HttpHeaders();
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+
+
+    return this._http.post(this.API_ENDPOINT + "oauth/token?username=" + data.username +
+      "&password=" + data.password +
+      "&grant_type=" + data.grant_type,
+      "", {headers: headers});
+
   }
 }

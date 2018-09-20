@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,12 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/token");
 		web.ignoring().antMatchers("/v2/api-docs",
 				"/springfox/**",
 				"/configuration/ui",
 				"/swagger-resources/**",
 				"/configuration/**",
 				"/swagger-ui.html",
+				"/downloadFile/**",
 				"/webjars/**");
 				//"/**");//here we allow all routes without security
 					//TODO remove this because security doesnt work with this 
@@ -45,7 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 				.and()
 				.authorizeRequests()
-				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html","/api/jobs/").permitAll()
+				.antMatchers(HttpMethod.POST, "/oauth/token").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+				.antMatchers("/oauth/token", "/v2/api-docs", "/swagger-ui.html","/api/jobs/", "/downloadFile/**").permitAll()
 
 		;
 	}

@@ -33,7 +33,7 @@ import java.util.List;
  */
 @Component
 public class DatabaseCsvReader {
-	private final String[] FILE_ARRAY = new String[]{"database_files/User.csv"};
+	private final String[] FILE_ARRAY = new String[]{"database_files/User.csv" , "database_files/Post.csv" ,"database_files/Comment.csv" ,"database_files/Like.csv" ,"database_files/ConnectionRequest.csv"};
 	private final String ENTITIES_PACKAGE_NAME = "com.linkedin.entities.database";
 
 	private final Repositories repositories;
@@ -55,6 +55,7 @@ public class DatabaseCsvReader {
 				repository.saveAll(objectsToCreate);
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("EDW SKAEI \n\n");
 			}
 		}
 	}
@@ -121,7 +122,7 @@ public class DatabaseCsvReader {
 		return Arrays.stream(objClass.getMethods())
 						.filter((Method meth) -> meth.getName().equals("set" + x))
 						.findFirst()
-						.orElseThrow(() -> new Exception("message not found"));
+						.orElseThrow(() -> new Exception("message not found" +objClass.getName()));
 	}
 
 	private Class<?> getClass(String fileName) throws ClassNotFoundException {

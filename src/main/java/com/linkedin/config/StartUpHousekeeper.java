@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 @Component
@@ -61,6 +62,9 @@ public class StartUpHousekeeper {
 		loginRepository.save(login);
 
 		User user = new User();
+		user.setPhoneNumber("6943542441245");
+		user.setImgPath("CEO.jpg");
+		user.setAddress("Ipokratous");
 		user.setUsername(randomUserName);
 		user.setId(login.getUserId());
 		user.setName(randomUserName.toUpperCase());
@@ -68,6 +72,11 @@ public class StartUpHousekeeper {
 		user.setUsername(randomUserName);
 		user.setEmail(randomUserName + "@gmaiil.com");
 		user.setBirthdate(new SimpleDateFormat("dd/MM/yyyy").parse(bday));
+
+		Date date = new Date();
+		String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
+		user.setDateCreated(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
+
 		userRepository.save(user);
 	}
 
@@ -79,6 +88,9 @@ public class StartUpHousekeeper {
 		loginRepository.save(login);
 
 		User user = new User();
+		user.setPhoneNumber("6943542441245");
+		user.setImgPath("CEO.jpg");
+		user.setAddress("Ipokratous");
 		user.setId(login.getUserId());
 		user.setName("Ilias");
 		user.setSurname("Mentzelos");
@@ -86,6 +98,11 @@ public class StartUpHousekeeper {
 		user.setEmail("admin@admin.com");
 		String bday =  "22/08/1996";
 		user.setBirthdate(new SimpleDateFormat("dd/MM/yyyy").parse(bday));
+		Date date = new Date();
+		String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
+		user.setDateCreated(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
+
+
 		userRepository.save(user);
 
 	}

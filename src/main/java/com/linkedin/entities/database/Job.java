@@ -21,11 +21,10 @@ import static javax.persistence.TemporalType.DATE;
 @Table(name = "job")
 @Entity
 @DynamicUpdate
-
 public class Job implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "job_id")
 	private Long jobId;
 

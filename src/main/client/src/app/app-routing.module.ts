@@ -1,24 +1,27 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./welcome/login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {RegisterComponent} from "./login/register/register.component";
-
+import {RegisterComponent} from "./welcome/register/register.component";
+import {NewsfeedComponent} from "./newsfeed/newsfeed.component";
+import {PROFILE_ROUTE} from "./profile/profile.route";
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
+      PROFILE_ROUTE,
+      {path: '', component: NewsfeedComponent, pathMatch: 'full'},
+    ]},
   {path: 'welcome', component: WelcomeComponent, children: [
-      {path: 'register', component: RegisterComponent },
-      {path: '', component: LoginComponent, pathMatch: 'full' }
-
+      {path: 'register', component: RegisterComponent},
+      {path: '', component: LoginComponent, pathMatch: 'full'}
     ]},
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: false})
+    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: false}),
   ],
   exports: [
     RouterModule

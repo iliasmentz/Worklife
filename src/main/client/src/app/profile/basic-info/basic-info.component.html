@@ -1,0 +1,65 @@
+<div *ngIf="myProfile()" class="vd_info tr">
+  <button class="btn btn-warning" (click)="openEditModal()"><i
+    class="fa fa-pencil append-icon"></i> Edit
+  </button>
+</div>
+
+<h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> ABOUT</h3>
+<div *ngIf="!editMode" class="row">
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">First Name:</label>
+      <div class="col-xs-7 controls">{{ user.name }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">Last Name:</label>
+      <div class="col-xs-7 controls">{{ user.surname }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">User Name:</label>
+      <div class="col-xs-7 controls">{{ user.username }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">Email:</label>
+      <div class="col-xs-7 controls">{{ user.email }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">City:</label>
+      <div class="col-xs-7 controls">{{ user.address }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">Country:</label>
+      <div class="col-xs-7 controls">United States</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">Birthday:</label>
+      <div class="col-xs-7 controls">{{ user.birthdate | amDateFormat: 'MMMM Do, YYYY'}}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mgbt-xs-0">
+      <label class="col-xs-5 control-label">Phone:</label>
+      <div class="col-xs-7 controls">{{ user.phoneNumber }}</div>
+      <!-- col-sm-10 -->
+    </div>
+  </div>
+</div>

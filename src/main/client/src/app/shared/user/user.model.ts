@@ -1,15 +1,15 @@
-import {Moment} from 'moment';
-
-
 export class User {
   address: string;
-  birthdate: Moment;
+  birthdate: Date;
   email: string;
-  imgPath: string;
+  imagePath: string;
   name: string;
+  surname: string;
+  displayName: string;
   phoneNumber: string;
   userId: number;
   username: string;
+  dateCreated: Date;
 
   constructor(obj: User) {
 
@@ -18,6 +18,6 @@ export class User {
     });
 
     this.username = this.username || '';
-    this.imgPath = this.imgPath || 'assets/img/user.svg';
+    this.imagePath = this.imagePath || 'assets/img/user.svg';
   }
 }

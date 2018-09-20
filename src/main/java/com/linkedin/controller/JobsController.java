@@ -61,10 +61,17 @@ public class JobsController {
 	}
 
 
-	@ApiOperation(value = "Deletes a single Job", response = JobDto.class , responseContainer = "List")
+	@ApiOperation(value = "Deletes a single Job (You have to be the Jobs Author otherwise you get a not Authorized error)", response = JobDto.class , responseContainer = "List")
 	@DeleteMapping("/{jobId}")
 	public void deleteJob(@PathVariable Long jobId) throws Exception
 	{
 		jobService.removeJob(jobId);
+	}
+
+	@ApiOperation(value = "Update properties of  a single Job (You have to be the Jobs Author otherwise you get a not Authorized error)", response = JobDto.class , responseContainer = "List")
+	@PutMapping("/{jobId}")
+	public JobDto updateJob(@PathVariable Long jobId, @Valid @RequestBody JobRequestDto jobRequestDto) throws Exception
+	{
+		return jobService.updateJob(jobId,jobRequestDto);
 	}
 }

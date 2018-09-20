@@ -1,23 +1,21 @@
 package com.linkedin.converter;
 
 import com.linkedin.entities.database.Job;
-import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.UserRepository;
-import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.jobs.JobDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class JobConverter {
 
 	private final UserRepository userRepository;
+	private final UserConverter userConverter;
 
 	@Autowired
-	public JobConverter(UserRepository userRepository) {
+	public JobConverter(UserRepository userRepository, UserConverter userConverter) {
 		this.userRepository = userRepository;
+		this.userConverter = userConverter;
 	}
 
 	public JobDto toJobDto(Job job) {
@@ -25,21 +23,12 @@ public class JobConverter {
 		dto.setId(job.getJobId());
 		dto.setTitle(job.getTitle());
 		dto.setCompany(job.getCompany());
-		dto.setAuthor(toUserSimpleDto(job.getAuthorId()));
+		dto.setAuthor(userConverter.toUserSimpleDto(job.getAuthorId()));
 		dto.setDescription(job.getDescription());
 		dto.setDateCreated(job.getDate());
 		return dto;
 	}
 
-	public UserSimpleDto toUserSimpleDto(Long id) {
-		User user = userRepository.getOne(id);
-		UserSimpleDto userDto = new UserSimpleDto();
-		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
-		userDto.setUserId(user.getId());
-		userDto.setUsername(user.getUsername());
-		userDto.setImagePath(user.getImgPath());
-		return userDto;
-	}
 
 
 }

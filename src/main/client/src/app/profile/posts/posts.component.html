@@ -1,0 +1,38 @@
+<div class="col-sm-6">
+  <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-globe mgr-10 profile-icon"></i> ACTIVITY</h3>
+  <div class="">
+    <div class="content-list">
+      <div style="height: 400px;">
+        <ng-scrollbar thumbClass="custom-scrollbars">
+          <div data-rel="scroll">
+            <ul class="list-wrapper">
+              <li *ngFor="let post of posts">
+                <div *ngIf="myProfile() || post.visible ">
+                  <span class="menu-icon vd_green">
+                    <i class=" fa fa-book"></i></span>
+                  <span class="menu-text"> {{ post.context }}<span class="menu-info">
+                    <a (click)="showLikes()" style="cursor: pointer;">{{ post.numberOfLikes }} likes</a>
+                    <span class="menu-date">
+
+              ~ {{ post.postDate | amTimeAgo}}
+              <button type="button" *ngIf="myProfile()" class="btn btn-xs btn-danger pull-right"
+                      (click)="deletePost(post.postId)">
+            <i class="fa fa-trash"></i>
+            <span style="font-weight: bold"></span>
+              </button>
+                       <button type="button" *ngIf="myProfile()"
+                               class="btn btn-xs btn-worklife pull-right"
+                               (click)="openEditModal(post.postId)">
+            <i class="fa fa-pencil"></i>
+            <span style="font-weight: bold"></span></button>
+            </span></span> </span>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </ng-scrollbar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="input-group">
+  <div class="input-group-btn">
+    <label class="btn btn-default btn-file">
+      Browse
+      <input type="file"
+             (change)="handleFileInput($event.target)">
+    </label>
+  </div>
+  <input type="text" class="form-control" [value]="fileName" readonly>
+  <span *ngIf="hasSelection" id="clear" class="input-group-addon" (click)="clearSelection()">
+    <i class="fa fa-times"></i>
+  </span>
+  <span id="download" class="input-group-addon">
+    <i *ngIf="!hasSelection" class="fa fa-download"></i>
+    <a [download]="fileName" *ngIf="hasSelection" class="fa fa-download" [href]="fileBlobUrl"></a>
+  </span>
+</div>
+<div class="col-12" *ngIf="isOverSized">
+  <span style="color:#dd4b39">The file cannot be larger than {{maxSizeInMB}}MB</span>
+</div>

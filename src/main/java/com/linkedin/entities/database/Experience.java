@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,7 +18,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.DATE;
 
 @Data
-@Table(name = "position")
+@Table(name = "experience")
 @Entity
 @DynamicUpdate
 
@@ -24,6 +26,7 @@ public class Experience implements Serializable {
 
 	@Id
 	@Column(name = "experience_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long experienceId;
 
 	@Column(name = "user_id", nullable = false)
@@ -32,14 +35,13 @@ public class Experience implements Serializable {
 	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "starting_date")
-	private Date startingDate;
+	@Column(name = "start_date")
+	private Date startDate;
 
-	@NotNull
 	@Temporal(DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "ending_date")
-	private Date endingDate;
+	@Column(name = "end_date")
+	private Date endDate;
 
 
 	@NotNull
@@ -50,4 +52,8 @@ public class Experience implements Serializable {
 	@NotNull
 	@Column(name = "company")
 	private String company;
+
+	@NotNull
+	@Column(name = "visible")
+	private Integer visible;
 }

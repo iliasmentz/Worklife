@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,22 +25,24 @@ import java.util.Date;
 
 public class ConnectionRequest implements Serializable {
 
-	@Id
-	@Column(name = "connection_request_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+  @Id
+  @Column(name = "connection_request_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long connectionRequestId;
 
-	@JoinColumn(name = "request_user_id")
-	@ManyToOne(targetEntity = User.class)
-	private User userRequested;
+  @NotNull
+  @Column(name = "user_requested_id")
+  private Long userRequestedId;
 
-	@JoinColumn(name = "target_user_id")
-	@ManyToOne(targetEntity = User.class)
-	private User userTarget;
+  @NotNull
+  @Column(name = "user_target_id")
+  private Long userTargetId;
 
-	@Column(name = "date_of_request")
-	private Date dateOfRequest;
+  @NotNull
+  @Column(name = "date_of_request")
+  private Date dateOfRequest;
 
-	@Column(name = "completed")
-	private boolean completed;
+  @NotNull
+  @Column(name = "status") //True(accept) or False(reject)
+  private Integer status; //0->pending , 1 -> accepted , 2 ->rejected
 }
