@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 @Api(tags = ConnectionsController.tag)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/auth/")
 public class ConnectionsController {
   public static final String tag = "Connections";
 
@@ -88,7 +88,7 @@ public class ConnectionsController {
   }
 
   @ApiOperation(value = "The user accepts of rejects a ConnectionRequest from another User", notes = "returns the connection request that user with userid  did to the loged user", response = ConnectionDto.class)
-  @PostMapping("/network/connections/requests/{userId}/")
+  @PostMapping("/network/connections/requests/respond/{userId}/")
   public List<ConnectionRequestDto> getConnectionRequestsFromUser(@PathVariable Long userId  , @RequestParam("status") Long status) throws Exception {
 	return connectionService.getConnectionRequestsFromUser(userId);
   }
@@ -96,13 +96,13 @@ public class ConnectionsController {
 
 
 
-  @ApiOperation(value = "Creates a new connection request", notes = "Creates a new connection request", response = Void.class)
+  @ApiOperation(value = "Creates a new connection request", notes = "Creates a new connection request", response = ConnectionRequestDto.class)
   @ApiImplicitParams( {
 	  @ApiImplicitParam(name = "userId", value = "users_id", required = true, dataType = "Long", example = "10"),
   })
   @PostMapping("/network/connections/requests/create/{userId}")
-  public ConnectionRequestDto createConnectionRequest(@PathVariable Long userId) {
-    return connectionService.createNewConnectionRequest(userId);
+  public ConnectionRequestDto createConnectionRequest(@PathVariable Long userId)  throws Exception{
+    return connectionService.createNewConnectionRequest( userId);
   }
 
 

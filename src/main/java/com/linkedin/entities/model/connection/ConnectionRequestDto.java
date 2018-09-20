@@ -14,8 +14,9 @@ import java.util.Date;
 @ApiModel(description = "ConnectionRequestDto  response object ")
 public class ConnectionRequestDto {
   @NotNull
-  @ApiModelProperty(value = "connectionId", example = "11", position = 1)
-  private Long connectionId;
+  @ApiModelProperty(value = "connectionRequestId", example = "1", position = 1)
+  private Long connectionRequestId;
+
 
   @NotNull
   @ApiModelProperty(value = "userRequested", example = "1", position = 2)
@@ -29,10 +30,9 @@ public class ConnectionRequestDto {
   @ApiModelProperty(value = "dateOfAccepted", example = "2018-01-12", position = 4)
   private Date dateOfRequest;
 
-  @ApiModelProperty(value = "connectionRequestId", example = "1", position = 5)
-  private Long connectionRequestId;
 
-  @ApiModelProperty(value = "status", example = "1", position = 6)
-  private Long status; //0->pending , 1 -> accepted , 2 ->rejected
+  @NotNull
+  @ApiModelProperty(value = "status", example = "1", position = 5)
+  private Integer status; //0->pending , 1 -> accepted , 2 ->rejected
 }
 

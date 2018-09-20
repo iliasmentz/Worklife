@@ -44,5 +44,5 @@ public class ConnectionRequest implements Serializable {
 
   @NotNull
   @Column(name = "status") //True(accept) or False(reject)
-  private Long status; //0->pending , 1 -> accepted , 2 ->rejected
+  private Integer status; //0->pending , 1 -> accepted , 2 ->rejected
 }

@@ -1,9 +1,11 @@
 package com.linkedin.converter;
 
 import com.linkedin.entities.database.Connection;
+import com.linkedin.entities.database.ConnectionRequest;
 import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.connection.ConnectionDto;
+import com.linkedin.entities.model.connection.ConnectionRequestDto;
 import com.linkedin.entities.model.jobs.JobDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,4 +47,14 @@ public class ConnectionConverter {
   }
 
 
+    public ConnectionRequestDto toConnectionRequestDto(ConnectionRequest connectionRequest) {
+		ConnectionRequestDto connectionRequestDto = new ConnectionRequestDto();
+		connectionRequestDto.setDateOfRequest(connectionRequest.getDateOfRequest());
+		connectionRequestDto.setStatus(connectionRequest.getStatus());
+		connectionRequestDto.setUserRequestedId(connectionRequest.getUserRequestedId());
+		connectionRequestDto.setUserTargetId(connectionRequest.getUserTargetId());
+		connectionRequestDto.setConnectionRequestId(connectionRequest.getConnectionRequestId());
+		return connectionRequestDto;
+
+    }
 }
