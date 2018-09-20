@@ -1,13 +1,13 @@
+import {Post} from "../posts/post.model";
 import {User} from "../user/user.model";
 
-export class Post {
-
+export class Comment {
   postId: number;
-  creator: User;
-  numberOfLikes: number;
-  postDate: Date;
   context: string;
-  visible: string;
+
+  commentDate: Date
+  commentId: number;
+  commenter: User;
 
   constructor(obj: Post) {
 
@@ -17,4 +17,4 @@ export class Post {
   }
 }
 
-export declare type Posts = Post[];
+export declare type Comments = Comment[];

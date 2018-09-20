@@ -30,7 +30,7 @@ public class UserConverter {
 		userDto.setBirthdate(user.getBirthdate());
 		userDto.setAddress(user.getAddress());
 		userDto.setPhoneNumber(user.getPhoneNumber());
-		userDto.setImgPath(FileService.getFileFullUrl(user.getImgPath()));
+		userDto.setImagePath(FileService.getFileFullUrl(user.getImgPath()));
 		userDto.setDateCreated(user.getDateCreated());
 		return userDto;
 	}

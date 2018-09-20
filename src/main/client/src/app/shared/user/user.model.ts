@@ -2,7 +2,7 @@ export class User {
   address: string;
   birthdate: Date;
   email: string;
-  imgPath: string;
+  imagePath: string;
   name: string;
   surname: string;
   displayName: string;
@@ -18,6 +18,6 @@ export class User {
     });
 
     this.username = this.username || '';
-    this.imgPath = this.imgPath || 'assets/img/user.svg';
+    this.imagePath = this.imagePath || 'assets/img/user.svg';
   }
 }

@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Liked this Post: </h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div *ngFor="let like of likes">
+    <div class="w3-container w3-card w3-white w3-round ">
+      <img [src]="like.user.imagePath" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <h4><a [routerLink]="['profile', like.user.username]">{{ like.user.displayName }}
+      </a></h4>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-danger" (click)="close()">Close</button>
+</div>

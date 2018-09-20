@@ -21,7 +21,14 @@ import {NewsfeedComponent} from './newsfeed/newsfeed.component';
 import {BasicInfoComponent} from './profile/basic-info/basic-info.component';
 import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
-import {BsDatepickerModule, BsDropdownModule, BsModalRef, ModalModule, ProgressbarModule} from "ngx-bootstrap";
+import {
+  AccordionModule,
+  BsDatepickerModule,
+  BsDropdownModule,
+  BsModalRef,
+  ModalModule,
+  ProgressbarModule
+} from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
 import {SkillsComponent} from "./profile/skills/skills.component";
@@ -42,6 +49,11 @@ import {PostService} from "./shared/posts/post.service";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {PostModalComponent} from "./profile/posts/post-modal/post-modal.component";
 import {PostFormComponent} from './newsfeed/post-form/post-form.component';
+import {PostListComponent} from './newsfeed/post-list/post-list.component';
+import {CommentService} from "./shared/comments/comment.service";
+import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
+import {LikeService} from "./shared/likes/like.service";
+import {LikeComponent} from './newsfeed/post-list/like/like.component';
 
 
 @NgModule({
@@ -65,7 +77,10 @@ import {PostFormComponent} from './newsfeed/post-form/post-form.component';
     ExperienceModalComponent,
     EducationModalComponent,
     PostModalComponent,
-    PostFormComponent
+    PostFormComponent,
+    PostListComponent,
+    CommentComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
@@ -79,17 +94,21 @@ import {PostFormComponent} from './newsfeed/post-form/post-form.component';
     ProgressbarModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   entryComponents: [
     BasicInfoModalComponent,
     SkillsModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
-    PostModalComponent
+    PostModalComponent,
+    CommentComponent,
+    LikeComponent
   ],
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService, PostService, BsModalRef,
+    EducationService, ExperienceService, SkillService, LikeService,
+    PostService, CommentService, BsModalRef,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
     {
       provide: HTTP_INTERCEPTORS,
