@@ -21,10 +21,10 @@ export class NewsfeedComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.postService.getUserPost(this.currentUser.userId)
+    this.postService.getHomePosts()
       .then((newsfeed: Posts) => {
         this.posts = newsfeed;
-      })
+      });
     this._uploadService.imagePath.subscribe((newImagePath: string) => {
       this.currentUser.imagePath = newImagePath
     });

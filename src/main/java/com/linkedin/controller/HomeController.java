@@ -15,20 +15,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/home/")
 public class HomeController {
-    public static final String tag = "HomeController";
-    private final HomeService homeService;
+	public static final String tag = "HomeController";
+	private final HomeService homeService;
 
-    @Autowired
-    public HomeController(HomeService homeService) {
-        this.homeService = homeService;
-    }
+	@Autowired
+	public HomeController(HomeService homeService) {
+		this.homeService = homeService;
+	}
 
 
-
-    @ApiOperation(value = "Returns all Post we want for Home", response = PostDto.class , responseContainer = "List")
-    @GetMapping("/")
-    public List<PostDto> getHomePosts(){
-        return homeService.getHomePosts();
-    }
+	@ApiOperation(value = "Returns all Post we want for Home", response = PostDto.class, responseContainer = "List")
+	@GetMapping("/")
+	public List<PostDto> getHomePosts() {
+		return homeService.getHomePosts();
+	}
 
 }

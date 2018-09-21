@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {map} from "rxjs/operators";
-import {User} from "./user.model";
+import {User, Users} from "./user.model";
 import {RepoService} from "../repo/repo.service";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
@@ -52,6 +52,15 @@ export class UserService {
   register(register: Register) {
     return this.repoService.post("auth/register", register)
       .toPromise();
+  }
+
+
+  getFriends(userId: number) {
+    return this.repoService.get('network/connections/users/' + userId)
+      .pipe(map((users: Users) => {
+        return users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
   }
 
   deserializeUser(user): User {

@@ -19,3 +19,18 @@
   background-color: #4d636f !important;
   color: #FFF !important
 }
+
+.btn.btn-worklife-danger {
+  background-color: #d9534f !important;
+  color: #FFF !important
+}
+
+.btn.btn-worklife-success {
+  background-color: #5cb85c !important;
+  color: #FFF !important
+}
+
+.together1, .together2 {
+  display: inline-block;
+
+}

@@ -5,6 +5,7 @@ import {PostService} from "../../shared/posts/post.service";
 import {BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {FileUploadModalComponent} from '../../file-upload-modal/file-upload-modal.component';
 import {isNull} from 'util';
+import {Post} from "../../shared/posts/post.model";
 
 const options: ModalOptions = {
   class: 'modal-sm',
@@ -76,7 +77,8 @@ export class PostFormComponent implements OnInit {
         return;
       }
       this.postService.addPost(postRequest)
-        .then(() => {
+        .then((post: Post) => {
+          this.postService.post.next(post);
         });
     }
   }

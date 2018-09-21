@@ -1,0 +1,79 @@
+
+<div class="pmb-block">
+  <div clsass="p-header">
+    <ul class="p-menu">
+    </ul>
+
+    <ul class="actions m-t-20 hidden-xs">
+      <li class="dropdown">
+        <a href="" data-toggle="dropdown">
+          <i class="md md-more-vert"></i>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li>
+            <a href="">Refresh</a>
+          </li>
+          <li>
+            <a href="">Settings</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="p-header">
+    <tabset>
+      <tab heading="Connections" (select)="loadConnections()">
+
+        <div class="contacts clearfix row" style="padding-top: 20px;">
+          <div class="col-md-3 col-sm-6 col-xs-6 responsive" *ngFor="let connection of connections">
+            <div class="c-item">
+              <a [routerLink]="['/profile', connection.connectedUser.username]" class="ci-avatar">
+                <img [src]="connection.connectedUser.imagePath" class="center" alt="" >
+              </a>
+
+              <div class="c-info">
+                <strong>{{ connection.connectedUser.displayName }}</strong>
+                <small>{{ connection.connectedUser.email }}</small>
+                <small><i>Friends since: {{ connection.createDate | amDateFormat:'LL'}}</i></small>
+              </div>
+
+              <div class="c-footer">
+                <button class="btn btn-worklife"><i class="fa fa-envelope"></i> Message</button>
+                <button class="btn btn-worklife-danger"  (click)="deleteConnection(connection.connectionId)">
+                  <i><i class="fa fa-trash"> Remove</i></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </tab>
+      <tab heading="Requests" *ngIf="myProfile()" (select)="loadRequests()">
+        <div class="contacts clearfix row" style="padding-top: 20px;" >
+
+          <div class="col-md-3 col-sm-6 col-xs-6 responsive" *ngFor="let request of requests">
+            <div class="c-item">
+              <a [routerLink]="['/profile', request.userRequested.username]" class="ci-avatar">
+                <img [src]="request.userRequested.imagePath" class="center" alt="" >
+              </a>
+
+              <div class="c-info">
+                <strong>{{ request.userRequested.displayName }}</strong>
+                <small>{{ request.userRequested.email }}</small>
+                <small><i>User Requested on: {{ request.dateOfRequest | amDateFormat:'LL'}}</i></small>
+              </div>
+
+              <div class="c-footer">
+                <button class="btn btn-worklife-success" (click)="acceptConnection(request.connectionRequestId)">
+                  <i class="fa fa-check"></i> Accept</button>
+                <button class="btn btn-worklife-danger" (click)="rejectConnection(request.connectionRequestId)">
+                  <i class="fa fa-times"> Reject</i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </tab>
+    </tabset>
+  </div>
+</div>
