@@ -24,6 +24,7 @@ export class ConnectionService {
       }, error => console.log(error));
   }
 
+
   getUsersRequests() {
     return this._repoService.get('network/connections/requests/')
       .pipe(map((connections: any[]) => {

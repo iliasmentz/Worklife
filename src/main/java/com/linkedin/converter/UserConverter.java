@@ -36,9 +36,9 @@ public class UserConverter {
 	}
 
 
-	public UserSimpleDto toUserSimpleDto(Long userId){
+	public UserSimpleDto toUserSimpleDto(Long userId) {
 
-	  	User user = userRepository.findById(userId).orElse(null);
+		User user = userRepository.findById(userId).orElse(null);
 		UserSimpleDto userDto = new UserSimpleDto();
 		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
 		userDto.setUserId(user.getId());
@@ -47,6 +47,15 @@ public class UserConverter {
 		return userDto;
 	}
 
+	public UserSimpleDto toUserSimpleDto(User user) {
+		UserSimpleDto userDto = new UserSimpleDto();
+		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
+		userDto.setUserId(user.getId());
+		userDto.setUsername(user.getUsername());
+		userDto.setImagePath(FileService.getFileFullUrl(user.getImgPath()));
+
+		return userDto;
+	}
 
 
 }

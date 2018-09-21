@@ -1,7 +1,6 @@
 package com.linkedin.service;
 
 import com.linkedin.converter.ConnectionConverter;
-import com.linkedin.converter.ConnectionRequestConverter;
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Connection;
 import com.linkedin.entities.database.ConnectionRequest;
@@ -9,7 +8,7 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.ConnectionRepository;
 import com.linkedin.entities.database.repo.ConnectionRequestRepository;
 import com.linkedin.entities.database.repo.UserRepository;
-import com.linkedin.entities.model.UserDto;
+import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
 import com.linkedin.errors.ObjectNotFoundException;
@@ -28,16 +27,14 @@ public class ConnectionService {
 	private final ConnectionRepository connectionRepository;
 	private final ConnectionRequestRepository connectionRequestRepository;
 	private final ConnectionConverter connectionConverter;
-	private final ConnectionRequestConverter connectionRequestConverter;
 	private final UserRepository userRepository;
 	private final UserConverter userConverter;
 
 	@Autowired
-	public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, ConnectionRequestConverter connectionRequestConverter, UserRepository userRepository, UserConverter userConverter) {
+	public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, UserRepository userRepository, UserConverter userConverter) {
 		this.connectionRepository = connectionRepository;
 		this.connectionRequestRepository = connectionRequestRepository;
 		this.connectionConverter = connectionConverter;
-		this.connectionRequestConverter = connectionRequestConverter;
 		this.userRepository = userRepository;
 
 		//this.connectionRequestDto = connectionRequestDto;
@@ -156,28 +153,26 @@ public class ConnectionService {
 	}
 
 	//epistrefei lista apo Users pou einai connected me ton User mas
-	public List<User> getFriends() {
-		Long logedInUserId = AuthenticationFacade.authenticatedUser().getUserId();
-		List<Connection> connections = connectionRepository.findAllByUserRequestedIdOrUserAcceptedId(logedInUserId, logedInUserId);
+	private List<User> getFriends(Long userId) {
+		List<Connection> connections = connectionRepository.findAllByUserRequestedIdOrUserAcceptedId(userId, userId);
 		List<User> userList = new ArrayList<>();
 
-		Integer userIndex = 0;
-		for (int i = 0; i < connections.size(); i++) {
-			if (connections.get(i).getUserRequestedId() != logedInUserId && connections.get(i).getUserAcceptedId() == logedInUserId) {
-				userList.add(userRepository.findById(connections.get(i).getUserRequestedId()).orElse(null));
-			} else if (connections.get(i).getUserRequestedId() == logedInUserId && connections.get(i).getUserAcceptedId() != logedInUserId) {
-				userList.add(userRepository.findById(connections.get(i).getUserAcceptedId()).orElse(null));
+		for (Connection connection : connections) {
+			if (!connection.getUserRequestedId().equals(userId) && connection.getUserAcceptedId().equals(userId)) {
+				userList.add(userRepository.findById(connection.getUserRequestedId()).orElse(null));
+			} else if (connection.getUserRequestedId().equals(userId) && !connection.getUserAcceptedId().equals(userId)) {
+				userList.add(userRepository.findById(connection.getUserAcceptedId()).orElse(null));
 			}
 		}
 		return userList;
 	}
 
-	public List<UserDto> getFriendsToUserDto() {
-		List<UserDto> userDtoList = new ArrayList<>();
-		List<User> userList = getFriends();
-		for (int i = 0; i < userList.size(); i++) {
-			if (userList.get(i) != null) {
-				userDtoList.add(userConverter.toUserDto(userList.get(i)));
+	public List<UserSimpleDto> getFriendsToUserSimpleDto(Long userId) {
+		List<UserSimpleDto> userDtoList = new ArrayList<>();
+		List<User> userList = getFriends(userId);
+		for (User anUserList : userList) {
+			if (anUserList != null) {
+				userDtoList.add(userConverter.toUserSimpleDto(anUserList));
 			}
 
 		}

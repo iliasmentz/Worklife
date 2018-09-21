@@ -1,5 +1,6 @@
 package com.linkedin.controller;
 
+import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
 import com.linkedin.service.ConnectionService;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Api(tags = ConnectionsController.tag)
@@ -90,30 +90,21 @@ public class ConnectionsController {
 	}
 
 
-  @ApiOperation(value = "Delete Connection", notes = "Deletes a specific connections", response = Void.class)
-  @ApiImplicitParams( {
-	  @ApiImplicitParam(name = "connectionId", value = "connections Id", required = true, dataType = "Long", example = "152"),
-  })
-  @DeleteMapping("/network/connections/{connectionId}")
-  public void deleteConnection(@PathVariable Long connectionId) throws Exception {
-	connectionService.deleteConnection(connectionId);
-  }
+	@ApiOperation(value = "Delete Connection", notes = "Deletes a specific connections", response = Void.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "connectionId", value = "connections Id", required = true, dataType = "Long", example = "152"),
+	})
+	@DeleteMapping("/network/connections/{connectionId}")
+	public void deleteConnection(@PathVariable Long connectionId) throws Exception {
+		connectionService.deleteConnection(connectionId);
+	}
 
-    @ApiOperation(value = "returns the User that are on the same network with the loged user", notes = "returns the User that are on the same network with the loged user", response = UserDto.class)
-    @GetMapping("/network/connections/users/")
-    public List<UserDto> getUsersFriends() {
-        /*List<UserDto> userDtoList = new ArrayList<>();
-
-        List<User> userList = connectionService.getFriends();//.forEach((user) -> userConverter.toUserDto(user) );
-        for(int i = 0 ;i < userList.size() ;i++){
-            if(userList.get(i) != null){
-                userDtoList.add(userConverter.toUserDto(userList.get(i)));
-            }
-
-        }
-        return userDtoList;
-        */
-        return connectionService.getFriendsToUserDto();
-  }
+	@ApiOperation(value = "returns the User that are on the same network with the loged user", notes = "returns the User that are on the same network with the loged user", response = UserSimpleDto.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "userId", value = "users Id", required = true, dataType = "Long", example = "152"),
+	})
+	@GetMapping("/network/connections/users/{userId}")
+	public List<UserSimpleDto> getUsersFriends(@PathVariable Long userId) {
+		return connectionService.getFriendsToUserSimpleDto(userId);
+	}
 }
-//cars.forEach( (car) -> names.add(car.getName()) );

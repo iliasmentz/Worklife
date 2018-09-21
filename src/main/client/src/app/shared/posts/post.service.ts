@@ -21,6 +21,14 @@ export class PostService {
       .toPromise() as Promise<Posts>;
   }
 
+  getHomePosts(): Promise<Posts> {
+    return this.repoService.get('home/')
+      .pipe(map((posts: any[]) => {
+        return posts.map(post => this.deserializePost(post))
+      }))
+      .toPromise() as Promise<Posts>;
+  }
+
   updatePost(postId: number, postRequest: PostDto) {
     return this.repoService.put("posts/" + postId, postRequest)
       .pipe(map(post => this.deserializePost(post)))

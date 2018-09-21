@@ -2,7 +2,7 @@
 
   <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
     <img [src]="post.creator.imagePath" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-    <span class="w3-right w3-opacity">{{ post.postDate | amTimeAgo}}</span>
+    <span class="w3-right w3-opacity">{{ post.postDate | amDateFormat: 'LLL'}}</span>
     <h4><a [routerLink]="['profile', post.creator.username]">{{ post.creator.displayName }}</a></h4><br>
     <hr class="w3-clear">
     <p>{{post.context}}</p>
@@ -23,7 +23,7 @@
           <div *ngFor="let comment of comments">
             <div class="w3-container w3-card w3-white w3-round ">
               <h4><a [routerLink]="['profile', comment.commenter.username]">{{ comment.commenter.displayName }}
-                <span class="w3-right w3-opacity">{{ comment.commentDate | amTimeAgo}}</span>
+                <span class="w3-right w3-opacity">{{ comment.commentDate | amDateFormat: 'LLL'}}</span>
               </a></h4><br>
 
               <p>{{comment.context}}</p>

@@ -21,3 +21,5 @@ export class User {
     this.imagePath = this.imagePath || 'assets/img/user.svg';
   }
 }
+
+export declare type Users = User[];
