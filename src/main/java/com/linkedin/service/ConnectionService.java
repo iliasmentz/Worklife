@@ -44,24 +44,6 @@ public class ConnectionService {
 	  this.userConverter = userConverter;
   }
 
-//	public List<ConnectionDto> getUserConnections(Long userId) {
-//		return connectionRepository.findAllByUserRequested(userId)
-//						.stream()
-//						//.map(x -> x.getUserAccepted().equals(userId) ? x.getUserRequested() : x.getUserAccepted())
-//						.map(x -> x.getUserAcceptedId().equals(userId) ? connectionConverter.toConnectionDto(x) )
-//						.collect(Collectors.toList());
-//	}
-//
-//	public ConnectionRequest requestConnection(User userRequesting, User targetUser) {
-//		ConnectionRequest connectionRequest = new ConnectionRequest();
-//		connectionRequest.setUserRequested(userRequesting);
-//		connectionRequest.setUserTarget(targetUser);
-//		connectionRequest.setDateOfRequest(new Date());
-//		connectionRequest.setCompleted(false);
-//		return connectionRequestRepository.save(connectionRequest);
-//	}
-//
-
   public void deleteConnection(Long connectionId) throws Exception {
 	Long userId = AuthenticationFacade.getUserId();
 	Connection connection = connectionRepository.findById(userId).orElseThrow(() -> new ObjectNotFoundException(Connection.class, connectionId));
@@ -118,6 +100,11 @@ public class ConnectionService {
 	  }
 	  ConnectionRequest connectionRequest = new ConnectionRequest();
 	  Long loggedUserId = AuthenticationFacade.authenticatedUser().getUserId();
+
+	  if(connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(userId,loggedUserId).size() >0 ) //an o loggedUser exei kanei hdh connection Request na mhn ton ksanaafhsei dhladh na mhn kanei tpt
+	  {
+	    return null;
+	  }
 
 	  connectionRequest.setDateOfRequest(new Date());
 	  connectionRequest.setStatus(0); //pending to start with
