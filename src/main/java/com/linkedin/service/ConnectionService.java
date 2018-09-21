@@ -3,12 +3,14 @@ package com.linkedin.service;
 import com.linkedin.converter.ConnectionConverter;
 //import com.linkedin.entities.database.ConnectionRequest;
 import com.linkedin.converter.ConnectionRequestConverter;
+import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Connection;
 import com.linkedin.entities.database.ConnectionRequest;
 import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.ConnectionRepository;
 import com.linkedin.entities.database.repo.ConnectionRequestRepository;
 import com.linkedin.entities.database.repo.UserRepository;
+import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
 import com.linkedin.errors.ObjectNotFoundException;
@@ -16,6 +18,7 @@ import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,16 +30,18 @@ public class ConnectionService {
   private final ConnectionConverter connectionConverter;
   private final ConnectionRequestConverter connectionRequestConverter;
   private final UserRepository userRepository;
-
+  private final UserConverter userConverter;
 
   @Autowired
-  public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, ConnectionRequestConverter connectionRequestConverter, UserRepository userRepository) {
+  public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, ConnectionRequestConverter connectionRequestConverter, UserRepository userRepository, UserConverter userConverter) {
 	this.connectionRepository = connectionRepository;
 	this.connectionRequestRepository = connectionRequestRepository;
 	this.connectionConverter = connectionConverter;
 	this.connectionRequestConverter = connectionRequestConverter;
 	this.userRepository = userRepository;
+
 	  //this.connectionRequestDto = connectionRequestDto;
+	  this.userConverter = userConverter;
   }
 
 //	public List<ConnectionDto> getUserConnections(Long userId) {
@@ -166,5 +171,34 @@ public class ConnectionService {
 	ConnectionRequest connectionRequest = connectionRequestRepository.findById(connectionRequestId).orElse(null);
 	connectionRequest.setStatus(2); //reject
 	connectionRequestRepository.save(connectionRequest);
+  }
+  //epistrefei lista apo Users pou einai connected me ton User mas
+  public List<User> getFriends(){
+	  Long logedInUserId = AuthenticationFacade.authenticatedUser().getUserId();
+	  List<Connection> connections = connectionRepository.findAllByUserRequestedIdOrUserAcceptedId(logedInUserId,logedInUserId);
+	  List<User> userList = new ArrayList<>();
+
+	  Integer userIndex = 0;
+	  for(int i =0 ;i<connections.size();i++){
+	  	if(connections.get(i).getUserRequestedId() != logedInUserId  && connections.get(i).getUserAcceptedId() == logedInUserId){
+			userList.add(userRepository.findById(connections.get(i).getUserRequestedId()).orElse(null));
+		}
+		else if(connections.get(i).getUserRequestedId() == logedInUserId  && connections.get(i).getUserAcceptedId() != logedInUserId){
+			  userList.add(userRepository.findById(connections.get(i).getUserAcceptedId()).orElse(null));
+		  }
+	  }
+	  return userList;
+  }
+
+  public  List<UserDto>getFriendsToUserDto(){
+	  List<UserDto> userDtoList = new ArrayList<>();
+	  List<User> userList = getFriends();
+	  for(int i = 0 ;i < userList.size() ;i++){
+		  if(userList.get(i) != null){
+			  userDtoList.add(userConverter.toUserDto(userList.get(i)));
+		  }
+
+	  }
+	  return userDtoList;
   }
 }

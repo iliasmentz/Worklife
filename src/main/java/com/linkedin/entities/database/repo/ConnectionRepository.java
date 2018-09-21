@@ -16,5 +16,6 @@ public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 //	public List<Connection> getUsersConnections(@Param("userId")Long userId);
 
 	List<Connection> findAllByUserRequestedIdOrUserAcceptedId(Long userId1,Long userId2); //ayto epistrefei ola me userId1 == UserRequested h userId2 == UserAccepted
-
+	List<Connection> findAllByUserRequestedId(Long userId);
+	List<Connection> findAllByUserAcceptedId(Long userId);
 }

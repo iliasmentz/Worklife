@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,4 +124,22 @@ public class ConnectionsController {
   public void deleteConnection(@PathVariable Long connectionId) throws Exception {
 	connectionService.deleteConnection(connectionId);
   }
+
+    @ApiOperation(value = "returns the User that are on the same network with the loged user", notes = "returns the User that are on the same network with the loged user", response = UserDto.class)
+    @GetMapping("/network/connections/users/")
+    public List<UserDto> getUsersFriends() {
+        /*List<UserDto> userDtoList = new ArrayList<>();
+
+        List<User> userList = connectionService.getFriends();//.forEach((user) -> userConverter.toUserDto(user) );
+        for(int i = 0 ;i < userList.size() ;i++){
+            if(userList.get(i) != null){
+                userDtoList.add(userConverter.toUserDto(userList.get(i)));
+            }
+
+        }
+        return userDtoList;
+        */
+        return connectionService.getFriendsToUserDto();
+  }
 }
+//cars.forEach( (car) -> names.add(car.getName()) );
