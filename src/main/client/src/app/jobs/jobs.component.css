@@ -1,0 +1,21 @@
+.h4 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h4, .h5 {
+  position: center;
+}
+
+.w3-card {
+  padding: 20px;
+
+}
+
+.job-list {
+  margin-top: 40px;
+}
+
+button {
+  margin-bottom: 10px;
+}
