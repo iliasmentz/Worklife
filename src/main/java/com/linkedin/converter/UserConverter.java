@@ -30,7 +30,7 @@ public class UserConverter {
 		userDto.setBirthdate(user.getBirthdate());
 		userDto.setAddress(user.getAddress());
 		userDto.setPhoneNumber(user.getPhoneNumber());
-		userDto.setImagePath(FileService.getFileFullUrl(user.getImgPath()));
+		userDto.setImagePath(getUserPhotoFullUrl(user));
 		userDto.setDateCreated(user.getDateCreated());
 		return userDto;
 	}
@@ -43,7 +43,7 @@ public class UserConverter {
 		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
 		userDto.setUserId(user.getId());
 		userDto.setUsername(user.getUsername());
-		userDto.setImagePath(FileService.getFileFullUrl(user.getImgPath()));
+		userDto.setImagePath(getUserPhotoFullUrl(user));
 		return userDto;
 	}
 
@@ -52,10 +52,21 @@ public class UserConverter {
 		userDto.setDisplayName(user.getName() + ' ' + user.getSurname());
 		userDto.setUserId(user.getId());
 		userDto.setUsername(user.getUsername());
-		userDto.setImagePath(FileService.getFileFullUrl(user.getImgPath()));
+		userDto.setImagePath(getUserPhotoFullUrl(user));
 
 		return userDto;
 	}
 
+	/*
+	 * Return the full path of users photo.
+	 * If the photo doesn't exists returns empty String
+	 */
+	public String getUserPhotoFullUrl(User user) {
+		if (user.getImgPath() != null) {
+			return FileService.getFileFullUrl(user.getImgPath());
+		} else {
+			return "";
+		}
+	}
 
 }

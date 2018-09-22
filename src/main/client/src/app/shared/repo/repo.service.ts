@@ -6,7 +6,7 @@ import {LoginCredentials} from "../auth/login-credentials.model";
 @Injectable()
 export class RepoService {
 
-  private API_ENDPOINT = 'http://localhost:8080/';
+  private API_ENDPOINT = 'https://localhost:8080/';
   private API_PREFIX = 'api/';
 
   constructor(private _http: HttpClient) {
