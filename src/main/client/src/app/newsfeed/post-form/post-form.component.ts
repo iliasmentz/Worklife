@@ -6,6 +6,7 @@ import {BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {FileUploadModalComponent} from '../../file-upload-modal/file-upload-modal.component';
 import {isNull} from 'util';
 import {Post} from "../../shared/posts/post.model";
+import {FileInfo} from "../../shared/file-upload/file-info.model";
 
 const options: ModalOptions = {
   class: 'modal-sm',
@@ -58,28 +59,30 @@ export class PostFormComponent implements OnInit {
   onSubmit(postForm: FormGroup) {
     if (postForm.valid) {
 
-      const file = postForm.get('file').value;
+      const file: FileInfo = postForm.get('file').value;
       let postRequest = new PostDto() as PostDto;
       postRequest.load(this.postForm);
 
       if (!isNull(file)) {
-
+        console.log("arxeio");
         let formData = new FormData();
         Object.keys(postRequest).forEach(key => {
           formData.append(key, postRequest[key]);
         });
-
-        formData.append('file', file, file.name);
+        console.log(formData);
+        formData.append('file', file.file, file.name);
+        console.log(formData);
 
         this.postService.addPost(formData)
           .then(() => {
           });
-        return;
+
+      } else {
+        this.postService.addPost(postRequest)
+          .then((post: Post) => {
+            this.postService.post.next(post);
+          });
       }
-      this.postService.addPost(postRequest)
-        .then((post: Post) => {
-          this.postService.post.next(post);
-        });
     }
   }
 }

@@ -34,9 +34,14 @@ export class PostService {
       .pipe(map(post => this.deserializePost(post)))
       .toPromise() as Promise<Post>;
   }
-
   addPost(postRequest: PostDto | FormData) {
     return this.repoService.post("posts/", postRequest)
+      .pipe(map(post => this.deserializePost(post)))
+      .toPromise() as Promise<Post>;
+  }
+
+  addPostWithFile(postRequest: PostDto | FormData) {
+    return this.repoService.post("posts/with_photo", postRequest)
       .pipe(map(post => this.deserializePost(post)))
       .toPromise() as Promise<Post>;
   }
