@@ -3,6 +3,7 @@ package com.linkedin.controller;
 import com.linkedin.converter.JobConverter;
 import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.repo.JobRepository;
+import com.linkedin.entities.model.jobApplication.JobApplicationDto;
 import com.linkedin.entities.model.jobs.JobDto;
 import com.linkedin.entities.model.jobs.JobRequestDto;
 import com.linkedin.service.JobService;
@@ -74,4 +75,26 @@ public class JobsController {
 	{
 		return jobService.updateJob(jobId,jobRequestDto);
 	}
+
+  @ApiOperation(value = "Apply to a single Job", response = JobApplicationDto.class )
+  @PostMapping("/apply/{jobId}")
+  public JobApplicationDto applyToJob(@PathVariable Long jobId) throws Exception
+  {
+	return jobService.applyToJob(jobId);
+  }
+
+  @ApiOperation(value = "Returns all the JobApplications made from all Users from database ", response = JobApplicationDto.class )
+  @GetMapping("/apply/")
+  public List<JobApplicationDto> getJobApplications()
+  {
+	return jobService.getJobApplications();
+  }
+
+  @ApiOperation(value = "Returns all the JobApplications made from logged User ", response = JobApplicationDto.class )
+  @GetMapping("/apply/myapplications")
+  public List<JobApplicationDto> getyMJobApplications() throws Exception
+  {
+	return jobService.getyMJobApplications();
+  }
+
 }
