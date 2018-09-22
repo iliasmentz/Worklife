@@ -11,12 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @Table(name = "JobApplication")
 @Entity
 @DynamicUpdate
-public class JobApplication {
+public class JobApplication  implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "job_application_id")

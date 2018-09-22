@@ -26,6 +26,7 @@ public class JobConverter {
 		dto.setAuthor(userConverter.toUserSimpleDto(job.getAuthorId()));
 		dto.setDescription(job.getDescription());
 		dto.setDateCreated(job.getDate());
+		dto.setSkills(job.getSkills());
 		return dto;
 	}
 

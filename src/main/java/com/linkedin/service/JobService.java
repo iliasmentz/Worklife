@@ -44,6 +44,7 @@ public class JobService {
 	job.setAuthorId(AuthenticationFacade.getUserId());
 	job.setDescription(dto.getDescription());
 	job.setDate(new Date());
+	job.setSkills(dto.getSkills());
 
 	jobRepository.save(job);
 
@@ -99,6 +100,7 @@ public class JobService {
 	  job.setCompany(jobRequestDto.getCompany());
 	  job.setDescription(jobRequestDto.getDescription());
 	  job.setTitle(jobRequestDto.getTitle());
+	  job.setSkills(jobRequestDto.getSkills());
 
 	  jobRepository.save(job);
 	  return jobConverter.toJobDto(job);
