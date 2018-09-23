@@ -50,9 +50,10 @@ public class Post implements Serializable {
   //Todo na to doume
   //@NotNull
   @Column(name = "visible")
+  
   private Integer visible;
 
-  @Column(name = "visible")
+  @Column(name = "image_path")
   private String imagePath;
 
 

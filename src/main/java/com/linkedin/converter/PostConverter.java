@@ -10,28 +10,29 @@ import java.util.Optional;
 
 @Component
 public class PostConverter {
-	private final UserConverter userConverter;
+  private final UserConverter userConverter;
 
-	@Autowired
-	public PostConverter(UserConverter userConverter) {
-		this.userConverter = userConverter;
-	}
+  @Autowired
+  public PostConverter(UserConverter userConverter) {
+	this.userConverter = userConverter;
+  }
 
-	public PostDto toPostDto(Post post) {
-		PostDto postDto = new PostDto();
-		postDto.setPostId(post.getPostId());
-		postDto.setPostDate(post.getPostDate());
-		postDto.setContext(post.getContext());
-		postDto.setCreator(userConverter.toUserSimpleDto(post.getCreatorId()));
-		postDto.setVisible(post.getVisible());
-		postDto.setNumberOfLikes(post.getNumberOfLikes());
-		postDto.setImagePath(resolveImagePath(post));
-		return postDto;
-	}
+  public PostDto toPostDto(Post post) {
+	PostDto postDto = new PostDto();
+	postDto.setPostId(post.getPostId());
+	postDto.setPostDate(post.getPostDate());
+	postDto.setContext(post.getContext());
+	postDto.setCreator(userConverter.toUserSimpleDto(post.getCreatorId()));
+	postDto.setVisible(post.getVisible());
+	postDto.setNumberOfLikes(post.getNumberOfLikes());
+	postDto.setImagePath(resolveImagePath(post));
+	return postDto;
+  }
 
-	public String resolveImagePath(Post post) {
-		return Optional.of(post.getImagePath())
-						.map(FileService::getFileFullUrl)
-						.orElse("");
+  public String resolveImagePath(Post post) {
+    if (post.getImagePath() != null) {
+      return FileService.getFileFullUrl(post.getImagePath());
 	}
+	return "";
+  }
 }
