@@ -30,12 +30,15 @@ public class Notification implements Serializable {
   private Long targetUserId;//connectionRequest se poion ? h like se poion h comment se poion
 
   @Column(name = "status")
-  private Integer status = 0; //0 == seen , 1 == not seen yet
+  private Integer status; //0 == seen , 1 == not seen yet
 
   @Column(name = "message")
   private String message;
 
   @Column(name = "type") //0->like , 1->comment ,2->connectionRequest
   private Integer type;
+
+  @Column(name= "like_comment_connection_id")
+  private Long likeCommentConnectionId ;
 
 }

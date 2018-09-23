@@ -35,4 +35,8 @@ public class NotificationDto {
 
   @ApiModelProperty(value = "type", example = "0", position = 6)
   public Integer type;
+
+  @ApiModelProperty(value = "1", example = "1", position = 7)
+  private Long likeCommentConnectionId ;
+
 }

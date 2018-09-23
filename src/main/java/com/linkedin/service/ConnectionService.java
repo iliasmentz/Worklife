@@ -119,7 +119,7 @@ public class ConnectionService {
 		connectionRequest.setUserTargetId(userId);
 
 		connectionRequestRepository.save(connectionRequest);
-		notificationService.createNotification(loggedUserId,2);
+		notificationService.createNotification(userId,2,connectionRequest.getConnectionRequestId());
 
 		return connectionConverter.toConnectionRequestDto(connectionRequest);
 

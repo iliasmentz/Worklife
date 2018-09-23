@@ -64,7 +64,9 @@ public class CommentService {
 	comment.setContext(commentRequestDto.getContext());
 	comment.setPostId(commentRequestDto.getPostId());
 	commentRepository.save(comment);
-	notificationService.createNotification(AuthenticationFacade.getUserId(),1);
+
+	Long targetUserId = postRepository.findById(commentRequestDto.getPostId()).get().getCreatorId(); //to userId aytou pou egrapse to
+	notificationService.createNotification(targetUserId,1,comment.getCommentId());
 
 
 	return commentConverter.toCommentDto(comment);
