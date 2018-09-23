@@ -61,6 +61,8 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
 import {ConnectionsComponent} from './connections/connections.component';
 import {ConnectionService} from "./shared/connections/connection.service";
 import {NotificationService} from "./shared/notifications/notification.service";
+import {MyFriendsResolver} from "./profile/resolvers/my-friends.resolver";
+import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
 
 
 @NgModule({
@@ -125,7 +127,7 @@ import {NotificationService} from "./shared/notifications/notification.service";
     Globals, AuthGuard, AuthService, RepoService, UserService, NotificationService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
     PostService, CommentService, BsModalRef, FileUploadService,
-    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver, UserFriendsResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

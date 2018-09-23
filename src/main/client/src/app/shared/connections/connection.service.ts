@@ -50,13 +50,10 @@ export class ConnectionService {
   }
 
   newRequest(userId: number) {
-    return this._repoService.post('network/connections/request/create' + userId)
-      .pipe(map((connectionRequest: any[]) => {
-        return this.deserializeConnectionRequest(connectionRequest);
-      }))
-      .toPromise() as Promise<ConnectionRequest>;
+    return this._repoService.post('network/connections/requests/create/' + userId)
+      .subscribe(() => {
+      }, error => console.log(error));
   }
-
 
   private deserializeConnection(userId: number, resp): Connection {
     const {userRequested, userAccepted, ...connection} = resp;

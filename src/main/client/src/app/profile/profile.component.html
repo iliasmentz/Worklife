@@ -13,12 +13,24 @@
         <div class="panel-body">
           <div (click)="openFileUploadModal()" class="text-center vd_info-parent"><img alt="example image"
                                                                                        [src]="user.imagePath"></div>
-          <div class="row">
+          <div class="row" *ngIf="!myProfile()">
+            <div *ngIf="friends()">
             <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
               class="fa fa-check-circle append-icon"></i>Friends</a></div>
             <div class="col-xs-12"><a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
               class="fa fa-envelope append-icon"></i>Send Message</a></div>
+            </div>
+            <div *ngIf="!friends()" (click)="addFriend()">
+              <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-plus-circle append-icon"></i>Add Connection</a></div>
+            </div>
           </div>
+          <div class="row" *ngIf="myProfile()">
+            <div class="col-xs-12" (click)="openFileUploadModal()"><a
+              class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
+              class="fa fa-image append-icon"></i>Change Profile picture</a></div>
+          </div>
+
           <h2 class="font-semibold mgbt-xs-5">{{ user.displayName }}</h2>
           <h4>Owner at Our Company, Inc.</h4>
           <div class="mgtp-20">
@@ -39,7 +51,7 @@
       </div>
       <!-- panel widget -->
 
-      <app-friends [userId]="user.userId"></app-friends>
+      <app-friends [friends]="userFriends" [userId]="user.userId"></app-friends>
       <!-- panel widget -->
     </div>
 
