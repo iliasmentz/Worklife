@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -22,4 +23,6 @@ public class PostRequestDto implements Serializable {
   @ApiModelProperty(value = "visible", example = "Public", position = 2)
   private Integer visible;
 
+  @ApiModelProperty(value = "", example = "image.png", position = 3)
+  private MultipartFile file;
 }

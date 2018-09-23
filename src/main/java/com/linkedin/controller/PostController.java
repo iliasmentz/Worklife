@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,8 +52,12 @@ public class PostController {
 
 	@PostMapping("/")
 	@ApiOperation(value = "Posts", notes = "Creates a new Post", response = PostDto.class)
-	public PostDto createNewPost(@RequestBody PostRequestDto postRequestDto) {
-		return postService.createNewPost(postRequestDto);
+	public PostDto createNewPost(@ModelAttribute PostRequestDto postRequestDto) {
+		if (postRequestDto.getFile() == null || postRequestDto.getFile().getSize() == 0) {
+			return postService.createNewPost(postRequestDto);
+		} else {
+			return postService.createNewPostWithFile(postRequestDto, postRequestDto.getFile());
+		}
 	}
 
 	@PutMapping("/{postId}")

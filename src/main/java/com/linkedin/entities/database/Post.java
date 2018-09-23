@@ -52,5 +52,8 @@ public class Post implements Serializable {
   @Column(name = "visible")
   private Integer visible;
 
+  @Column(name = "visible")
+  private String imagePath;
+
 
 }
