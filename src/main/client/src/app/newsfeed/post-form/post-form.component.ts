@@ -63,26 +63,19 @@ export class PostFormComponent implements OnInit {
       let postRequest = new PostDto() as PostDto;
       postRequest.load(this.postForm);
 
+      let formData = new FormData();
+      Object.keys(postRequest).forEach(key => {
+        formData.append(key, postRequest[key]);
+      });
       if (!isNull(file)) {
-        console.log("arxeio");
-        let formData = new FormData();
-        Object.keys(postRequest).forEach(key => {
-          formData.append(key, postRequest[key]);
-        });
-        console.log(formData);
         formData.append('file', file.file, file.name);
-        console.log(formData);
-
-        this.postService.addPost(formData)
-          .then(() => {
-          });
-
-      } else {
-        this.postService.addPost(postRequest)
-          .then((post: Post) => {
-            this.postService.post.next(post);
-          });
       }
+      this.postService.addPost(formData)
+        .then((post: Post) => {
+          this.postService.post.next(post);
+
+        });
+
     }
   }
 }

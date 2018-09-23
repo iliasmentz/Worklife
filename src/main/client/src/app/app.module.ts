@@ -27,7 +27,8 @@ import {
   BsDropdownModule,
   BsModalRef,
   ModalModule,
-  ProgressbarModule, TabsModule
+  ProgressbarModule,
+  TabsModule
 } from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
@@ -57,8 +58,9 @@ import {CommentService} from "./shared/comments/comment.service";
 import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
 import {LikeService} from "./shared/likes/like.service";
 import {LikeComponent} from './newsfeed/post-list/like/like.component';
-import { ConnectionsComponent } from './connections/connections.component';
+import {ConnectionsComponent} from './connections/connections.component';
 import {ConnectionService} from "./shared/connections/connection.service";
+import {NotificationService} from "./shared/notifications/notification.service";
 
 
 @NgModule({
@@ -120,7 +122,7 @@ import {ConnectionService} from "./shared/connections/connection.service";
     LikeComponent
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService,
+    Globals, AuthGuard, AuthService, RepoService, UserService, NotificationService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
     PostService, CommentService, BsModalRef, FileUploadService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
