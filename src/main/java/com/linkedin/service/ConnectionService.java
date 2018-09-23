@@ -181,4 +181,9 @@ public class ConnectionService {
 		}
 		return userDtoList;
 	}
+
+  public List<ConnectionRequestDto> getConnectionRequestsToOtherUsers() {
+	Long loggedUserId = AuthenticationFacade.authenticatedUser().getUserId();
+	return connectionRequestRepository.findAllByUserRequestedId(loggedUserId).stream().map(connectionConverter::toConnectionRequestDto).collect(Collectors.toList());
+  }
 }
