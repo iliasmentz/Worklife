@@ -53,7 +53,7 @@ public class NotificationService {
 
   public List<NotificationDto> getNotifications() {
 	Long logedUserId = AuthenticationFacade.authenticatedUser().getUserId();
-	return notificationRepository.findAllByTargetUserId(logedUserId).stream().map(notificationConverter::toNotificationDto).collect(Collectors.toList());
+	return notificationRepository.findAllByTargetUserId(logedUserId).stream().map(notificationConverter::toNotificationDto).filter(x->x.getStatus() ==0).collect(Collectors.toList());
   }
 
   public void makeNotificationSeen(Long notificationId) {
