@@ -7,11 +7,13 @@ import com.linkedin.entities.database.repo.PostRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.Post.PostDto;
 import com.linkedin.entities.model.Post.PostRequestDto;
+import com.linkedin.entities.model.UploadFileResponse;
 import com.linkedin.errors.NotAuthorizedException;
 import com.linkedin.errors.ObjectNotFoundException;
 import com.linkedin.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -19,25 +21,36 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-	private PostRepository postRepository;
-	private UserRepository userRepository;
-	private PostConverter postConverter;
+	private final PostRepository postRepository;
+	private final UserRepository userRepository;
+	private final PostConverter postConverter;
+	private final FileService fileService; 
 
 	@Autowired
-	public PostService(PostRepository postRepository, UserRepository userRepository, PostConverter postConverter) {
+	public PostService(PostRepository postRepository, UserRepository userRepository, PostConverter postConverter, FileService fileService) {
 
 		this.postRepository = postRepository;
 		this.userRepository = userRepository;
 		this.postConverter = postConverter;
-
+		this.fileService = fileService;
 	}
 
 	public List<PostDto> getAllPosts() {
 		return postRepository.findAll()
-				.stream()
-				.map(postConverter::toPostDto)
-				.collect(Collectors.toList());
+						.stream()
+						.map(postConverter::toPostDto)
+						.collect(Collectors.toList());
 
+	}
+
+	public PostDto createNewPostWithFile(PostRequestDto postRequestDto, MultipartFile file) {
+		Long newPostId = createNewPost(postRequestDto).getPostId();
+
+		UploadFileResponse uploadFileResponse = fileService.uploadFile(file, "post-", true);
+		Post post = postRepository.getOne(newPostId);
+		post.setImagePath(uploadFileResponse.getFileName());
+
+		return postConverter.toPostDto(post);
 	}
 
 	public PostDto createNewPost(PostRequestDto postRequestDto) {
@@ -97,9 +110,9 @@ public class PostService {
 			throw new ObjectNotFoundException(User.class, userId);
 		}
 		return postRepository.findAllByCreatorIdOrderByPostDateDesc(userId)
-				.stream()
-				.map(postConverter::toPostDto)
-				.collect(Collectors.toList());
+						.stream()
+						.map(postConverter::toPostDto)
+						.collect(Collectors.toList());
 	}
 
 
