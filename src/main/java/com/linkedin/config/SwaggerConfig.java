@@ -63,7 +63,7 @@ public class SwaggerConfig {
 		authorizationScopeList.add(new AuthorizationScope("write", "for write operations"));
 
 		List<GrantType> grantTypes = new ArrayList<>();
-		GrantType creGrant = new ResourceOwnerPasswordCredentialsGrant("http://localhost:8080/oauth/token");
+		GrantType creGrant = new ResourceOwnerPasswordCredentialsGrant("https://localhost:8080/oauth/token");
 
 		grantTypes.add(creGrant);
 

@@ -3,7 +3,6 @@ package com.linkedin.service;
 import com.linkedin.converter.CommentConverter;
 import com.linkedin.entities.database.Comment;
 import com.linkedin.entities.database.Post;
-import com.linkedin.entities.database.Skill;
 import com.linkedin.entities.database.repo.CommentRepository;
 import com.linkedin.entities.database.repo.PostRepository;
 import com.linkedin.entities.model.Comment.CommentDto;
@@ -24,12 +23,14 @@ public class CommentService {
   private final CommentRepository commentRepository;
   private final CommentConverter commentConverter;
   private final PostRepository postRepository;
+  private final NotificationService notificationService;
 
   @Autowired
-  public CommentService(CommentRepository commentRepository, CommentConverter commentConverter, PostRepository postRepository) {
+  public CommentService(CommentRepository commentRepository, CommentConverter commentConverter, PostRepository postRepository, NotificationService notificationService) {
 	this.commentRepository = commentRepository;
 	this.commentConverter = commentConverter;
 	this.postRepository = postRepository;
+	this.notificationService = notificationService;
   }
 
 
@@ -63,6 +64,8 @@ public class CommentService {
 	comment.setContext(commentRequestDto.getContext());
 	comment.setPostId(commentRequestDto.getPostId());
 	commentRepository.save(comment);
+	notificationService.createNotification(AuthenticationFacade.getUserId(),1);
+
 
 	return commentConverter.toCommentDto(comment);
 

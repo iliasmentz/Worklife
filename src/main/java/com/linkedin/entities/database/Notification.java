@@ -1,5 +1,6 @@
 package com.linkedin.entities.database;
 
+import com.linkedin.entities.model.UserSimpleDto;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -17,28 +18,24 @@ import java.io.Serializable;
 @Entity
 @DynamicUpdate
 public class Notification implements Serializable {
-	@Id
-	@Column(name = "notification_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  @Id
+  @Column(name = "notification_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long notificationId;
 
-	@NotNull
-	@Column(name = "user_id")
-	private Long userId;
+  @Column(name = "userId")
+  private Long userId;
 
-	@NotNull
-	@Column(name = "status")
-	private short status = 0; //default 0
+  @Column(name = "target_user_id") //o user gia ton opoio anaferetai to notification
+  private Long targetUserId;//connectionRequest se poion ? h like se poion h comment se poion
 
-	@NotNull
-	@Column(name = "message")
-	private String message;
+  @Column(name = "status")
+  private Integer status = 0; //0 == seen , 1 == not seen yet
 
-	@NotNull
-	@Column(name = "type")
-	private String type;
+  @Column(name = "message")
+  private String message;
 
-	@NotNull
-	@Column(name = "img_path")
-	private String imgPath;
+  @Column(name = "type") //0->like , 1->comment ,2->connectionRequest
+  private Integer type;
+
 }

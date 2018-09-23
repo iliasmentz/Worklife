@@ -29,9 +29,10 @@ public class ConnectionService {
 	private final ConnectionConverter connectionConverter;
 	private final UserRepository userRepository;
 	private final UserConverter userConverter;
+	private final NotificationService notificationService;
 
 	@Autowired
-	public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, UserRepository userRepository, UserConverter userConverter) {
+	public ConnectionService(ConnectionRepository connectionRepository, ConnectionRequestRepository connectionRequestRepository, ConnectionConverter connectionConverter, UserRepository userRepository, UserConverter userConverter, NotificationService notificationService) {
 		this.connectionRepository = connectionRepository;
 		this.connectionRequestRepository = connectionRequestRepository;
 		this.connectionConverter = connectionConverter;
@@ -39,6 +40,7 @@ public class ConnectionService {
 
 		//this.connectionRequestDto = connectionRequestDto;
 		this.userConverter = userConverter;
+	  this.notificationService = notificationService;
 	}
 
 	public void deleteConnection(Long connectionId) throws Exception {
@@ -117,6 +119,7 @@ public class ConnectionService {
 		connectionRequest.setUserTargetId(userId);
 
 		connectionRequestRepository.save(connectionRequest);
+		notificationService.createNotification(loggedUserId,2);
 
 		return connectionConverter.toConnectionRequestDto(connectionRequest);
 

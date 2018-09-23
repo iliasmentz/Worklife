@@ -1,5 +1,6 @@
 package com.linkedin.entities.model.jobs;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,11 +10,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
+@ApiModel(description = "job Request object")
+
 public class JobRequestDto implements Serializable {
-
-//	@ApiModelProperty(value = "job id", example = "1234", position = 1)
-//	private Long id;
-
   @NotBlank
   @ApiModelProperty(value = "job title", example = "Software Engineer", position = 2)
   private String title;

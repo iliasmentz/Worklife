@@ -59,6 +59,7 @@ public class ConnectionsController {
 	@ApiOperation(value = "returns the connectionRequests that user with userid , did to the loged user", notes = "returns the connection request that user with userid  did to the loged user", response = ConnectionRequestDto.class)
 	@GetMapping("/network/connections/requests/{userId}")
 	public List<ConnectionRequestDto> getConnectionRequestsFromUser(@PathVariable Long userId) throws Exception {
+
 		return connectionService.getConnectionRequestsFromUser(userId);
 	}
 

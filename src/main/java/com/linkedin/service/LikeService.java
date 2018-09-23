@@ -21,12 +21,14 @@ public class LikeService {
 	private final LikeRepository likeRepository;
 	private final LikeConverter likeConverter;
 	private final PostRepository postRepository;
+	private final NotificationService notificationService;
 
 	@Autowired
-	public LikeService(LikeRepository likeRepository, LikeConverter likeConverter, PostRepository postRepository) {
+	public LikeService(LikeRepository likeRepository, LikeConverter likeConverter, PostRepository postRepository, NotificationService notificationService) {
 		this.likeRepository = likeRepository;
 		this.likeConverter = likeConverter;
 		this.postRepository = postRepository;
+	  this.notificationService = notificationService;
 	}
 
 
@@ -46,7 +48,10 @@ public class LikeService {
 		post.setNumberOfLikes(post.getNumberOfLikes() + 1);//increase number of likes for this specific post
 		postRepository.save(post);
 		likeRepository.save(like);
-		return likeConverter.toLikeDto(like);
+
+	  notificationService.createNotification(userId,0);
+
+	  return likeConverter.toLikeDto(like);
 	}
 
 	public List<LikeDto> getPostLikes(Long postId) {
