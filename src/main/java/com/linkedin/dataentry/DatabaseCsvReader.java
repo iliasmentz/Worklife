@@ -33,12 +33,14 @@ import java.util.List;
  */
 @Component
 public class DatabaseCsvReader {
-	private final String[] FILE_ARRAY = new String[]{"database_files/Notification.csv", "database_files/Job.csv", "database_files/Connection.csv","database_files/User.csv" , "database_files/Post.csv" ,"database_files/Comment.csv" ,"database_files/Like.csv" ,"database_files/ConnectionRequest.csv"};
+	private final String[] FILE_ARRAY = new String[]{"database_files/Notification.csv", "database_files/Job.csv", "database_files/Connection.csv","database_files/User.csv" , "database_files/Post.csv" ,"database_files/Comment.csv" ,"database_files/Like.csv" ,"database_files/ConnectionRequest.csv", "database_files/Message.csv"};
 	private final String ENTITIES_PACKAGE_NAME = "com.linkedin.entities.database";
 
 	private final Repositories repositories;
 
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	public final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
+	public final static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
 	@Autowired
 	public DatabaseCsvReader(ListableBeanFactory listableBeanFactory) {
@@ -108,7 +110,13 @@ public class DatabaseCsvReader {
 			} else if (targetClass.equals(Long.class)) {
 				return Long.valueOf(s);
 			} else if (targetClass.equals(Date.class)) {
-				return dateFormat.parse(s);
+				if (s.contains("T")) {
+					return dateTimeFormat.parse(s);
+				} else {
+					return dateFormat.parse(s);
+				}
+			} else if (targetClass.equals(String.class)) {
+				return s.substring(0, Integer.min(s.length(),250));
 			} else {
 				return targetClass.cast(s);
 			}
