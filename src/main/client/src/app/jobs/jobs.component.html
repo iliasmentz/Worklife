@@ -1,12 +1,18 @@
 <br>
 
+
 <div class="job-list" *ngFor="let job of jobs">
-  <div class="w3-container w3-card w3-white w3-round col-md-4">
-    <div class="col-md-11">
-      <h3>{{ job.title }}
-        <span><button class="btn btn-worklife w3-right" (click)="addJob()">Apply</button></span>
+
+  <div class="w3-container w3-card w3-white w3-round col-md-5">
+    <div class = "col-md-1">  </div>
+
+    <div class="">
+      <h3 style="display:inline;">{{ job.title }}
+        <span><button style="width: 20%;" class="btn btn-worklife w3-right" (click)="addJob()">Apply</button></span>
+
       </h3>
-      <h4>at <a><i>{{ job.company}}</i></a></h4>
+      <span class="w3-center"><h4 style="display:inline;">at <a><i>{{ job.company}}</i></a></h4></span>
+
       <accordion>
         <accordion-group heading="See More...">
           <p>{{ job.description }}</p>
@@ -16,7 +22,11 @@
         </accordion-group>
       </accordion>
     </div>
+    <div class = "col-md-1">  </div>
+
+
+
   </div>
 </div>
+<button class="btn btn-worklife-success w3-right float my-float" (click)="addJob()">Add new</button>
 
-<button class="btn btn-worklife-success w3-right" (click)="addJob()">Add new</button>
