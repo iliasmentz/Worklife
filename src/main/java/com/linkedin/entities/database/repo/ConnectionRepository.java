@@ -2,6 +2,7 @@ package com.linkedin.entities.database.repo;
 
 import com.linkedin.entities.database.Connection;
 import com.linkedin.entities.database.User;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +20,5 @@ public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 	List<Connection> findAllByUserRequestedId(Long userId);
 	List<Connection> findAllByUserAcceptedId(Long userId);
 	Connection findByUserRequestedIdAndUserAcceptedId(Long userId1,Long userId2);
+	Boolean existsByUserAcceptedIdAndUserRequestedId(Long userId1, Long userId2);
 }

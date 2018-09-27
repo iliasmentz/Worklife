@@ -3,6 +3,7 @@ package com.linkedin.controller;
 import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
+import com.linkedin.entities.model.connection.ConnectionStatusDto;
 import com.linkedin.service.ConnectionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -40,6 +41,15 @@ public class ConnectionsController {
   @GetMapping("/network/connections/{userId}")
   public List<ConnectionDto> getUserConnections(@PathVariable Long userId) throws Exception {
 	return connectionService.getUserConnections(userId);
+  }
+
+  @ApiOperation(value = "Return Connection Status with  Another User", notes = "0->Connected, 1->Not Connected , 2->UserId has sent Logged User a ConnectionRequest, 3-> Logged User has sent UserId a ConnectionRequest , 4->userId ==loggedUserId", response = ConnectionStatusDto.class)
+  @ApiImplicitParams( {
+	  @ApiImplicitParam(name = "userId", value = "user's id", required = true, dataType = "Long", example = "1"),
+  })
+  @GetMapping("/network/connections/connectionstatus/{userId}")
+  public ConnectionStatusDto getConnectionStatus(@PathVariable Long userId) throws Exception {
+	return connectionService.getConnectionStatus(userId);
   }
 
 
