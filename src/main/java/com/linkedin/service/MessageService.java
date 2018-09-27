@@ -1,10 +1,12 @@
 package com.linkedin.service;
 
+import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Message;
 import com.linkedin.entities.database.repo.MessageRepository;
 import com.linkedin.entities.model.messages.ChatOverviewDto;
 import com.linkedin.entities.model.messages.MessageDto;
 import com.linkedin.entities.model.messages.UserChatDto;
+import com.linkedin.security.AuthenticationFacade;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,9 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class MessageService {
 	private final MessageRepository messageRepository;
-	
-	public MessageService(MessageRepository messageRepository) {
+	private final UserConverter userConverter;
+
+	public MessageService(MessageRepository messageRepository, UserConverter userConverter) {
 		this.messageRepository = messageRepository;
+		this.userConverter = userConverter;
 	}
 
 
@@ -35,17 +39,11 @@ public class MessageService {
 
 	public UserChatDto getChatMessages(Long userId1, Long userId2) {
 		UserChatDto userChatDto = new UserChatDto();
-		userChatDto.setHasUnreadMessage(false);
-
 		List<Message> allMessages = messageRepository.findAllMessagesBeetwenUsers(userId1, userId2);
+		userChatDto.setUser(userConverter.toUserSimpleDto(userId2));
 
 		if (allMessages.size() != 0) {
-			userChatDto.setLastMessage(allMessages.get(0).getSentDate().toString());
-			userChatDto.setLastMessage(allMessages.get(0).getContext());
-			userChatDto.setUserId(userId2);
 			userChatDto.setMessages(convertToMessagesDto(allMessages));
-		} else {
-			return null;
 		}
 		return userChatDto;
 	}
@@ -59,16 +57,15 @@ public class MessageService {
 	private MessageDto convertToMessageDto(Message x) {
 		MessageDto messageDto = new MessageDto();
 		messageDto.setMessage(x.getContext());
-		messageDto.setReceiverUserId(x.getRecipientId());
-		messageDto.setSenderUserId(x.getSenderId());
+		messageDto.setSendBy(AuthenticationFacade.getUserId().equals(x.getRecipientId()) ? 0 : 1);
 		messageDto.setSendDate(x.getSentDate());
 		return messageDto;
 	}
 
-	public void sendMessageToUser(Long senderId, Long reiceverId, String messageContext) {
+	public void sendMessageToUser(Long senderId, Long receiverId, String messageContext) {
 		Message message = new Message();
 		message.setContext(messageContext);
-		message.setRecipientId(reiceverId);
+		message.setRecipientId(receiverId);
 		message.setSenderId(senderId);
 		message.setSentDate(new Date());
 		messageRepository.save(message);

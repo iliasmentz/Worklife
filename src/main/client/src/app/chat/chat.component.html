@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class=''>
+<head>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+  <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+</head>
+<body>
+
+<div id="frame">
+  <div id="sidepanel">
+    <div id="profile">
+      <div class="wrap">
+        <img id="profile-img" [src]="user.imagePath" alt=""/>
+        <p>{{ user.displayName }}</p>
+      </div>
+    </div>
+    <div id="search">
+      <label><i class="fa fa-search" aria-hidden="true"></i></label>
+      <input type="text" placeholder="Search contacts..."/>
+    </div>
+    <div id="contacts">
+      <ul>
+        <div *ngFor="let chatOverview of chatOverviews">
+          <li class="contact" routerLinkActive="active">
+            <a [routerLink]="['/messages', chatOverview.userId]">
+              <div class="wrap">
+                <img [src]="chatOverview.icon" alt=""/>
+                <div class="meta">
+                  <p class="name">{{ chatOverview.name }}</p>
+                  <p class="preview">{{ chatOverview.lastMessage }}</p>
+                </div>
+              </div>
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script>$(".messages").animate({scrollTop: $(document).height()}, "fast");
+//# sourceURL=pen.js
+</script>
+</body>
+</html>

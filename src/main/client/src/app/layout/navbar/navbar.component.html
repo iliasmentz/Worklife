@@ -8,9 +8,11 @@
       class="fa fa-home w3-margin-right"></i>Worklife</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" routerLink=""
        title="Newsfeed"><i class="fa fa-globe"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-       [routerLink]="['/connections', user.userId]" title="My Network"><i class="fa fa-users"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i
+    <a [routerLink]="['/connections', user.userId]"
+       class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+       title="My Network"><i class="fa fa-users"></i></a>
+    <a [routerLink]="['/messages']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+       title="Messages"><i
       class="fa fa-envelope"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Jobs"><i
       class="fa fa-briefcase"></i></a>

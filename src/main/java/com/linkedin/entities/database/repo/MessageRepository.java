@@ -1,7 +1,6 @@
 package com.linkedin.entities.database.repo;
 
 import com.linkedin.entities.database.Message;
-import com.linkedin.entities.database.User;
 import com.linkedin.entities.model.messages.ChatOverviewDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,11 +22,11 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 							+ " )"
 					+ " from User u inner join Message m on ((m.senderId = u.id or m.recipientId = u.id) and u.id != :userId) "
 					+ " where  m.recipientId=:userId or m.senderId=:userId "
-					+ " group by u.id"
+			+ " group by u.id "
 	)
 	List<ChatOverviewDto> findAllUsersThatUsersHasCommunicateWith(@Param("userId") Long userId);
 
-	@Query("select m from Message m where (m.recipientId = :userId0 and m.senderId = :userId1 ) or (m.senderId = :userId0 and m.recipientId = :userId1) order by m.sentDate desc")
+	@Query("select m from Message m where (m.recipientId = :userId0 and m.senderId = :userId1 ) or (m.senderId = :userId0 and m.recipientId = :userId1) order by m.sentDate asc")
 	List<Message> findAllMessagesBeetwenUsers(@Param("userId0") Long userId0, @Param("userId1") Long userId1);
 //	((m.recipientId=:userId and u.id = m.senderId) or (m.senderId=:userId and u.id = m.recipientId))
 }

@@ -1,7 +1,7 @@
 package com.linkedin.controller;
 
-import com.linkedin.entities.model.Post.PostDto;
 import com.linkedin.entities.model.messages.ChatOverviewDto;
+import com.linkedin.entities.model.messages.MessageDto;
 import com.linkedin.entities.model.messages.UserChatDto;
 import com.linkedin.security.AuthenticationFacade;
 import com.linkedin.service.MessageService;
@@ -37,14 +37,13 @@ public class MessageController {
 	}
 
 	@GetMapping("/{userId}")
-	@ApiOperation(value = "Chat", notes = "Returns the historty of messages with a specific user", response = PostDto.class)
+	@ApiOperation(value = "Chat", notes = "Returns the historty of messages with a specific user", response = MessageDto.class)
 	public UserChatDto getSingleChat(@PathVariable Long userId) {
 		return messageService.getChatMessages(AuthenticationFacade.getUserId(), userId);
-//		return messageService.getUsersChat(AuthenticationFacade.getUserId(), userId);
 	}
 
 	@PostMapping("/{userId}")
-	@ApiOperation(value = "Message", notes = "Sends a new message to a specific user", response = PostDto.class)
+	@ApiOperation(value = "Message", notes = "Sends a new message to a specific user", response = MessageDto.class)
 	public UserChatDto sendNewMessage(@PathVariable Long userId, @RequestBody String message) {
 		messageService.sendMessageToUser(AuthenticationFacade.getUserId(), userId, message);
 		return getSingleChat(userId);

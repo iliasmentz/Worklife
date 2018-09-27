@@ -1,0 +1,44 @@
+<div class="content">
+  <div class="contact-profile">
+    <img [src]="conversation.user.imagePath" alt=""/>
+    <p>{{ conversation.user.displayName }}</p>
+  </div>
+  <div class="messages">
+    <ul>
+      <div *ngFor="let message of conversation.messages">
+        <div *ngIf="message.sendBy === 0">
+          <li class="sent">
+            <img [src]="conversation.user.imagePath" alt=""/>
+            <p>{{message.message}}</p>
+          </li>
+        </div>
+        <div *ngIf="message.sendBy !== 0">
+          <li class="replies">
+            <img [src]="user.imagePath" alt=""/>
+            <p>{{message.message}}</p>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+  <div class="message-input">
+    <form id="basic-info" [formGroup]="conversationForm" (ngSubmit)="onSubmit(conversationForm)">
+      <div class="wrap">
+        <input type="text" formControlName="message" placeholder="Write your message..."/>
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script>$(".messages").animate({scrollTop: $(document).height()}, "fast");
+
+
+$(".expand-button").click(function () {
+  $("#profile").toggleClass("expanded");
+  $("#contacts").toggleClass("expanded");
+});
+//# sourceURL=pen.js
+</script>

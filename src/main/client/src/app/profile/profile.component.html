@@ -17,7 +17,8 @@
             <div *ngIf="friends()">
             <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
               class="fa fa-check-circle append-icon"></i>Friends</a></div>
-            <div class="col-xs-12"><a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
+              <div class="col-xs-12"><a [routerLink]="['/messages', user.userId]"
+                                        class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
               class="fa fa-envelope append-icon"></i>Send Message</a></div>
             </div>
             <div *ngIf="!friends()" (click)="addFriend()">

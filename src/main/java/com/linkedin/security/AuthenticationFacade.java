@@ -14,11 +14,9 @@ public final class AuthenticationFacade {
 		MyUserDetails userDetails = (MyUserDetails) getAuthentication().getPrincipal();
 		return userDetails.getLogin();
 	}
-	public static Long getUserId() {
-		System.out.println("\n\n\nUSERIDDDDDDDDDDDDDDDD\n\n\n\n");
-		//return 1L; //TODO remove this because user is always 1
-		return  authenticatedUser().getUserId();
 
+	public static Long getUserId() {
+		return  authenticatedUser().getUserId();
 	}
 
 

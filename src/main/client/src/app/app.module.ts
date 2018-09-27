@@ -63,6 +63,10 @@ import {ConnectionService} from "./shared/connections/connection.service";
 import {NotificationService} from "./shared/notifications/notification.service";
 import {MyFriendsResolver} from "./profile/resolvers/my-friends.resolver";
 import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
+import {ChatComponent} from './chat/chat.component';
+import {MessageService} from "./shared/messages/message.service";
+import {ConversationComponent} from './chat/conversation/conversation.component';
+import {ConversationResolver} from "./chat/conversation/conversation.resolver";
 
 
 @NgModule({
@@ -96,7 +100,9 @@ import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
     CommentComponent,
     LikeComponent,
     WelcomeComponent,
-    ConnectionsComponent
+    ConnectionsComponent,
+    ChatComponent,
+    ConversationComponent
   ],
   imports: [
     BrowserModule,
@@ -124,10 +130,11 @@ import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
     LikeComponent
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService, NotificationService,
+    Globals, AuthGuard, AuthService, RepoService, UserService, NotificationService, MessageService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
     PostService, CommentService, BsModalRef, FileUploadService,
-    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver, UserFriendsResolver,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,
+    UserFriendsResolver, ConversationResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
