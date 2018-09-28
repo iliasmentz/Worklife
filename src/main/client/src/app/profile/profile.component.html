@@ -14,16 +14,25 @@
           <div (click)="openFileUploadModal()" class="text-center vd_info-parent"><img alt="example image"
                                                                                        [src]="user.imagePath"></div>
           <div class="row" *ngIf="!myProfile()">
-            <div *ngIf="friends()">
-            <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
-              class="fa fa-check-circle append-icon"></i>Friends</a></div>
+            <div *ngIf="friends() === 0">
+              <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>Friends</a></div>
               <div class="col-xs-12"><a [routerLink]="['/messages', user.userId]"
                                         class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
-              class="fa fa-envelope append-icon"></i>Send Message</a></div>
+                class="fa fa-envelope append-icon"></i>Send Message</a></div>
             </div>
-            <div *ngIf="!friends()" (click)="addFriend()">
+            <div *ngIf="friends() === 1" (click)="addFriend()">
               <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
                 class="fa fa-plus-circle append-icon"></i>Add Connection</a></div>
+            </div>
+            <div *ngIf="friends() === 2">
+              <div class="col-xs-12"><a [routerLink]="['/connections', myUserId]"
+                                        class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>User has sent you friend request</a></div>
+            </div>
+            <div *ngIf="friends() === 3">
+              <div class="col-xs-12"><a disabled="true" class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>Connection request sent</a></div>
             </div>
           </div>
           <div class="row" *ngIf="myProfile()">

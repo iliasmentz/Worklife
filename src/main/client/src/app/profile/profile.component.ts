@@ -10,8 +10,8 @@ import {BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {FileUploadModalComponent} from '../file-upload-modal/file-upload-modal.component';
 import {FileInfo} from '../shared/file-upload/file-info.model';
 import {FileUploadService} from '../shared/fiile-upload/file-upload.service';
-import {Connections} from "../shared/connections/connection.model";
 import {ConnectionService} from "../shared/connections/connection.service";
+import {ConnectionStatus} from "../shared/connections/connection-status.model";
 
 const options: ModalOptions = {
   class: 'modal-sm',
@@ -31,9 +31,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   educations: Educations;
   experiences: Experiences;
   posts: Posts;
-  myFriends: Connections;
+  myFriends: ConnectionStatus;
   userFriends: Users;
 
+  get myUserId() {
+    return JSON.parse(localStorage.getItem('currentUser')).userId;
+  }
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -99,11 +102,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  friends(): boolean {
-    return this.myFriends.find(x => x.connectedUser.userId === this.user.userId) != null;
+  friends(): number {
+    return this.myFriends.connectionStatus;
   }
 
   addFriend() {
     this.connectionService.newRequest(this.user.userId);
+    this.myFriends.connectionStatus = 3;
   }
 }

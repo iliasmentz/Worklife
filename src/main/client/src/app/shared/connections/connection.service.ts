@@ -3,6 +3,7 @@ import {RepoService} from "../repo/repo.service";
 import {map} from "rxjs/operators";
 import {Connection, Connections} from "./connection.model";
 import {ConnectionRequest, ConnectionRequests} from "../connection-request/connection-request.model";
+import {ConnectionStatus} from "./connection-status.model";
 
 @Injectable()
 export class ConnectionService {
@@ -16,6 +17,14 @@ export class ConnectionService {
         return connections.map(connection => this.deserializeConnection(userId, connection))
       }))
       .toPromise() as Promise<Connections>;
+  }
+
+  getUserStatus(userId: number) {
+    return this._repoService.get('network/connections/connectionstatus/' + userId)
+      .pipe(map((connectionStatus: any[]) => {
+        return this.deserializeConnectionStatus(connectionStatus);
+      }))
+      .toPromise() as Promise<ConnectionStatus>;
   }
 
   deleteConnection(connectionId: number) {
@@ -67,6 +76,10 @@ export class ConnectionService {
 
   private deserializeConnectionRequest(resp): ConnectionRequest {
     return new ConnectionRequest(resp);
+  }
+
+  private deserializeConnectionStatus(resp): ConnectionStatus {
+    return new ConnectionStatus(resp);
   }
 
 
