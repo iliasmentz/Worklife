@@ -60,6 +60,11 @@ import {LikeService} from "./shared/likes/like.service";
 import {LikeComponent} from './newsfeed/post-list/like/like.component';
 import {ConnectionsComponent} from './connections/connections.component';
 import {ConnectionService} from "./shared/connections/connection.service";
+import {JobsComponent} from './jobs/jobs.component';
+import {MatCheckboxModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {JobService} from './shared/job/job.service';
+import {JobModalComponent} from './jobs/job-modal/job-modal.component';
 import {NotificationService} from "./shared/notifications/notification.service";
 import {MyFriendsResolver} from "./profile/resolvers/my-friends.resolver";
 import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
@@ -101,6 +106,8 @@ import {ConversationResolver} from "./chat/conversation/conversation.resolver";
     LikeComponent,
     WelcomeComponent,
     ConnectionsComponent,
+    JobsComponent,
+    JobModalComponent,
     ChatComponent,
     ConversationComponent
   ],
@@ -117,12 +124,15 @@ import {ConversationResolver} from "./chat/conversation/conversation.resolver";
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BrowserAnimationsModule,
+    MatCheckboxModule,
   ],
   entryComponents: [
     BasicInfoModalComponent,
     FileUploadModalComponent,
     SkillsModalComponent,
+    JobModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
     PostModalComponent,
@@ -130,7 +140,7 @@ import {ConversationResolver} from "./chat/conversation/conversation.resolver";
     LikeComponent
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService, NotificationService, MessageService,
+    Globals, AuthGuard, AuthService, RepoService, UserService, JobService, NotificationService, MessageService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
     PostService, CommentService, BsModalRef, FileUploadService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,

@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left"> {{mode}} your job</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form id="basic-info" [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm)">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Job Title:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="title"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Company:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="company"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Description:</label>
+          <div class="col-xs-8 controls"><input class="form-control" formControlName="description"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <button style="margin-top: 5px; position: center"
+                  class="btn btn-sm btn-success fa fa-plus" type="button" (click)="addSkill()">Add Skill
+          </button>
+        </div>
+      </div>
+    </div>
+    <div formArrayName="skills">
+      <div *ngFor="let p of skills.controls; let i=index">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row mgbt-xs-0">
+              <label class="col-xs-4 control-label">Skill {{ i + 1 }}:</label>
+              <div class="col-xs-8 controls" formGroupName="{{i}}">
+                <input class="form-control" formControlName="skill">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success">{{mode}}</button>
+  </div>
+</form>
