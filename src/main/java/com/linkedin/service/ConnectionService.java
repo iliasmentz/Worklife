@@ -201,17 +201,17 @@ public class ConnectionService {
 	}
 	//an einai connected
 	if (connectionRepository.existsByUserAcceptedIdAndUserRequestedId(userId, loggedUserId) || connectionRepository.existsByUserAcceptedIdAndUserRequestedId(loggedUserId, userId)) {
-	  connectionStatusDto.setConnectionStatus(0);
+	  return connectionStatusDto.setConnectionStatus(0);
 	} else {//an den einai filoi
-	  connectionStatusDto.setConnectionStatus(1);
+	  return  connectionStatusDto.setConnectionStatus(1);
 	}
 	//an exei steilei o allos se emena pou eimai logedin
 	if (connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(loggedUserId, userId).size() > 0) {
-	  connectionStatusDto.setConnectionStatus(2);
+	 return  connectionStatusDto.setConnectionStatus(2);
 	}
 	//an tou exw steilei egw connectionRequest
 	else if (connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(userId, loggedUserId).size() > 0) {
-	  connectionStatusDto.setConnectionStatus(3);
+	  return connectionStatusDto.setConnectionStatus(3);
 
 	}
 	return connectionStatusDto;
