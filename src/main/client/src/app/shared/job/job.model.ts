@@ -7,6 +7,7 @@ export class Job {
   company: string;
   dateCreated: Date;
   description: string;
+  skills: string[];
 
   constructor(obj: Job) {
 

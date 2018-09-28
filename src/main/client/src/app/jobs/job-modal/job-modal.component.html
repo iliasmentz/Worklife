@@ -34,6 +34,29 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <button style="margin-top: 5px; position: center"
+                  class="btn btn-sm btn-success fa fa-plus" type="button" (click)="addSkill()">Add Skill
+          </button>
+        </div>
+      </div>
+    </div>
+    <div formArrayName="skills">
+      <div *ngFor="let p of skills.controls; let i=index">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row mgbt-xs-0">
+              <label class="col-xs-4 control-label">Skill {{ i + 1 }}:</label>
+              <div class="col-xs-8 controls" formGroupName="{{i}}">
+                <input class="form-control" formControlName="skill">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 

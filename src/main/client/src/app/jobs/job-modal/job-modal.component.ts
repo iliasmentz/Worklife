@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BsModalRef} from "ngx-bootstrap";
 import {JobService} from "../../shared/job/job.service";
 import {Job} from "../../shared/job/job.model";
@@ -11,14 +11,16 @@ import {JobDto} from "../../shared/job/job-dto.model";
   styleUrls: ['./job-modal.component.css']
 })
 export class JobModalComponent implements OnInit {
-
-
   mode: string;
   job: Job;
   jobForm: FormGroup;
 
   constructor(public _modal: BsModalRef, private _fb: FormBuilder,
               private jobService: JobService) {
+  }
+
+  get skills(): FormArray {
+    return <FormArray>this.jobForm.get('skills');
   }
 
   close() {
@@ -31,17 +33,20 @@ export class JobModalComponent implements OnInit {
   ngOnInit() {
     if (this.mode === 'Update') {
       this.jobForm = this._editForm();
+      this.job.skills.forEach((currentSkill) => {
+        this.skills.push(this._fb.group({skill: currentSkill}))
+      })
     } else {
       this.jobForm = this._addForm();
     }
   }
-
 
   private _editForm = () => {
     return this._fb.group({
       title: [this.job.title, Validators.required],
       company: [this.job.company, Validators.required],
       description: [this.job.description, Validators.required],
+      skills: this._fb.array([])
     });
   }
 
@@ -50,6 +55,7 @@ export class JobModalComponent implements OnInit {
       title: [null, Validators.required],
       company: [null, Validators.required],
       description: [null, Validators.required],
+      skills: this._fb.array([])
     });
   }
 
@@ -72,5 +78,9 @@ export class JobModalComponent implements OnInit {
     }
     this._modal.hide();
     this._modal = null;
+  }
+
+  addSkill() {
+    this.skills.push(this._fb.group({skill: ''}));
   }
 }
