@@ -39,7 +39,9 @@
               </div>
 
               <div class="c-footer">
-                <button class="btn btn-worklife"><i class="fa fa-envelope"></i> Message</button>
+                <button class="btn btn-worklife" [routerLink]="['/messages', connection.connectedUser.userId]"><i
+                  class="fa fa-envelope"></i> Message
+                </button>
                 <button class="btn btn-worklife-danger"  (click)="deleteConnection(connection.connectionId)">
                   <i><i class="fa fa-trash"> Remove</i></i></button>
               </div>

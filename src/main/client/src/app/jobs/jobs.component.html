@@ -1,0 +1,50 @@
+<br>
+
+
+<div class="job-list" *ngFor="let job of jobs">
+
+  <div class="w3-container w3-card w3-white w3-round col-md-5">
+    <div class="col-md-1"></div>
+
+    <div class="">
+      <h3 style="display:inline;">{{ job.title }}
+        <span>
+        <div *ngIf="!myJob(job)">
+          <button style="width: 20%;" class="btn btn-worklife w3-right" (click)="jobApply(job.id)"
+                  [disabled]="applied(job.id)">
+          {{ !applied(job.id) ? "Apply": "Applied" }}</button>
+        </div>
+          <div *ngIf="myJob(job)">
+                      <button style="width: 20%;" class="btn btn-worklife-danger w3-right" (click)="jobDelete(job.id)">
+          Delete</button>
+            <button style="width: 20%;" class="btn btn-worklife w3-right" (click)="jobEdit(job)">
+          Edit</button>
+          </div>
+        </span>
+
+      </h3>
+      <span class="w3-center"><h4 style="display:inline;">at <a><i>{{ job.company}}</i></a></h4></span>
+
+      <accordion>
+        <accordion-group heading="See More...">
+          <h4><i>{{ job.description }}</i></h4>
+          <br/>
+          <h4><b>Requirements:</b></h4>
+          <div *ngFor="let skill of job.skills">
+            <h5>{{ skill }}</h5>
+          </div>
+          <br/>
+          <h5>Posted: <i>{{job.dateCreated | amCalendar }}</i></h5>
+          <h5>by: <a [routerLink]="['/profile', job.author.username]">
+            {{job.author.displayName}}</a></h5>
+
+        </accordion-group>
+      </accordion>
+    </div>
+    <div class="col-md-1"></div>
+
+
+  </div>
+</div>
+<button class="btn btn-worklife-success w3-right float my-float" (click)="addJob()">Add new</button>
+

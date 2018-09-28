@@ -6,7 +6,7 @@
       href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
     <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" routerLink=""><i
       class="fa fa-home w3-margin-right"></i>Worklife</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" routerLink=""
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" routerLink=""
        title="Newsfeed"><i class="fa fa-globe"></i></a>
     <a [routerLink]="['/connections', user.userId]"
        class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
@@ -14,7 +14,8 @@
     <a [routerLink]="['/messages']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
        title="Messages"><i
       class="fa fa-envelope"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Jobs"><i
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Jobs"
+       [routerLink]="['/jobs']"><i
       class="fa fa-briefcase"></i></a>
     <div class="w3-dropdown-hover w3-hide-small">
       <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
@@ -42,13 +43,14 @@
     class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
     href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" routerLink=""><i class="fa fa-home w3-margin-right"></i>Worklife</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" routerLink="" title="Newsfeed"><i class="fa fa-globe"></i>
+  <a class="w3-bar-item w3-button w3-padding-large" routerLink="" title="Newsfeed"><i class="fa fa-globe"></i>
     Newsfeed</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" [routerLink]="['/connections', user.userId]"
+  <a class="w3-bar-item w3-button w3-padding-large" [routerLink]="['/connections', user.userId]"
      title="My Network"><i class="fa fa-users"></i> My Network</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" title="Messages"><i class="fa fa-envelope"></i>
+  <a class="w3-bar-item w3-button w3-padding-large" title="Messages"><i class="fa fa-envelope"></i>
     Messages</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" title="Jobs"><i class="fa fa-briefcase"></i> Jobs</a>
+  <a class="w3-bar-item w3-button w3-padding-large" title="Jobs" [routerLink]="['/jobs']"><i
+    class="fa fa-briefcase"></i> Jobs</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click)="logout()" title="Logout"><i class="fa fa-sign-out"></i>
     Logout</a>
   <a class="w3-bar-item w3-button w3-padding-large"
