@@ -8,6 +8,7 @@ import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.ConnectionRepository;
 import com.linkedin.entities.database.repo.ConnectionRequestRepository;
 import com.linkedin.entities.database.repo.UserRepository;
+import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
@@ -216,5 +217,10 @@ public class ConnectionService {
 	  connectionStatusDto.setConnectionStatus(1);
 	}
 	return connectionStatusDto;
+  }
+
+
+  public List<UserDto> getUserSearchResults(String username) {
+	return  userRepository.findAllByUsernameIgnoreCase(username).stream().map(userConverter::toUserDto).collect(Collectors.toList());
   }
 }
