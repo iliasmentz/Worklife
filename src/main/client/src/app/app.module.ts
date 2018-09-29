@@ -61,7 +61,7 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
 import {ConnectionsComponent} from './connections/connections.component';
 import {ConnectionService} from "./shared/connections/connection.service";
 import {JobsComponent} from './jobs/jobs.component';
-import {MatCheckboxModule} from "@angular/material";
+import {MatCheckboxModule, MatTableModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {JobService} from './shared/job/job.service';
 import {JobModalComponent} from './jobs/job-modal/job-modal.component';
@@ -78,6 +78,8 @@ import {VgOverlayPlayModule} from "videogular2/overlay-play";
 import {VgBufferingModule} from "videogular2/buffering";
 import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
 import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.component";
+import {AdminComponent} from './admin/admin.component';
+import {AdminResolver} from "./admin/admin.resolver";
 
 
 @NgModule({
@@ -118,6 +120,7 @@ import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.
     JobModalComponent,
     ChatComponent,
     ConversationComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +138,7 @@ import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.
     TabsModule.forRoot(),
     BrowserAnimationsModule,
     MatCheckboxModule,
+    MatTableModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
@@ -158,7 +162,7 @@ import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
     PostService, CommentService, BsModalRef, FileUploadService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,
-    UserFriendsResolver, ConversationResolver,
+    UserFriendsResolver, ConversationResolver, AdminResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

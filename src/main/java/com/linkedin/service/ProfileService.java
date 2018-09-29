@@ -1,6 +1,5 @@
 package com.linkedin.service;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.User;
@@ -38,7 +37,8 @@ public class ProfileService {
   //Returns UserDto
   public UserDto getUserDto(String username) {
 	User user = userService.getUser(username);
-	UserDto userDto = userConverter.toUserDto(user);
+	  Login login = loginRepository.getOne(user.getId());
+	  UserDto userDto = userConverter.toUserDto(user, login.getRole().ordinal());
 	return userDto;
   }
 
@@ -57,7 +57,7 @@ public class ProfileService {
 	user.setImgPath(userRequestDto.getImgPath());
 
 	userRepository.save(user);
-	return userConverter.toUserDto(user);
+	  return userConverter.toUserDto(user, login.getRole().ordinal());
   }
 
   public void changePassword(ChangePasswordRequestDto changePasswordRequestDto) throws Exception {

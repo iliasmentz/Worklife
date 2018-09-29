@@ -2,7 +2,6 @@ package com.linkedin.controller;
 
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Login;
-import com.linkedin.entities.database.User;
 import com.linkedin.entities.model.UploadFileResponse;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserRequestDto;
@@ -50,7 +49,7 @@ public class ProfileController {
   public UserDto myProfile() {
 	Login login = AuthenticationFacade.authenticatedUser();
 
-	return userConverter.toUserDto(userService.getUser(login.getUserId()));
+	  return userConverter.toUserDto(userService.getUser(login.getUserId()), login.getRole().ordinal());
 	// return new UserDto(userService.getUser(login.getUserId()));
   }
 

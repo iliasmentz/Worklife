@@ -12,6 +12,8 @@ import {JobsComponent} from "./jobs/jobs.component";
 import {ChatComponent} from "./chat/chat.component";
 import {ConversationComponent} from "./chat/conversation/conversation.component";
 import {ConversationResolver} from "./chat/conversation/conversation.resolver";
+import {AdminComponent} from "./admin/admin.component";
+import {AdminResolver} from "./admin/admin.resolver";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -19,6 +21,7 @@ const appRoutes: Routes = [
       {path: '', component: NewsfeedComponent, pathMatch: 'full'},
       {path: 'connections/:id', component: ConnectionsComponent, pathMatch: 'full'},
       {path: 'jobs', component: JobsComponent, pathMatch: 'full'},
+      {path: 'admin', component: AdminComponent, pathMatch: 'full', resolve: {users: AdminResolver}},
       {
         path: 'messages', component: ChatComponent, children: [
           {path: ':userId', component: ConversationComponent, resolve: {conversation: ConversationResolver}}

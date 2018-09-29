@@ -2,6 +2,7 @@ package com.linkedin.controller;
 
 import com.linkedin.constants.UrlConst;
 import com.linkedin.converter.UserConverter;
+import com.linkedin.entities.database.repo.LoginRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.RegisterDto;
 import com.linkedin.entities.model.RegisterRequestDto;
@@ -29,12 +30,14 @@ public class AuthController {
 	private final UserService userService;
 	private final UserConverter userConverter;
 	private final UserRepository userRepository;
+	private final LoginRepository loginRepository;
 
 	@Autowired
-	public AuthController(UserService userService, UserConverter userConverter, UserRepository userRepository) {
+	public AuthController(UserService userService, UserConverter userConverter, UserRepository userRepository, LoginRepository loginRepository) {
 		this.userService = userService;
 		this.userConverter = userConverter;
 		this.userRepository = userRepository;
+		this.loginRepository = loginRepository;
 	}
 
 	@ApiOperation(value = "Register", notes = "Creates a new user", response = String.class)
@@ -60,7 +63,7 @@ public class AuthController {
 
 		return userRepository.findAll()
 				.stream()
-				.map(userConverter::toUserDto)
+				.map(user -> userConverter.toUserDto(user, loginRepository.getOne(user.getId()).getRole().ordinal()))
 				.collect(Collectors.toList());
 
 	}

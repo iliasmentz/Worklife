@@ -10,6 +10,7 @@ export class User {
   userId: number;
   username: string;
   dateCreated: Date;
+  role: number;
 
   constructor(obj: User) {
 

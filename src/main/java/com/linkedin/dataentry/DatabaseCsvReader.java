@@ -1,5 +1,6 @@
 package com.linkedin.dataentry;
 
+import com.linkedin.constants.Role;
 import com.opencsv.CSVReader;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,11 @@ import java.util.List;
  */
 @Component
 public class DatabaseCsvReader {
-	private final String[] FILE_ARRAY = new String[]{"database_files/Login.csv","database_files/Notification.csv", "database_files/Job.csv", "database_files/Connection.csv","database_files/User.csv" , "database_files/Post.csv" ,"database_files/Comment.csv" ,"database_files/Like.csv" ,"database_files/ConnectionRequest.csv", "database_files/Message.csv"};
+	private final String[] FILE_ARRAY = new String[]{"database_files/Login.csv", "database_files/Notification.csv",
+			"database_files/Job.csv", "database_files/Connection.csv", "database_files/User.csv",
+			"database_files/Post.csv", "database_files/Comment.csv", "database_files/Like.csv",
+			"database_files/ConnectionRequest.csv", "database_files/Message.csv"
+	};
 	private final String ENTITIES_PACKAGE_NAME = "com.linkedin.entities.database";
 
 	private final Repositories repositories;
@@ -103,22 +108,27 @@ public class DatabaseCsvReader {
 		return instance;
 	}
 
-	private Object castValue(String s, Class<?> targetClass) {
+	private Object castValue(String valueToCast, Class<?> targetClass) {
 		try {
 			if (targetClass.equals(Integer.class)) {
-				return Integer.valueOf(s);
+				return Integer.valueOf(valueToCast);
 			} else if (targetClass.equals(Long.class)) {
-				return Long.valueOf(s);
+				return Long.valueOf(valueToCast);
+			} else if (targetClass.equals(Boolean.class)) {
+				return Boolean.valueOf(valueToCast);
 			} else if (targetClass.equals(Date.class)) {
-				if (s.contains("T")) {
-					return dateTimeFormat.parse(s);
+				if (valueToCast.contains("T")) {
+					return dateTimeFormat.parse(valueToCast);
 				} else {
-					return dateFormat.parse(s);
+					return dateFormat.parse(valueToCast);
 				}
 			} else if (targetClass.equals(String.class)) {
-				return s.substring(0, Integer.min(s.length(),250));
+				return valueToCast.substring(0, Integer.min(valueToCast.length(), 250));
+			} else if (targetClass.equals(Role.class)) {
+				return Role.valueOf(valueToCast);
+//				return Role.ROLE_USER;
 			} else {
-				return targetClass.cast(s);
+				return targetClass.cast(valueToCast);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -126,11 +136,12 @@ public class DatabaseCsvReader {
 		}
 	}
 
-	private Method findSetterFromName(Class<?> objClass, String x) throws Exception {
+	private Method findSetterFromName(Class<?> objClass, String fieldName) throws Exception {
 		return Arrays.stream(objClass.getMethods())
-						.filter((Method meth) -> meth.getName().equals("set" + x))
+				.filter((Method meth) -> meth.getName().equals("set" + fieldName))
 						.findFirst()
-						.orElseThrow(() -> new Exception("message not found" +objClass.getName()));
+				.orElseThrow(() -> new Exception("method for class not found " + objClass.getName()
+						+ "for field: " + fieldName));
 	}
 
 	private Class<?> getClass(String fileName) throws ClassNotFoundException {

@@ -66,4 +66,12 @@ export class UserService {
   deserializeUser(user): User {
     return new User(user);
   }
+
+  getAllUsers() {
+    return this.repoService.get('auth/users/')
+      .pipe(map((users: Users) => {
+        return users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
+  }
 }
