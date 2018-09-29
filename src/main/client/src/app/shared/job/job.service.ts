@@ -5,6 +5,7 @@ import {Subject} from "rxjs";
 import {Job, Jobs} from "./job.model";
 import {JobDto} from "./job-dto.model";
 import {JobApplication, JobApplications} from "./job-application.model";
+import {User, Users} from "../user/user.model";
 
 @Injectable()
 export class JobService {
@@ -45,6 +46,14 @@ export class JobService {
         return jobApplications.map(jobApplication => this.deserializeJobApplication(jobApplication))
       }))
       .toPromise() as Promise<JobApplications>;
+  }
+
+  getJobApplicants(jobId: number): Promise<Users> {
+    return this._repoService.get("jobs/apply/" + jobId + "/applicants/")
+      .pipe(map((users: any[]) => {
+        return users.map(user => new User(user));
+      }))
+      .toPromise() as Promise<Users>;
   }
 
   deleteJob(jobId: number) {

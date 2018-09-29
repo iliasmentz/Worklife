@@ -96,7 +96,7 @@ public class JobsController {
 	return jobService.getyMJobApplications();
   }
 
-  @ApiOperation(value = "Returns all the JobApplications made from logged User ", response = JobApplicationDto.class)
+	@ApiOperation(value = "Returns all the JobApplications made from logged User ", response = UserSimpleDto.class)
   @GetMapping("/apply/{jobId}/applicants/")
   public List<UserSimpleDto> getyMJobApplicants(@PathVariable Long jobId) throws Exception {
 	return jobService.getyMJobApplicants(jobId);

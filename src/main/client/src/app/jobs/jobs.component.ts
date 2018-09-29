@@ -4,7 +4,8 @@ import {Job, Jobs} from "../shared/job/job.model";
 import {BsModalService, ModalOptions} from "ngx-bootstrap";
 import {JobModalComponent} from "./job-modal/job-modal.component";
 import {JobApplication, JobApplications} from "../shared/job/job-application.model";
-import {User} from "../shared/user/user.model";
+import {User, Users} from "../shared/user/user.model";
+import {ApplicantsComponent} from "./applicants/applicants.component";
 
 const options: ModalOptions = {
   class: 'modal-md',
@@ -85,5 +86,18 @@ export class JobsComponent implements OnInit {
     };
 
     this._modal.show(JobModalComponent, {...options, initialState});
+  }
+
+  jobApplicants(id: number) {
+    this._jobService.getJobApplicants(id)
+      .then((users: Users) => {
+
+        const initialState = {
+          mode: 'Update',
+          users: users
+        };
+
+        this._modal.show(ApplicantsComponent, {...options, initialState});
+      })
   }
 }
