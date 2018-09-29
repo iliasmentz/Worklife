@@ -57,6 +57,7 @@ export class ConversationComponent implements OnInit, OnDestroy {
 
     this._messageService.sendMessage(this.userId, message)
       .then(() => {
+        this.conversationForm = this._initForm();
         this.getMessages(this.userId);
       })
   }
