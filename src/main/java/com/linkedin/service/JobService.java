@@ -2,11 +2,14 @@ package com.linkedin.service;
 
 import com.linkedin.converter.JobApplicationConverter;
 import com.linkedin.converter.JobConverter;
+import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Job;
 import com.linkedin.entities.database.JobApplication;
 import com.linkedin.entities.database.Login;
 import com.linkedin.entities.database.repo.JobApplicationRepository;
 import com.linkedin.entities.database.repo.JobRepository;
+import com.linkedin.entities.database.repo.UserRepository;
+import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.jobApplication.JobApplicationDto;
 import com.linkedin.entities.model.jobs.JobDto;
 import com.linkedin.entities.model.jobs.JobRequestDto;
@@ -27,14 +30,18 @@ public class JobService {
   private final UserService userService;
   private final JobApplicationRepository jobApplicationRepository;
   private final JobApplicationConverter jobApplicationConverter;
+  private final UserRepository userRepository;
+  private final UserConverter userConverter;
 
   @Autowired
-  public JobService(JobRepository jobRepository, JobConverter jobConverter, UserService userService, JobApplicationRepository jobApplicationRepository, JobApplicationConverter jobApplicationConverter) {
+  public JobService(JobRepository jobRepository, JobConverter jobConverter, UserService userService, JobApplicationRepository jobApplicationRepository, JobApplicationConverter jobApplicationConverter, UserRepository userRepository, UserConverter userConverter) {
 	this.jobRepository = jobRepository;
 	this.jobConverter = jobConverter;
 	this.userService = userService;
 	this.jobApplicationRepository = jobApplicationRepository;
 	this.jobApplicationConverter = jobApplicationConverter;
+	this.userRepository = userRepository;
+	this.userConverter = userConverter;
   }
 
   public Job createJob(JobRequestDto dto) {
@@ -145,6 +152,18 @@ public class JobService {
 
   public List<JobApplicationDto> getyMJobApplications() {
 	Long userId = AuthenticationFacade.authenticatedUser().getUserId();
-	return jobApplicationRepository.findAllByUserId(userId).stream().map(jobApplicationConverter::toJobApplicationDto).collect(Collectors.toList());
+	return jobApplicationRepository.findAllByUserId(userId)
+		.stream()
+		.map(jobApplicationConverter::toJobApplicationDto)
+		.collect(Collectors.toList());
+  }
+
+  public List<UserSimpleDto> getyMJobApplicants(Long jobId) {
+	Long userId = AuthenticationFacade.authenticatedUser().getUserId();
+	//List<JobApplication> jobApplicationList =  jobApplicationRepository.findAllByJobId(jobId);
+	return jobApplicationRepository.findAllByJobId(jobId)
+		.stream()
+		.map(x -> userConverter.toUserSimpleDto(userRepository.findById(x.getUserId()).orElse(null)))
+		.collect(Collectors.toList());
   }
 }

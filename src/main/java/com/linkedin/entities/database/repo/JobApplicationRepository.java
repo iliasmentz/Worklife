@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface JobApplicationRepository extends JpaRepository<JobApplication, Long> {
 	List<JobApplication> findAllByUserId(Long userId);
+	List<JobApplication> findAllByJobId(Long jobPdId);
 }
+
