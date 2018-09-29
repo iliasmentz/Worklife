@@ -11,7 +11,8 @@
                   <span class="menu-icon vd_green">
                     <i class=" fa fa-book"></i></span>
                   <span class="menu-text"> {{ post.context }}<span class="menu-info">
-                    <a (click)="showLikes(post.postId)" style="cursor: pointer;">{{ post.numberOfLikes }} likes</a>
+                    <a (click)="showLikes(post.postId)" style="cursor: pointer;">{{ post.numberOfLikes }} likes </a>
+                    <a (click)="showComments(post.postId)" style="cursor: pointer;">Show Comments</a>
                     <span class="menu-date">
 
               ~ {{ post.postDate | amTimeAgo}}

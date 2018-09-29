@@ -77,6 +77,7 @@ import {VgControlsModule} from "videogular2/controls";
 import {VgOverlayPlayModule} from "videogular2/overlay-play";
 import {VgBufferingModule} from "videogular2/buffering";
 import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
+import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.component";
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
     PostListComponent,
     CommentComponent,
     LikeComponent,
+    PostCommentComponent,
     ApplicantsComponent,
     WelcomeComponent,
     ConnectionsComponent,
@@ -148,6 +150,7 @@ import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
     PostModalComponent,
     CommentComponent,
     LikeComponent,
+    PostCommentComponent,
     ApplicantsComponent
   ],
   providers: [
