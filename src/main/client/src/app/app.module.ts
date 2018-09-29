@@ -23,6 +23,7 @@ import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
 import {
   AccordionModule,
+  AlertModule,
   BsDatepickerModule,
   BsDropdownModule,
   BsModalRef,
@@ -80,6 +81,8 @@ import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
 import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.component";
 import {AdminComponent} from './admin/admin.component';
 import {AdminResolver} from "./admin/admin.resolver";
+import {SettingsComponent} from './settings/settings.component';
+import {SettingsService} from "./shared/settings/settings.service";
 
 
 @NgModule({
@@ -121,6 +124,7 @@ import {AdminResolver} from "./admin/admin.resolver";
     ChatComponent,
     ConversationComponent,
     AdminComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,6 +140,7 @@ import {AdminResolver} from "./admin/admin.resolver";
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
+    AlertModule.forRoot(),
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatTableModule,
@@ -160,7 +165,7 @@ import {AdminResolver} from "./admin/admin.resolver";
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService, JobService, NotificationService, MessageService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
-    PostService, CommentService, BsModalRef, FileUploadService,
+    PostService, CommentService, BsModalRef, FileUploadService, SettingsService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,
     UserFriendsResolver, ConversationResolver, AdminResolver,
     {

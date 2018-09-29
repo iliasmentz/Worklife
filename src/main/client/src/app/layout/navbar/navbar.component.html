@@ -34,6 +34,9 @@
        [routerLink]="['/profile', username]" title="My Account">
       <img [src]="user.imagePath" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
     </a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" [routerLink]="['/settings']"
+       title="Settings"><i class="fa fa-gear"></i>
+    </a>
     <div *ngIf="user.userId === 1">
       <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" [routerLink]="['/admin']"
          title="Admin Page"><i class="fa fa-key"></i>
