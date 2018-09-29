@@ -195,24 +195,25 @@ public class ConnectionService {
 	Long loggedUserId = AuthenticationFacade.authenticatedUser().getUserId();
 	ConnectionStatusDto connectionStatusDto = new ConnectionStatusDto();
 	//myprofile
-	if(loggedUserId == userId ){
+	if (loggedUserId == userId) {
 	  connectionStatusDto.setConnectionStatus(4);
 	  return connectionStatusDto;
 	}
 	//an einai connected
 	if (connectionRepository.existsByUserAcceptedIdAndUserRequestedId(userId, loggedUserId) || connectionRepository.existsByUserAcceptedIdAndUserRequestedId(loggedUserId, userId)) {
-	  return connectionStatusDto.setConnectionStatus(0);
-	} else {//an den einai filoi
-	  return  connectionStatusDto.setConnectionStatus(1);
+	  connectionStatusDto.setConnectionStatus(0);
 	}
 	//an exei steilei o allos se emena pou eimai logedin
-	if (connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(loggedUserId, userId).size() > 0) {
-	 return  connectionStatusDto.setConnectionStatus(2);
+	else if (connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(loggedUserId, userId).size() > 0) {
+	  connectionStatusDto.setConnectionStatus(2);
+
 	}
 	//an tou exw steilei egw connectionRequest
 	else if (connectionRequestRepository.findAllByUserTargetIdAndUserRequestedId(userId, loggedUserId).size() > 0) {
-	  return connectionStatusDto.setConnectionStatus(3);
+	  connectionStatusDto.setConnectionStatus(3);
 
+	} else {//an den einai filoi
+	  connectionStatusDto.setConnectionStatus(1);
 	}
 	return connectionStatusDto;
   }
