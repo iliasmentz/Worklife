@@ -49,7 +49,8 @@ public class PostService {
 		UploadFileResponse uploadFileResponse = fileService.uploadFile(file, "post-", true);
 		Post post = postRepository.getOne(newPostId);
 		post.setImagePath(uploadFileResponse.getFileName());
-
+		post.setFileType(uploadFileResponse.getFileType());
+		postRepository.save(post);
 		return postConverter.toPostDto(post);
 	}
 

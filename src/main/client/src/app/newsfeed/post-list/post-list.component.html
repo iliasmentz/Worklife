@@ -6,6 +6,27 @@
     <h4><a [routerLink]="['profile', post.creator.username]">{{ post.creator.displayName }}</a></h4><br>
     <hr class="w3-clear">
     <p>{{post.context}}</p>
+    <div *ngIf="post.filePath">
+      <div *ngIf="post.type == 'image/jpeg'">
+        <img [src]="post.filePath" style="max-width:100%; max-height:450px;" alt="Image">
+      </div>
+      <div *ngIf="post.type == 'audio/mp3'">
+        <vg-player>
+          <audio [vgMedia]="media" #media id="singleAudio" style="max-width:100%; max-height:450px;" preload="auto"
+                 controls>
+            <source [src]="post.filePath" type="audio/mp3">
+          </audio>
+        </vg-player>
+      </div>
+      <div *ngIf="post.type == 'video/mp4'">
+        <vg-player>
+          <video [vgMedia]="media" #media style="max-width:100%; max-height:450px;" id="singleVideo" preload="auto"
+                 controls>
+            <source [src]="post.filePath" type="video/mp4">
+          </video>
+        </vg-player>
+      </div>
+    </div>
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-half" style="margin-left: 5px; cursor:pointer;">
         <i><a (click)="showLikes(post.postId)">{{ post.numberOfLikes }} Likes</a></i>

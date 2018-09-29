@@ -72,6 +72,10 @@ import {ChatComponent} from './chat/chat.component';
 import {MessageService} from "./shared/messages/message.service";
 import {ConversationComponent} from './chat/conversation/conversation.component';
 import {ConversationResolver} from "./chat/conversation/conversation.resolver";
+import {VgCoreModule} from "videogular2/core";
+import {VgControlsModule} from "videogular2/controls";
+import {VgOverlayPlayModule} from "videogular2/overlay-play";
+import {VgBufferingModule} from "videogular2/buffering";
 
 
 @NgModule({
@@ -109,7 +113,7 @@ import {ConversationResolver} from "./chat/conversation/conversation.resolver";
     JobsComponent,
     JobModalComponent,
     ChatComponent,
-    ConversationComponent
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +131,10 @@ import {ConversationResolver} from "./chat/conversation/conversation.resolver";
     TabsModule.forRoot(),
     BrowserAnimationsModule,
     MatCheckboxModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   entryComponents: [
     BasicInfoModalComponent,

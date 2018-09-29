@@ -73,9 +73,7 @@ export class PostFormComponent implements OnInit {
       this.postService.addPost(formData)
         .then((post: Post) => {
           this.postService.post.next(post);
-
         });
-
     }
   }
 }

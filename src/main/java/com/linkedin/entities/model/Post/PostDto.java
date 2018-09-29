@@ -39,8 +39,11 @@ public class PostDto {
 	@ApiModelProperty(value = "numberOfLikes", example = "12", position = 6)
 	private Long numberOfLikes;
 
-	@ApiModelProperty(value = "imagePath", example = "https://localhost:8080/downloadUrl/post-5556", position = 7)
-	private String imagePath;
+	@ApiModelProperty(value = "filePath", example = "https://localhost:8080/downloadUrl/post-5556", position = 7)
+	private String filePath;
+
+	@ApiModelProperty(value = "image type", example = "", position = 8)
+	private String type;
 
 }
 

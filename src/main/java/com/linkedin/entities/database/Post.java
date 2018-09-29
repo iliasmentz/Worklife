@@ -1,6 +1,5 @@
 package com.linkedin.entities.database;
 
-import com.linkedin.constants.Visible;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,36 +23,38 @@ import static javax.persistence.TemporalType.DATE;
 @Entity
 @DynamicUpdate
 public class Post implements Serializable {
-  @Id
-  @Column(name = "post_id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long postId;
+	@Id
+	@Column(name = "post_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long postId;
 
-  @NotNull
-  @Column(name = "creator_id")
-  private Long creatorId;
+	@NotNull
+	@Column(name = "creator_id")
+	private Long creatorId;
 
-  @NotNull
-  @Temporal(DATE)
-  @DateTimeFormat(pattern = "dd/MM/yyyy")
-  @Column(name = "post_date")
-  private Date postDate;
+	@NotNull
+	@Temporal(DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "post_date")
+	private Date postDate;
 
-  @NotBlank
-  @Column(columnDefinition = "text", name = "context")
-  private String context;
+	@NotBlank
+	@Column(columnDefinition = "text", name = "context")
+	private String context;
 
-  @NotNull
-  @Column(name = "number_of_likes")
-  private Long numberOfLikes;
+	@NotNull
+	@Column(name = "number_of_likes")
+	private Long numberOfLikes;
 
-  //Todo na to doume
-  //@NotNull
-  @Column(name = "visible")
-  private Integer visible;
+	//Todo na to doume
+	//@NotNull
+	@Column(name = "visible")
+	private Integer visible;
 
-  @Column(name = "image_path")
-  private String imagePath;
+	@Column(name = "image_path")
+	private String imagePath;
 
+	@Column(name = "file_type")
+	private String fileType;
 
 }
