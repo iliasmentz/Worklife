@@ -34,12 +34,14 @@ public class HomePostService {
 	public Set<Long> getUserPosts(Long userId) {
 		Map<Long, List<UserInfoBo>> allUsersDatabaseVector = userRepository.getAllUsersVector()
 				.stream()
-				.collect(Collectors.groupingBy(
-						UserInfoBo::getUserId
-				));
+				.collect(Collectors.groupingBy(UserInfoBo::getUserId));
+		if (!allUsersDatabaseVector.containsKey(userId)) {
+			System.out.println("Can't find a vector for the current user");
+			return new HashSet<>();
+		}
 
-		List<Long> allUsersIds = userRepository.getAllUsersIds();
-		List<Long> allPostIds = postRepository.getAllPostsIds();
+		List<Long> allUsersIds = userRepository.findAll().stream().map(x -> x.getId().longValue()).collect(Collectors.toList());
+		List<Long> allPostIds = postRepository.findAll().stream().map(x -> x.getPostId().longValue()).collect(Collectors.toList());
 
 		Map<Long, double[]> usersVector = createAllUsersVectors(allUsersIds, allPostIds, allUsersDatabaseVector);
 

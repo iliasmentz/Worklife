@@ -21,9 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	boolean existsByEmailIgnoreCase(String email);
 
-	@Query(name = "getUsersVectorQuery")
+	@Query(name = "getUsersVectorQuery", nativeQuery = true)
 	Collection<UserInfoBo> getAllUsersVector();
 
-	@Query(value = "select u.user_id from users", nativeQuery = true)
+	@Query(value = "select u.user_id from users u", nativeQuery = true)
 	List<Long> getAllUsersIds();
 }
