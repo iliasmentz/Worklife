@@ -1,21 +1,30 @@
 package com.linkedin.converter;
 
+import com.linkedin.entities.database.Experience;
 import com.linkedin.entities.database.User;
+import com.linkedin.entities.database.repo.ExperienceRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserSimpleDto;
+import com.linkedin.errors.ObjectNotFoundException;
+import com.linkedin.service.ExperienceService;
 import com.linkedin.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserConverter {
 
 	private final UserRepository userRepository;
-
+	private final ExperienceService experienceService;
+	private final ExperienceRepository experienceRepository;
 	@Autowired
-	public UserConverter(UserRepository userRepository) {
+	public UserConverter(UserRepository userRepository, ExperienceService experienceService, ExperienceRepository experienceRepository) {
 		this.userRepository = userRepository;
+	  this.experienceService = experienceService;
+	  this.experienceRepository = experienceRepository;
 	}
 
 
@@ -45,6 +54,15 @@ public class UserConverter {
 		userDto.setUserId(user.getId());
 		userDto.setUsername(user.getUsername());
 		userDto.setImagePath(getUserPhotoFullUrl(user));
+
+		//experienceService.getUsersExperiences(userId).sort();
+		Experience experience = experienceRepository.findAllByUserIdOrderByStartDateDesc(userId).stream().findFirst().orElse(null);
+		if(experience != null ){
+		  userDto.setCompany(experience.getCompany());
+		  userDto.setJobTitle(experience.getTitle());
+		}
+
+
 		return userDto;
 	}
 
