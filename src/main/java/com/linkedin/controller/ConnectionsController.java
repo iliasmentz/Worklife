@@ -1,5 +1,6 @@
 package com.linkedin.controller;
 
+import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserSimpleDto;
 import com.linkedin.entities.model.connection.ConnectionDto;
 import com.linkedin.entities.model.connection.ConnectionRequestDto;
@@ -10,12 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -125,4 +121,11 @@ public class ConnectionsController {
   public List<UserSimpleDto> getUsersFriends(@PathVariable Long userId) {
 	return connectionService.getFriendsToUserSimpleDto(userId);
   }
+
+    @ApiOperation(value = "returns results of the Users Search", notes = "returns results of the Users Search", response = UserDto.class)
+    @GetMapping("/network/connections/users/search/")
+    public List<UserDto> getUserSearchResults(@RequestParam("username") String username) {
+        return connectionService.getUserSearchResults(username);
+    }
+
 }

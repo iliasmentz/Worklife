@@ -26,6 +26,14 @@ export class UserService {
       .toPromise() as Promise<User>;
   }
 
+  search(term: string) {
+    return this.repoService.get('network/connections/users/search/?username='+term)
+      .pipe(map((Users: any[]) => {
+        return Users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
+  }
+
   loginUser(username: string, password: string) {
     let invalid = false;
     this.authService.loginUser(username, password)
