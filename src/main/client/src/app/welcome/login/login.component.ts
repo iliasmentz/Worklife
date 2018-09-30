@@ -29,10 +29,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const username = this.loginForm.get('username').value;
       const password = this.loginForm.get('password').value;
-      invalid = this.userService.loginUser(username, password);
-    }
-    if (!this.loginForm.valid || invalid) {
-      this.showError = true
+      this.userService.loginUser(username, password)
+        .then(invalidRequest => {
+            invalid = invalidRequest;
+            if (invalid) {
+              this.showError = true;
+            }
+          });
+    } else {
+      this.showError = true;
     }
   }
 

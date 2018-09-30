@@ -48,7 +48,7 @@ export class SettingsComponent implements OnInit {
 
   onChangePassword(passwordForm: FormGroup) {
     let password = new PasswordChange(passwordForm);
-    if (passwordForm.valid || password.newPassword !== password.newPasswordRepeat) {
+    if (!passwordForm.valid || password.newPassword !== password.newPasswordRepeat) {
       this.passwordMismatch = true;
       return;
     }
@@ -61,7 +61,7 @@ export class SettingsComponent implements OnInit {
 
   onChangeEmail(emailForm: FormGroup) {
     let email = new EmailChange(emailForm);
-    if (emailForm.valid) {
+    if (!emailForm.valid) {
       this.emailInvalid = true;
       return;
     }

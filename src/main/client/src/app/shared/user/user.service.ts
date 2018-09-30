@@ -34,9 +34,8 @@ export class UserService {
       .toPromise() as Promise<Users>;
   }
 
-  loginUser(username: string, password: string) {
-    let invalid = false;
-    this.authService.loginUser(username, password)
+  loginUser(username: string, password: string): Promise<boolean> {
+    return this.authService.loginUser(username, password)
       .then(loginResponse => {
 
         localStorage.setItem('access_token', loginResponse.access_token);
@@ -49,12 +48,11 @@ export class UserService {
           .catch( err => {
             console.log("can't get the user: " + err);
           });
-        invalid = false;
+        return false;
       })
       .catch(error => {
-        invalid = true;
+        return true;
       });
-      return invalid;
   }
 
   updateUser(userRequest: UserDto) {
