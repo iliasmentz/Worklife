@@ -27,6 +27,7 @@ export class UserService {
   }
 
   loginUser(username: string, password: string) {
+    let success = true;
     this.authService.loginUser(username, password)
       .then(loginResponse => {
 
@@ -39,8 +40,13 @@ export class UserService {
           })
           .catch( err => {
             console.log("can't get the user: " + err);
-          })
+          });
+        success = true;
       })
+      .catch(error => {
+        success = false;
+      });
+      return success;
   }
 
   updateUser(userRequest: UserDto) {
