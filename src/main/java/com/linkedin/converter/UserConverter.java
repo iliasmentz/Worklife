@@ -19,7 +19,7 @@ public class UserConverter {
 	}
 
 
-	public UserDto toUserDto(User user) {
+	public UserDto toUserDto(User user, Integer role) {
 		UserDto userDto = new UserDto();
 		userDto.setEmail(user.getEmail());
 		userDto.setUserId(user.getId());
@@ -32,6 +32,7 @@ public class UserConverter {
 		userDto.setPhoneNumber(user.getPhoneNumber());
 		userDto.setImagePath(getUserPhotoFullUrl(user));
 		userDto.setDateCreated(user.getDateCreated());
+		userDto.setRole(role);
 		return userDto;
 	}
 

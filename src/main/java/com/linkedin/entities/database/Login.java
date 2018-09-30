@@ -37,12 +37,12 @@ public class Login implements Serializable {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "role", nullable = false)
 	private Role role;
 
 	@Column(name = "is_active")
-	private boolean active;
+	private Boolean active;
 
 	public Login(String username, String password) {
 		this.username = username;

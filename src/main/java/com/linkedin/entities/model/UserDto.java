@@ -60,5 +60,6 @@ public class UserDto {
 	@ApiModelProperty(value = "user dateCreated(yyyy-mm-dd)", example = "1996-08-22", position = 7)
 	private Date dateCreated;
 
-
+	@ApiModelProperty(value = "user role: 0 -> User, 1 -> Login", example = "1", position = 8)
+	private Integer role;
 }

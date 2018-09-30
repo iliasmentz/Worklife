@@ -1,0 +1,73 @@
+<div class="container">
+  <form id="email_form" [formGroup]="emailForm" (ngSubmit)="onChangeEmail(emailForm)">
+    <h2>Change your email</h2>
+    <div *ngIf="emailChange">
+      <alert type="success">
+        <strong>Well done!</strong> Email changed.
+      </alert>
+    </div>
+    <div *ngIf="emailInvalid">
+      <alert type="danger">
+        <strong>Error!</strong> Email is not valid.
+      </alert>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Email:</label>
+          <div class="col-xs-8 controls"><input class="form-control" type="email" formControlName="newEmail"></div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <button type="submit" ngForm="#emailForm" class="btn btn-success">Update</button>
+
+  </form>
+</div>
+<div class="container">
+  <form id="password_form" [formGroup]="passwordForm" (ngSubmit)="onChangePassword(passwordForm)">
+    <h2>Change your password</h2>
+    <div *ngIf="passwordChange">
+      <alert type="success">
+        <strong>Well done!</strong> Password changed.
+      </alert>
+    </div>
+    <div *ngIf="passwordMismatch">
+      <alert type="danger">
+        <strong>Error!</strong> Passwords do not match.
+      </alert>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Old Password:</label>
+          <div class="col-xs-8 controls"><input class="form-control" type="password" formControlName="oldPassword">
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Password:</label>
+          <div class="col-xs-8 controls"><input class="form-control" type="password" formControlName="newPassword">
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row mgbt-xs-0">
+          <label class="col-xs-4 control-label">Retype Password:</label>
+          <div class="col-xs-8 controls"><input class="form-control" type="password"
+                                                formControlName="newPasswordRepeat">
+          </div>
+          <!-- col-sm-10 -->
+        </div>
+      </div>
+    </div>
+    <button type="submit" ngForm="#passwordForm" class="btn btn-success">Update</button>
+  </form>
+</div>
