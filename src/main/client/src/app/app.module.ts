@@ -89,6 +89,7 @@ import {AdminComponent} from './admin/admin.component';
 import {AdminResolver} from "./admin/admin.resolver";
 import {SettingsComponent} from './settings/settings.component';
 import {SettingsService} from "./shared/settings/settings.service";
+import {AdminService} from './admin/admin.service';
 
 
 @NgModule({
@@ -174,7 +175,7 @@ import {SettingsService} from "./shared/settings/settings.service";
   providers: [
     Globals, AuthGuard, AuthService, RepoService, UserService, JobService, NotificationService, MessageService,
     EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
-    PostService, CommentService, BsModalRef, FileUploadService, SettingsService,
+    PostService, CommentService, BsModalRef, FileUploadService, SettingsService, AdminService,
     EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,
     UserFriendsResolver, ConversationResolver, AdminResolver,
     {

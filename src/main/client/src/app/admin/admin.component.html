@@ -1,4 +1,7 @@
-<h1>Users Info</h1>
+<h1>Users Info
+<span class="pull-right">
+  <button (click)="export()" mat-stroked-button class="btn btn-worklife-success export">Export All</button>
+</span></h1>
 <mat-form-field class="filter-input">
   <input matInput (keyup)="applyFilter($event.target.value)" mat placeholder="Filter">
 </mat-form-field>

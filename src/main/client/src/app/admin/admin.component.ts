@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from "../shared/user/user.model";
 import {ActivatedRoute} from "@angular/router";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {AdminService} from "./admin.service";
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,8 @@ export class AdminComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private adminService: AdminService) { }
 
   ngOnInit() {
     this.route.data.subscribe(resolvedData => {
@@ -33,5 +35,9 @@ export class AdminComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  export() {
+    this.adminService.downloadXMLFile();
   }
 }
