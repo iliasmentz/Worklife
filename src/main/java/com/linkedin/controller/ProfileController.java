@@ -5,6 +5,8 @@ import com.linkedin.entities.database.Login;
 import com.linkedin.entities.model.UploadFileResponse;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserRequestDto;
+import com.linkedin.entities.model.changePasswordEmail.ChangeEmailRequestDto;
+import com.linkedin.entities.model.changePasswordEmail.ChangePasswordRequestDto;
 import com.linkedin.security.AuthenticationFacade;
 import com.linkedin.service.ProfileService;
 import com.linkedin.service.UserService;
@@ -29,52 +31,65 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/profile/")
 public class ProfileController {
 
-	public static final String tag = "Profile Controller";
+  public static final String tag = "Profile Controller";
 
-	private final UserService userService;
-	private final ProfileService profileService;
-	private final UserConverter userConverter;
+  private final UserService userService;
+  private final ProfileService profileService;
+  private final UserConverter userConverter;
 
-	@Autowired
-	public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter) {
-		this.userService = userService;
-		this.profileService = profileService;
-		this.userConverter = userConverter;
-	}
+  @Autowired
+  public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter) {
+	this.userService = userService;
+	this.profileService = profileService;
+	this.userConverter = userConverter;
+  }
 
-	@GetMapping("/")
-	@ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
-	public UserDto myProfile() {
-		Login login = AuthenticationFacade.authenticatedUser();
+  @GetMapping("/")
+  @ApiOperation(value = "Profile", notes = "Returns User's profile info", response = UserDto.class)
+  public UserDto myProfile() {
+	Login login = AuthenticationFacade.authenticatedUser();
 
-		return userConverter.toUserDto(userService.getUser(login.getUserId()));
-		// return new UserDto(userService.getUser(login.getUserId()));
-	}
+	  return userConverter.toUserDto(userService.getUser(login.getUserId()), login.getRole().ordinal());
+	// return new UserDto(userService.getUser(login.getUserId()));
+  }
 
-	@PutMapping("/")
-	@ApiOperation(value = "Profile", notes = "Changes User's profile info", response = UserDto.class)
-	public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
+  @PutMapping("/")
+  @ApiOperation(value = "Profile", notes = "Changes User's profile info", response = UserDto.class)
+  public UserDto updateProfile(@RequestBody UserRequestDto userRequestDto) {
 
-		//userService.emailExists();
+	//userService.emailExists();
 
-		return profileService.updateProfile(userRequestDto);
-	}
+	return profileService.updateProfile(userRequestDto);
+  }
 
-	@GetMapping("/{username}")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
-	})
-	@ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
-	public UserDto getProfile(@PathVariable String username) {
+  @GetMapping("/{username}")
+  @ApiImplicitParams( {
+	  @ApiImplicitParam(name = "username", value = "user's username", required = true, dataType = "string", example = "johndoe"),
+  })
+  @ApiOperation(value = "Profile", notes = "Returns profile's info", response = UserDto.class)
+  public UserDto getProfile(@PathVariable String username) {
 
-		return profileService.getUserDto(username);
-	}
+	return profileService.getUserDto(username);
+  }
 
-	@PostMapping("/upload_photo")
-	@ApiOperation(value = "Upload photo", notes = "Uploads users photo", response = UploadFileResponse.class)
-	public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-		UploadFileResponse uploadFileResponse = userService.savePhoto(file);
-		return uploadFileResponse;
-	}
+  @PostMapping("/upload_photo")
+  @ApiOperation(value = "Upload photo", notes = "Uploads users photo", response = UploadFileResponse.class)
+  public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+	UploadFileResponse uploadFileResponse = userService.savePhoto(file);
+	return uploadFileResponse;
+  }
+
+  @PutMapping("/change-pass/")
+  @ApiOperation(value = "change password ", notes = "changes password")
+  public void changePassword(@RequestBody ChangePasswordRequestDto changePasswordRequestDto) throws Exception {
+	profileService.changePassword(changePasswordRequestDto);
+  }
+
+  @PutMapping("/change-email/")
+  @ApiOperation(value = "change email ", notes = "changes email")
+  public void changeEmail(@RequestBody ChangeEmailRequestDto changeEmailRequestDto) throws Exception {
+	profileService.changeEmail(changeEmailRequestDto);
+  }
+
 
 }

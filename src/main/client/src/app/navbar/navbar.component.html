@@ -1,0 +1,72 @@
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+    <a
+      class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+      href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" routerLink=""><i
+      class="fa fa-home w3-margin-right"></i>Worklife</a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" routerLink=""
+       title="Newsfeed"><i class="fa fa-globe"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" (click)="search()"
+       title="Newsfeed"><i class="fa fa-search"></i></a>
+    <a [routerLink]="['/connections', user.userId]"
+       class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+       title="My Network"><i class="fa fa-users"></i></a>
+    <a [routerLink]="['/messages']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+       title="Messages"><i
+      class="fa fa-envelope"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Jobs"
+       [routerLink]="['/jobs']"><i
+      class="fa fa-briefcase"></i></a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
+        class="w3-badge w3-right w3-small w3-green">{{notifications.length > 0 ? notifications.length : ''}}</span>
+      </button>
+      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+        <div *ngFor="let notification of notifications">
+            <a (click)="markAsSeen(notification)" class="w3-bar-item w3-button">{{ notification.message }}
+            </a>
+        </div>
+      </div>
+    </div>
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" (click)="logout()"
+       title="Logout"><i class="fa fa-sign-out"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+       [routerLink]="['/profile', username]" title="My Account">
+      <img [src]="user.imagePath" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+    </a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" [routerLink]="['/settings']"
+       title="Settings"><i class="fa fa-gear"></i>
+    </a>
+    <div *ngIf="user.role === 1">
+      <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" [routerLink]="['/admin']"
+         title="Admin Page"><i class="fa fa-key"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+
+  <a
+    class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+    href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" routerLink=""><i class="fa fa-home w3-margin-right"></i>Worklife</a>
+  <a class="w3-bar-item w3-button w3-padding-large" routerLink="" title="Newsfeed"><i class="fa fa-globe"></i>
+    Newsfeed</a>
+  <a class="w3-bar-item w3-button w3-padding-large" [routerLink]="['/connections', user.userId]"
+     title="My Network"><i class="fa fa-users"></i> My Network</a>
+  <a class="w3-bar-item w3-button w3-padding-large" title="Messages"><i class="fa fa-envelope"></i>
+    Messages</a>
+  <a class="w3-bar-item w3-button w3-padding-large" title="Jobs" [routerLink]="['/jobs']"><i
+    class="fa fa-briefcase"></i> Jobs</a>
+  <a class="w3-bar-item w3-button w3-padding-large" (click)="logout()" title="Logout"><i class="fa fa-sign-out"></i>
+    Logout</a>
+  <a class="w3-bar-item w3-button w3-padding-large"
+     [routerLink]="['/profile', username]" title="My Account">
+    <img [src]="user.imagePath" class="w3-circle" style="height:23px;width:23px" alt="Avatar"> My Account
+  </a>
+
+</div>
+<br>

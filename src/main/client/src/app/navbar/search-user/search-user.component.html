@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Search users: </h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <label>
+    Search for user:
+    <input class="form-control" (keyup)="searchUser($event)">
+  </label>
+  <hr>
+  <div *ngFor="let user of users">
+    <div class="w3-container w3-card w3-white w3-round ">
+      <img [src]="user.imagePath" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <h4><a (click)="close()" [routerLink]="['profile', user.username]">{{ user.displayName }}
+      </a></h4>
+      <h5>{{ user.jobTitleCompany }}</h5>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-danger" (click)="close()">Close</button>
+</div>

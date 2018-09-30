@@ -7,11 +7,28 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {RegisterComponent} from "./welcome/register/register.component";
 import {NewsfeedComponent} from "./newsfeed/newsfeed.component";
 import {PROFILE_ROUTE} from "./profile/profile.route";
+import {ConnectionsComponent} from "./connections/connections.component";
+import {JobsComponent} from "./jobs/jobs.component";
+import {ChatComponent} from "./chat/chat.component";
+import {ConversationComponent} from "./chat/conversation/conversation.component";
+import {ConversationResolver} from "./chat/conversation/conversation.resolver";
+import {AdminComponent} from "./admin/admin.component";
+import {AdminResolver} from "./admin/admin.resolver";
+import {SettingsComponent} from "./settings/settings.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
       PROFILE_ROUTE,
       {path: '', component: NewsfeedComponent, pathMatch: 'full'},
+      {path: 'connections/:id', component: ConnectionsComponent, pathMatch: 'full'},
+      {path: 'jobs', component: JobsComponent, pathMatch: 'full'},
+      {path: 'settings', component: SettingsComponent, pathMatch: 'full'},
+      {path: 'admin', component: AdminComponent, pathMatch: 'full', resolve: {users: AdminResolver}},
+      {
+        path: 'messages', component: ChatComponent, children: [
+          {path: ':userId', component: ConversationComponent, resolve: {conversation: ConversationResolver}}
+        ]
+      }
     ]},
   {path: 'welcome', component: WelcomeComponent, children: [
       {path: 'register', component: RegisterComponent},

@@ -35,6 +35,12 @@ public class CommentController {
     return commentService.getAllComments();
   }
 
+  @GetMapping("/post/user/{userId}")
+  @ApiOperation(value = "Comment", notes = "Returns all Comments a user made in all posts", response = Comment.class)
+  public List<CommentDto> getPostUserComments(@PathVariable Long userId) throws Exception{
+    return commentService.getPostUserComments(userId);
+  }
+
   @GetMapping("/post/{postId}")
   @ApiOperation(value = "Comment", notes = "Returns all Comments of a Post", response = Comment.class)
   public List<CommentDto> getPostComments(@PathVariable Long postId) throws Exception {

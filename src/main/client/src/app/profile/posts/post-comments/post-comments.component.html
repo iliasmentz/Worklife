@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Liked this Post: </h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div *ngFor="let comment of comments">
+    <div class="w3-container w3-card w3-white w3-round ">
+      <img [src]="comment.commenter.imagePath" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+           style="width:60px">
+      <h4><a (click)="close()" [routerLink]="['profile', comment.commenter.username]">{{ comment.commenter.displayName
+        }}
+      </a></h4>
+      <p>{{ comment.context }}</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-danger" (click)="close()">Close</button>
+</div>

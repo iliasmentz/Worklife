@@ -10,11 +10,16 @@ import {UserService} from "../../shared/user/user.service";
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  showError: boolean;
+  showPasswordMismatch: boolean;
+  errorMessage: string;
 
   constructor(private _fb: FormBuilder,
               private userService: UserService) { }
 
   ngOnInit() {
+    this.showError = false;
+    this.showPasswordMismatch = false;
     this.registerForm = this._fb.group({
       email: [null, [Validators.required, Validators.email]],
       name: [null, [Validators.required, Validators.minLength(3)]],
@@ -30,12 +35,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
+      this.showPasswordMismatch = false;
       let registerRequest = new Register(this.registerForm);
       this.userService.register(registerRequest)
         .then(() => {
           this.userService.loginUser(registerRequest.username, registerRequest.password);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+          this.showError = true;
+          this.errorMessage = err.error;
+        });
+    } else {
+      this.showPasswordMismatch = true;
     }
   }
 }

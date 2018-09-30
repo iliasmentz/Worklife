@@ -19,11 +19,9 @@ public class PostDto {
 	@ApiModelProperty(value = "postId", example = "11", position = 1)
 	private Long postId;
 
-
 	@NotNull
 	@ApiModelProperty(value = "commenter", position = 2)
 	private UserSimpleDto creator;
-
 
 	@NotNull
 	@ApiModelProperty(value = "postDate (yyyy-mm-dd)", example = "2018-01-12", position = 3)
@@ -40,6 +38,12 @@ public class PostDto {
 	@NotNull
 	@ApiModelProperty(value = "numberOfLikes", example = "12", position = 6)
 	private Long numberOfLikes;
+
+	@ApiModelProperty(value = "filePath", example = "https://localhost:8080/downloadUrl/post-5556", position = 7)
+	private String filePath;
+
+	@ApiModelProperty(value = "image type", example = "", position = 8)
+	private String type;
 
 }
 

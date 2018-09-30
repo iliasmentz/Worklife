@@ -15,4 +15,6 @@ public interface ExperienceRepository extends JpaRepository<Experience, Long> {
 
   @Query(value = "select e from Experience e where e.userId = :userId")
   List<Experience> findByUserId(@Param("userId")Long userId);
+  List<Experience> findAllByUserIdOrderByStartDateDesc(Long userId);
+
 }

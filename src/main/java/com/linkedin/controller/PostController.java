@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,11 +38,11 @@ public class PostController {
 		return postService.getAllPosts();
 	}
 
-  @GetMapping("/{postId}")
-  @ApiOperation(value = "Posts", notes = "Returns Single Post", response = PostDto.class)
-  public PostDto getSinglePost(@Valid @PathVariable Long postId) throws Exception{
-	return postService.getPost(postId);
-  }
+	@GetMapping("/{postId}")
+	@ApiOperation(value = "Posts", notes = "Returns Single Post", response = PostDto.class)
+	public PostDto getSinglePost(@Valid @PathVariable Long postId) throws Exception {
+		return postService.getPost(postId);
+	}
 
 	@GetMapping("/users/{userId}")
 	@ApiOperation(value = "Posts", notes = "Returns All Posts of a single User", response = PostDto.class)
@@ -51,8 +52,12 @@ public class PostController {
 
 	@PostMapping("/")
 	@ApiOperation(value = "Posts", notes = "Creates a new Post", response = PostDto.class)
-	public PostDto createNewPost(@RequestBody PostRequestDto postRequestDto) {
-		return postService.createNewPost(postRequestDto);
+	public PostDto createNewPost(@ModelAttribute PostRequestDto postRequestDto) {
+		if (postRequestDto.getFile() == null || postRequestDto.getFile().getSize() == 0) {
+			return postService.createNewPost(postRequestDto);
+		} else {
+			return postService.createNewPostWithFile(postRequestDto, postRequestDto.getFile());
+		}
 	}
 
 	@PutMapping("/{postId}")
@@ -61,10 +66,10 @@ public class PostController {
 		return postService.updatePost(postId, postRequestDto);
 	}
 
-  @DeleteMapping("/{postId}")
-  @ApiOperation(value = "Posts", notes = "Deletes a  Post", response = PostDto.class)
-  public void deletePost(@Valid @PathVariable Long postId) throws Exception {
-	postService.deletePost(postId);
-  }
+	@DeleteMapping("/{postId}")
+	@ApiOperation(value = "Posts", notes = "Deletes a  Post", response = PostDto.class)
+	public void deletePost(@Valid @PathVariable Long postId) throws Exception {
+		postService.deletePost(postId);
+	}
 
 }

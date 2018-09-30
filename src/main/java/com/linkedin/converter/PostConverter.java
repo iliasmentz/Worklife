@@ -2,6 +2,7 @@ package com.linkedin.converter;
 
 import com.linkedin.entities.database.Post;
 import com.linkedin.entities.model.Post.PostDto;
+import com.linkedin.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,15 @@ public class PostConverter {
 		postDto.setCreator(userConverter.toUserSimpleDto(post.getCreatorId()));
 		postDto.setVisible(post.getVisible());
 		postDto.setNumberOfLikes(post.getNumberOfLikes());
+		postDto.setFilePath(resolveFilePath(post));
+		postDto.setType(post.getFileType());
 		return postDto;
 	}
 
+	private String resolveFilePath(Post post) {
+		if (post.getImagePath() != null) {
+			return FileService.getFileFullUrl(post.getImagePath());
+		}
+		return "";
+	}
 }

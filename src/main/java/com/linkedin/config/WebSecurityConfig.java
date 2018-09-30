@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/swagger-ui.html",
 				"/downloadFile/**",
 				"/webjars/**");
-				//"/**");//here we allow all routes without security
+				//here we allow all routes without security
 					//TODO remove this because security doesnt work with this 
 	}
 

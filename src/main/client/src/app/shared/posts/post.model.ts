@@ -8,6 +8,8 @@ export class Post {
   postDate: Date;
   context: string;
   visible: string;
+  filePath: string;
+  type: string;
 
   constructor(obj: Post) {
 

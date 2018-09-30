@@ -32,10 +32,13 @@ public class FileService {
 	}
 
 	public static String getFileFullUrl(String fileName) {
-		return ServletUriComponentsBuilder.fromCurrentContextPath()
-						.path(PATH_OF_LINK_DOWNLOAD_WITH_SLASHES)
-						.path(fileName)
-						.toUriString();
+		if (fileName != null) {
+			return ServletUriComponentsBuilder.fromCurrentContextPath()
+							.path(PATH_OF_LINK_DOWNLOAD_WITH_SLASHES)
+							.path(fileName)
+							.toUriString();
+		}
+		return null;
 	}
 
 	private String generateFileName(String name, String prefix, boolean random) {

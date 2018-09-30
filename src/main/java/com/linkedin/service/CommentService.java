@@ -3,9 +3,10 @@ package com.linkedin.service;
 import com.linkedin.converter.CommentConverter;
 import com.linkedin.entities.database.Comment;
 import com.linkedin.entities.database.Post;
-import com.linkedin.entities.database.Skill;
+import com.linkedin.entities.database.User;
 import com.linkedin.entities.database.repo.CommentRepository;
 import com.linkedin.entities.database.repo.PostRepository;
+import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.Comment.CommentDto;
 import com.linkedin.entities.model.Comment.CommentRequestDto;
 import com.linkedin.errors.NotAuthorizedException;
@@ -24,12 +25,16 @@ public class CommentService {
   private final CommentRepository commentRepository;
   private final CommentConverter commentConverter;
   private final PostRepository postRepository;
+  private final NotificationService notificationService;
+  private final UserRepository userRepository;
 
   @Autowired
-  public CommentService(CommentRepository commentRepository, CommentConverter commentConverter, PostRepository postRepository) {
+  public CommentService(CommentRepository commentRepository, CommentConverter commentConverter, PostRepository postRepository, NotificationService notificationService, UserRepository userRepository) {
 	this.commentRepository = commentRepository;
 	this.commentConverter = commentConverter;
 	this.postRepository = postRepository;
+	this.notificationService = notificationService;
+	this.userRepository = userRepository;
   }
 
 
@@ -63,6 +68,10 @@ public class CommentService {
 	comment.setContext(commentRequestDto.getContext());
 	comment.setPostId(commentRequestDto.getPostId());
 	commentRepository.save(comment);
+
+	Long targetUserId = postRepository.findById(commentRequestDto.getPostId()).get().getCreatorId(); //to userId aytou pou egrapse to
+	notificationService.createNotification(targetUserId,1,comment.getCommentId());
+
 
 	return commentConverter.toCommentDto(comment);
 
@@ -106,5 +115,13 @@ public class CommentService {
 	comment.setCommenterId(userId);
 	commentRepository.save(comment);
 	return commentConverter.toCommentDto(comment);
+  }
+
+  public List<CommentDto> getPostUserComments(Long userId) throws Exception{
+	if(!userRepository.existsById(userId)){
+	  throw new ObjectNotFoundException(User.class, userId);
+	}
+	return commentRepository.findAllByCommenterId(userId).stream().map(commentConverter::toCommentDto).collect(Collectors.toList());
+
   }
 }

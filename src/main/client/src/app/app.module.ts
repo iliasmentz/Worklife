@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './layout/navbar/navbar.component';
 import {HomeComponent} from './home/home.component';
 import {Globals} from "./globals";
 import {WelcomeComponent} from './welcome/welcome.component';
@@ -23,11 +22,13 @@ import {ExperienceComponent} from './profile/experience/experience.component';
 import {EducationComponent} from './profile/education/education.component';
 import {
   AccordionModule,
+  AlertModule,
   BsDatepickerModule,
   BsDropdownModule,
   BsModalRef,
   ModalModule,
-  ProgressbarModule
+  ProgressbarModule,
+  TabsModule
 } from "ngx-bootstrap";
 import {EducationService} from "./profile/education/education.service";
 import {MomentModule} from "angular2-moment";
@@ -57,6 +58,39 @@ import {CommentService} from "./shared/comments/comment.service";
 import {CommentComponent} from './newsfeed/post-list/comment/comment.component';
 import {LikeService} from "./shared/likes/like.service";
 import {LikeComponent} from './newsfeed/post-list/like/like.component';
+import {ConnectionsComponent} from './connections/connections.component';
+import {ConnectionService} from "./shared/connections/connection.service";
+import {JobsComponent} from './jobs/jobs.component';
+import {
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatTableModule
+} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {JobService} from './shared/job/job.service';
+import {JobModalComponent} from './jobs/job-modal/job-modal.component';
+import {NotificationService} from "./shared/notifications/notification.service";
+import {MyFriendsResolver} from "./profile/resolvers/my-friends.resolver";
+import {UserFriendsResolver} from "./profile/resolvers/user-friends.resolver";
+import {ChatComponent} from './chat/chat.component';
+import {MessageService} from "./shared/messages/message.service";
+import {ConversationComponent} from './chat/conversation/conversation.component';
+import {ConversationResolver} from "./chat/conversation/conversation.resolver";
+import {VgCoreModule} from "videogular2/core";
+import {VgControlsModule} from "videogular2/controls";
+import {VgOverlayPlayModule} from "videogular2/overlay-play";
+import {VgBufferingModule} from "videogular2/buffering";
+import {ApplicantsComponent} from "./jobs/applicants/applicants.component";
+import {PostCommentComponent} from "./profile/posts/post-comments/post-comments.component";
+import {AdminComponent} from './admin/admin.component';
+import {AdminResolver} from "./admin/admin.resolver";
+import {SettingsComponent} from './settings/settings.component';
+import {SettingsService} from "./shared/settings/settings.service";
+import {AdminService} from './admin/admin.service';
+import { SearchUserComponent } from './navbar/search-user/search-user.component';
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 @NgModule({
@@ -89,7 +123,17 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
     PostListComponent,
     CommentComponent,
     LikeComponent,
-    WelcomeComponent
+    PostCommentComponent,
+    ApplicantsComponent,
+    WelcomeComponent,
+    ConnectionsComponent,
+    JobsComponent,
+    JobModalComponent,
+    ChatComponent,
+    ConversationComponent,
+    AdminComponent,
+    SettingsComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,23 +147,40 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
     ProgressbarModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    TabsModule.forRoot(),
+    AlertModule.forRoot(),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatTableModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   entryComponents: [
     BasicInfoModalComponent,
     FileUploadModalComponent,
     SkillsModalComponent,
+    JobModalComponent,
     ExperienceModalComponent,
     EducationModalComponent,
     PostModalComponent,
     CommentComponent,
-    LikeComponent
+    LikeComponent,
+    PostCommentComponent,
+    SearchUserComponent,
+    ApplicantsComponent
   ],
   providers: [
-    Globals, AuthGuard, AuthService, RepoService, UserService,
-    EducationService, ExperienceService, SkillService, LikeService,
-    PostService, CommentService, BsModalRef, FileUploadService,
-    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver,
+    Globals, AuthGuard, AuthService, RepoService, UserService, JobService, NotificationService, MessageService,
+    EducationService, ExperienceService, SkillService, LikeService, ConnectionService,
+    PostService, CommentService, BsModalRef, FileUploadService, SettingsService, AdminService,
+    EducationResolver, ProfileResolver, SkillsResolver, ExperienceResolver, PostsResolver, MyFriendsResolver,
+    UserFriendsResolver, ConversationResolver, AdminResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

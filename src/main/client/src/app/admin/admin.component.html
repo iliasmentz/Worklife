@@ -1,0 +1,65 @@
+<h1>Users Info
+<span class="pull-right">
+  <button (click)="export()" mat-stroked-button class="btn btn-worklife-success export">Export All</button>
+</span></h1>
+<mat-form-field class="filter-input">
+  <input matInput (keyup)="applyFilter($event.target.value)" mat placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="userId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.userId}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"><b> {{row.name}} </b> </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="surname">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+    <mat-cell *matCellDef="let row"> <b>{{row.surname}} </b> </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="birthdate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Birthdate </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.birthdate}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.phoneNumber}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="dateCreated">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.dateCreated}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="profile">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> View Profile </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button [routerLink]="['/profile', row.username]" class="btn btn-worklife">View Profile</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="friend">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> View Friends</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button [routerLink]="['/connections', row.userId]" class="btn btn-worklife-success">View Friends</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+</mat-table>
+ <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="50"></mat-paginator>
+
+</div>

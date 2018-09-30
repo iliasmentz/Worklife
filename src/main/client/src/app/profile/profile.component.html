@@ -13,14 +13,36 @@
         <div class="panel-body">
           <div (click)="openFileUploadModal()" class="text-center vd_info-parent"><img alt="example image"
                                                                                        [src]="user.imagePath"></div>
-          <div class="row">
-            <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
-              class="fa fa-check-circle append-icon"></i>Friends</a></div>
-            <div class="col-xs-12"><a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
-              class="fa fa-envelope append-icon"></i>Send Message</a></div>
+          <div class="row" *ngIf="!myProfile()">
+            <div *ngIf="friends() === 0">
+              <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>Friends</a></div>
+              <div class="col-xs-12"><a [routerLink]="['/messages', user.userId]"
+                                        class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
+                class="fa fa-envelope append-icon"></i>Send Message</a></div>
+            </div>
+            <div *ngIf="friends() === 1" (click)="addFriend()">
+              <div class="col-xs-12"><a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-plus-circle append-icon"></i>Add Connection</a></div>
+            </div>
+            <div *ngIf="friends() === 2">
+              <div class="col-xs-12"><a [routerLink]="['/connections', myUserId]"
+                                        class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>User has sent you friend request</a></div>
+            </div>
+            <div *ngIf="friends() === 3">
+              <div class="col-xs-12"><a disabled="true" class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i
+                class="fa fa-check-circle append-icon"></i>Connection request sent</a></div>
+            </div>
           </div>
+          <div class="row" *ngIf="myProfile()">
+            <div class="col-xs-12" (click)="openFileUploadModal()"><a
+              class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i
+              class="fa fa-image append-icon"></i>Change Profile picture</a></div>
+          </div>
+
           <h2 class="font-semibold mgbt-xs-5">{{ user.displayName }}</h2>
-          <h4>Owner at Our Company, Inc.</h4>
+          <h4>{{ user.jobTitleCompany }}</h4>
           <div class="mgtp-20">
             <table class="table table-striped table-hover">
               <tbody>
@@ -39,7 +61,7 @@
       </div>
       <!-- panel widget -->
 
-      <app-friends></app-friends>
+      <app-friends [friends]="userFriends" [userId]="user.userId"></app-friends>
       <!-- panel widget -->
     </div>
 

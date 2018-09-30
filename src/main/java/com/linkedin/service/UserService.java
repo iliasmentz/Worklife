@@ -7,6 +7,7 @@ import com.linkedin.entities.database.repo.LoginRepository;
 import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.RegisterRequestDto;
 import com.linkedin.entities.model.UploadFileResponse;
+import com.linkedin.entities.model.changePasswordEmail.ChangePasswordRequestDto;
 import com.linkedin.security.AuthenticationFacade;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,7 @@ public class UserService {
 		user.setSurname(registerRequestDto.getSurname());
 		user.setBirthdate(registerRequestDto.getBirthdate());
 		user.setAddress(registerRequestDto.getAddress());
-		user.setImgPath(registerRequestDto.getImgPath());
+	    user.setImgPath("default_profile.png");
 		user.setPhoneNumber(registerRequestDto.getPhoneNumber());
 
 
@@ -110,5 +111,6 @@ public class UserService {
 		save(user);
 		return uploadFileResponse;
 	}
-	
+
+
 }

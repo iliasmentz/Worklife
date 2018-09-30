@@ -8,7 +8,7 @@ import {BsModalRef} from "ngx-bootstrap";
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent implements OnInit {
-  likes: Likes[]
+  likes: Likes;
 
   constructor(public _modal: BsModalRef) {
   }

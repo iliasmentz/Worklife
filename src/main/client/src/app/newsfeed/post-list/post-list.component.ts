@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Posts} from "../../shared/posts/post.model";
+import {Post, Posts} from "../../shared/posts/post.model";
 import {Comments} from "../../shared/comments/comment.model";
 import {CommentService} from "../../shared/comments/comment.service";
 import {BsModalService, ModalOptions} from "ngx-bootstrap";
@@ -7,6 +7,7 @@ import {CommentComponent} from "./comment/comment.component";
 import {LikeService} from "../../shared/likes/like.service";
 import {Like, Likes} from "../../shared/likes/like.model";
 import {LikeComponent} from "./like/like.component";
+import {PostService} from "../../shared/posts/post.service";
 
 const options: ModalOptions = {
   class: 'modal-md',
@@ -28,6 +29,7 @@ export class PostListComponent implements OnInit {
   constructor(private commentService: CommentService,
               private _modal: BsModalService,
               private likeService: LikeService,
+              private postService: PostService,
   ) {
   }
 
@@ -41,10 +43,12 @@ export class PostListComponent implements OnInit {
       var post = this.posts.find(x => x.postId === like.postId);
       post.numberOfLikes++;
     })
+    this.postService.post.subscribe((newPost: Post) => {
+      this.posts.unshift(newPost);
+    })
   }
 
   showLikes(postId: number) {
-    console.log(postId);
     this.likeService.getPostLikes(postId)
       .then((postLikes: Likes) => {
         const initialState = {

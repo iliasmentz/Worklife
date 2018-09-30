@@ -10,6 +10,8 @@ export class User {
   userId: number;
   username: string;
   dateCreated: Date;
+  jobTitleCompany: string;
+  role: number;
 
   constructor(obj: User) {
 
@@ -21,3 +23,5 @@ export class User {
     this.imagePath = this.imagePath || 'assets/img/user.svg';
   }
 }
+
+export declare type Users = User[];

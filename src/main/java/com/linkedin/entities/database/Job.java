@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.TemporalType.DATE;
 
@@ -47,7 +49,8 @@ public class Job implements Serializable {
 	private Date date;
 
 	//@@todo add skills
-
+	@ElementCollection
+	public List<String> skills;
 
 }
 

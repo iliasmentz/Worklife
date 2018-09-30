@@ -12,27 +12,30 @@ import java.util.Date;
 @ApiModel(description = "user's Experience Dto")
 public class ExperienceDto {
 
-	@NotNull
-	@ApiModelProperty(value = "ExperienceId ", example = "1", position = 1)
-	private Long experienceId;
+  @NotNull
+  @ApiModelProperty(value = "ExperienceId ", example = "1", position = 1)
+  private Long experienceId;
 
-	@NotBlank
-	@ApiModelProperty(value = "Title ", example = "Software Engineer", position = 2)
-	private String title;
+  @ApiModelProperty(value = "userId ", example = "1", position = 2)
+  private Long userId;
 
-	@NotBlank
-	@ApiModelProperty(value = "Company Name", example = "Google", position = 3)
-	private String company;
+  @NotBlank
+  @ApiModelProperty(value = "Title ", example = "Software Engineer", position = 3)
+  private String title;
 
-	@NotNull
-	@ApiModelProperty(value = "Date started", example = "2010-01-01", position = 4)
-	private Date startDate;
+  @NotBlank
+  @ApiModelProperty(value = "Company Name", example = "Google", position = 4)
+  private String company;
 
-	@NotNull
-	@ApiModelProperty(value = "Date ended", example = "2018-01-01", position = 5)
-	private Date endDate;
+  @NotNull
+  @ApiModelProperty(value = "Date started", example = "2010-01-01", position = 5)
+  private Date startDate;
 
-	@NotNull
-	private Integer visible;
+  @NotNull
+  @ApiModelProperty(value = "Date ended", example = "2018-01-01", position = 6)
+  private Date endDate;
+
+  @NotNull
+  private Integer visible;
 
 }

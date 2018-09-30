@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {map} from "rxjs/operators";
-import {User} from "./user.model";
+import {User, Users} from "./user.model";
 import {RepoService} from "../repo/repo.service";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
@@ -26,8 +26,16 @@ export class UserService {
       .toPromise() as Promise<User>;
   }
 
-  loginUser(username: string, password: string) {
-    this.authService.loginUser(username, password)
+  search(term: string) {
+    return this.repoService.get('network/connections/users/search/?username='+term)
+      .pipe(map((Users: any[]) => {
+        return Users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
+  }
+
+  loginUser(username: string, password: string): Promise<boolean> {
+    return this.authService.loginUser(username, password)
       .then(loginResponse => {
 
         localStorage.setItem('access_token', loginResponse.access_token);
@@ -39,8 +47,12 @@ export class UserService {
           })
           .catch( err => {
             console.log("can't get the user: " + err);
-          })
+          });
+        return false;
       })
+      .catch(error => {
+        return true;
+      });
   }
 
   updateUser(userRequest: UserDto) {
@@ -54,7 +66,24 @@ export class UserService {
       .toPromise();
   }
 
+
+  getFriends(userId: number) {
+    return this.repoService.get('network/connections/users/' + userId)
+      .pipe(map((users: Users) => {
+        return users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
+  }
+
   deserializeUser(user): User {
     return new User(user);
+  }
+
+  getAllUsers() {
+    return this.repoService.get('auth/users/')
+      .pipe(map((users: Users) => {
+        return users.map(user => this.deserializeUser(user))
+      }))
+      .toPromise() as Promise<Users>;
   }
 }

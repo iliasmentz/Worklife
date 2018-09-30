@@ -9,12 +9,14 @@ import {UserService} from "../../shared/user/user.service";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  showError: boolean;
   constructor(private _fb: FormBuilder,
               private userService: UserService) {
   }
 
   ngOnInit() {
+    this.showError = false;
+
     this.loginForm = this._fb.group({
       username: [null, Validators.required],
       password: [null, Validators.required]
@@ -23,10 +25,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    let invalid = false;
     if (this.loginForm.valid) {
       const username = this.loginForm.get('username').value;
       const password = this.loginForm.get('password').value;
-      this.userService.loginUser(username, password);
+      this.userService.loginUser(username, password)
+        .then(invalidRequest => {
+            invalid = invalidRequest;
+            if (invalid) {
+              this.showError = true;
+            }
+          });
+    } else {
+      this.showError = true;
     }
   }
 

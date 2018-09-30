@@ -4,6 +4,12 @@ import {PostService} from "../../shared/posts/post.service";
 import {BsModalService, ModalOptions} from "ngx-bootstrap";
 import {PostModalComponent} from "./post-modal/post-modal.component";
 import {ActivatedRoute, Params} from "@angular/router";
+import {Likes} from "../../shared/likes/like.model";
+import {LikeComponent} from "../../newsfeed/post-list/like/like.component";
+import {LikeService} from "../../shared/likes/like.service";
+import {CommentService} from "../../shared/comments/comment.service";
+import {Comments} from "../../shared/comments/comment.model";
+import {PostCommentComponent} from "./post-comments/post-comments.component";
 
 const options: ModalOptions = {
   class: 'modal-m',
@@ -23,6 +29,8 @@ export class PostsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private _modal: BsModalService,
+              private likeService: LikeService,
+              private commentService: CommentService,
               private postService: PostService) {
   }
 
@@ -71,7 +79,24 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  showLikes() {
-    console.log("likes");
+  showComments(postId: number) {
+    this.commentService.getComments(postId)
+      .then((comments: Comments) => {
+        const initialState = {
+          comments: comments,
+        };
+
+        this._modal.show(PostCommentComponent, {...options, initialState});
+      })
+  }
+  showLikes(postId: number) {
+    this.likeService.getPostLikes(postId)
+      .then((postLikes: Likes) => {
+        const initialState = {
+          likes: postLikes,
+        };
+
+        this._modal.show(LikeComponent, {...options, initialState});
+      });
   }
 }
