@@ -1,101 +1,101 @@
 ExperienceId,UserId,StartDate,EndDate,Company,Visible,Title
-1,7,7/23/2018,12/7/2017,Wordify,0,0
-2,3,7/5/2018,7/20/2018,BlogXS,0,0
-3,7,5/15/2018,10/6/2017,Skibox,0,0
-4,8,7/3/2018,7/16/2018,Latz,0,0
-5,1,4/6/2018,4/10/2018,Jabbercube,0,0
-6,1,11/21/2017,8/11/2018,Camido,0,0
-7,9,5/30/2018,12/20/2017,Katz,0,0
-8,3,7/3/2018,3/18/2018,Vitz,0,0
-9,1,8/25/2018,8/10/2018,Twinte,0,0
-10,7,12/19/2017,7/15/2018,Realbridge,0,0
-11,5,12/20/2017,12/22/2017,Bubbletube,0,0
-12,5,12/15/2017,11/22/2017,Eabox,0,0
-13,8,2/1/2018,9/13/2018,Jayo,0,0
-14,8,2/23/2018,9/25/2018,Skalith,0,0
-15,8,6/27/2018,5/24/2018,Zoomzone,0,0
-16,1,10/3/2017,7/16/2018,Realmix,0,0
-17,2,6/28/2018,7/17/2018,Agivu,0,0
-18,8,8/27/2018,12/12/2017,Yombu,0,0
-19,1,10/9/2017,4/21/2018,Shufflebeat,0,0
-20,8,2/9/2018,1/15/2018,Quinu,0,0
-21,7,10/31/2017,10/28/2017,Yadel,0,0
-22,3,7/19/2018,9/1/2018,Miboo,0,0
-23,4,7/10/2018,4/23/2018,Dynabox,0,0
-24,3,9/15/2018,4/19/2018,Twimm,0,0
-25,1,12/25/2017,2/4/2018,Thoughtworks,0,0
-26,3,12/3/2017,1/25/2018,Latz,0,0
-27,1,9/17/2018,1/7/2018,Jaxbean,0,0
-28,2,5/13/2018,7/30/2018,Edgepulse,0,0
-29,7,10/12/2017,2/3/2018,Skinder,0,0
-30,1,1/7/2018,3/13/2018,Flipstorm,0,0
-31,9,10/28/2017,1/11/2018,Zoonoodle,0,0
-32,7,9/11/2018,11/17/2017,Twitterbridge,0,0
-33,7,1/27/2018,11/29/2017,Youopia,0,0
-34,1,11/9/2017,3/27/2018,Meemm,0,0
-35,5,4/10/2018,7/24/2018,Yodel,0,0
-36,1,5/27/2018,5/26/2018,Jetwire,0,0
-37,8,10/25/2017,2/10/2018,Bluezoom,0,0
-38,5,11/27/2017,11/4/2017,Zooveo,0,0
-39,5,1/17/2018,11/5/2017,Oyope,0,0
-40,6,8/23/2018,12/15/2017,Voolia,0,0
-41,9,10/20/2017,4/1/2018,Meetz,0,0
-42,3,10/31/2017,11/29/2017,Gabvine,0,0
-43,9,9/5/2018,6/25/2018,Aibox,0,0
-44,1,5/16/2018,8/25/2018,Yabox,0,0
-45,4,5/22/2018,4/15/2018,Realbridge,0,0
-46,1,12/20/2017,12/16/2017,Thoughtbeat,0,0
-47,7,2/18/2018,9/8/2018,Kwilith,0,0
-48,5,9/3/2018,10/2/2017,Geba,0,0
-49,1,12/27/2017,8/13/2018,Zoozzy,0,0
-50,5,11/16/2017,11/7/2017,Oozz,0,0
-51,2,11/14/2017,6/2/2018,Viva,0,0
-52,6,8/30/2018,7/19/2018,Miboo,0,0
-53,6,5/18/2018,1/9/2018,Kimia,0,0
-54,9,1/20/2018,7/27/2018,Jetpulse,0,0
-55,5,7/20/2018,5/14/2018,Agimba,0,0
-56,5,5/5/2018,4/24/2018,LiveZ,0,0
-57,8,1/24/2018,6/15/2018,Twitterlist,0,0
-58,5,12/31/2017,9/1/2018,Gigaclub,0,0
-59,7,8/18/2018,7/21/2018,Eabox,0,0
-60,4,7/26/2018,9/21/2018,Photobug,0,0
-61,6,8/25/2018,11/14/2017,Jaxbean,0,0
-62,6,6/1/2018,5/17/2018,Ntag,0,0
-63,9,3/30/2018,9/4/2018,Kazio,0,0
-64,9,10/14/2017,4/7/2018,Browsecat,0,0
-65,5,4/4/2018,2/25/2018,Snaptags,0,0
-66,3,9/30/2017,1/25/2018,Cogidoo,0,0
-67,4,10/3/2017,11/3/2017,Twitterlist,0,0
-68,4,12/16/2017,4/8/2018,Quaxo,0,0
-69,9,12/23/2017,12/16/2017,Voolith,0,0
-70,6,2/14/2018,8/28/2018,Yoveo,0,0
-71,4,9/10/2018,10/7/2017,Voolith,0,0
-72,2,8/10/2018,8/31/2018,Eamia,0,0
-73,4,5/30/2018,9/4/2018,Oyoyo,0,0
-74,4,9/14/2018,1/10/2018,Yakidoo,0,0
-75,8,2/25/2018,1/2/2018,Innojam,0,0
-76,1,5/21/2018,10/9/2017,Gabspot,0,0
-77,1,12/26/2017,6/15/2018,Twiyo,0,0
-78,4,5/30/2018,10/9/2017,Trupe,0,0
-79,1,8/10/2018,4/28/2018,Quinu,0,0
-80,7,10/4/2017,10/29/2017,Browseblab,0,0
-81,5,9/8/2018,7/31/2018,Pixoboo,0,0
-82,5,9/1/2018,11/26/2017,Meembee,0,0
-83,3,5/15/2018,2/12/2018,Dynabox,0,0
-84,1,7/3/2018,5/24/2018,Jatri,0,0
-85,9,10/17/2017,5/13/2018,Katz,0,0
-86,3,2/24/2018,1/18/2018,Flashpoint,0,0
-87,8,1/4/2018,1/15/2018,Eayo,0,0
-88,6,9/13/2018,7/5/2018,Dabjam,0,0
-89,8,5/16/2018,10/31/2017,Photobug,0,0
-90,5,11/27/2017,5/14/2018,Realcube,0,0
-91,5,6/7/2018,7/28/2018,Oyoloo,0,0
-92,8,10/29/2017,4/28/2018,Wordpedia,0,0
-93,3,2/26/2018,4/1/2018,Oyope,0,0
-94,7,7/28/2018,2/27/2018,Twitterlist,0,0
-95,1,8/20/2018,9/17/2018,Buzzshare,0,0
-96,7,3/7/2018,11/22/2017,Oyope,0,0
-97,1,3/20/2018,2/17/2018,Meezzy,0,0
-98,1,12/25/2017,8/8/2018,Fadeo,0,0
-99,1,6/9/2018,12/13/2017,Twitterworks,0,0
-100,9,3/29/2018,9/1/2018,Shuffledrive,0,0
+1,7,7/23/2018,12/7/2017,Wordify,0,Software Engineer
+2,3,7/5/2018,7/20/2018,BlogXS,0,Software Engineer
+3,7,5/15/2018,10/6/2017,Skibox,0,Software Engineer
+4,8,7/3/2018,7/16/2018,Latz,0,Software Engineer
+5,1,4/6/2018,4/10/2018,Jabbercube,0,Software Engineer
+6,1,11/21/2017,8/11/2018,Camido,0,Software Engineer
+7,9,5/30/2018,12/20/2017,Katz,0,Software Engineer
+8,3,7/3/2018,3/18/2018,Vitz,0,Software Engineer
+9,1,8/25/2018,8/10/2018,Twinte,0,Software Engineer
+10,7,12/19/2017,7/15/2018,Realbridge,0,Software Engineer
+11,5,12/20/2017,12/22/2017,Bubbletube,0,Software Engineer
+12,5,12/15/2017,11/22/2017,Eabox,0,Software Engineer
+13,8,2/1/2018,9/13/2018,Jayo,0,Software Engineer
+14,8,2/23/2018,9/25/2018,Skalith,0,Software Engineer
+15,8,6/27/2018,5/24/2018,Zoomzone,0,Software Engineer
+16,1,10/3/2017,7/16/2018,Realmix,0,Software Engineer
+17,2,6/28/2018,7/17/2018,Agivu,0,Software Engineer
+18,8,8/27/2018,12/12/2017,Yombu,0,Software Engineer
+19,1,10/9/2017,4/21/2018,Shufflebeat,0,Software Engineer
+20,8,2/9/2018,1/15/2018,Quinu,0,Software Engineer
+21,7,10/31/2017,10/28/2017,Yadel,0,Software Engineer
+22,3,7/19/2018,9/1/2018,Miboo,0,Software Engineer
+23,4,7/10/2018,4/23/2018,Dynabox,0,Software Engineer
+24,3,9/15/2018,4/19/2018,Twimm,0,Software Engineer
+25,1,12/25/2017,2/4/2018,Thoughtworks,0,Software Engineer
+26,3,12/3/2017,1/25/2018,Latz,0,Software Engineer
+27,1,9/17/2018,1/7/2018,Jaxbean,0,Software Engineer
+28,2,5/13/2018,7/30/2018,Edgepulse,0,Software Engineer
+29,7,10/12/2017,2/3/2018,Skinder,0,Software Engineer
+30,1,1/7/2018,3/13/2018,Flipstorm,0,Software Engineer
+31,9,10/28/2017,1/11/2018,Zoonoodle,0,Software Engineer
+32,7,9/11/2018,11/17/2017,Twitterbridge,0,Software Engineer
+33,7,1/27/2018,11/29/2017,Youopia,0,Software Engineer
+34,1,11/9/2017,3/27/2018,Meemm,0,Software Engineer
+35,5,4/10/2018,7/24/2018,Yodel,0,Software Engineer
+36,1,5/27/2018,5/26/2018,Jetwire,0,Software Engineer
+37,8,10/25/2017,2/10/2018,Bluezoom,0,Software Engineer
+38,5,11/27/2017,11/4/2017,Zooveo,0,Software Engineer
+39,5,1/17/2018,11/5/2017,Oyope,0,Software Engineer
+40,6,8/23/2018,12/15/2017,Voolia,0,Software Engineer
+41,9,10/20/2017,4/1/2018,Meetz,0,Software Engineer
+42,3,10/31/2017,11/29/2017,Gabvine,0,Software Engineer
+43,9,9/5/2018,6/25/2018,Aibox,0,Software Engineer
+44,1,5/16/2018,8/25/2018,Yabox,0,Software Engineer
+45,4,5/22/2018,4/15/2018,Realbridge,0,Software Engineer
+46,1,12/20/2017,12/16/2017,Thoughtbeat,0,Software Engineer
+47,7,2/18/2018,9/8/2018,Kwilith,0,Software Engineer
+48,5,9/3/2018,10/2/2017,Geba,0,Software Engineer
+49,1,12/27/2017,8/13/2018,Zoozzy,0,Software Engineer
+50,5,11/16/2017,11/7/2017,Oozz,0,Software Engineer
+51,2,11/14/2017,6/2/2018,Viva,0,Software Engineer
+52,6,8/30/2018,7/19/2018,Miboo,0,Software Engineer
+53,6,5/18/2018,1/9/2018,Kimia,0,Software Engineer
+54,9,1/20/2018,7/27/2018,Jetpulse,0,Software Engineer
+55,5,7/20/2018,5/14/2018,Agimba,0,Software Engineer
+56,5,5/5/2018,4/24/2018,LiveZ,0,Software Engineer
+57,8,1/24/2018,6/15/2018,Twitterlist,0,Software Engineer
+58,5,12/31/2017,9/1/2018,Gigaclub,0,Software Engineer
+59,7,8/18/2018,7/21/2018,Eabox,0,Software Engineer
+60,4,7/26/2018,9/21/2018,Photobug,0,Software Engineer
+61,6,8/25/2018,11/14/2017,Jaxbean,0,Software Engineer
+62,6,6/1/2018,5/17/2018,Ntag,0,Software Engineer
+63,9,3/30/2018,9/4/2018,Kazio,0,Software Engineer
+64,9,10/14/2017,4/7/2018,Browsecat,0,Software Engineer
+65,5,4/4/2018,2/25/2018,Snaptags,0,Software Engineer
+66,3,9/30/2017,1/25/2018,Cogidoo,0,Software Engineer
+67,4,10/3/2017,11/3/2017,Twitterlist,0,Software Engineer
+68,4,12/16/2017,4/8/2018,Quaxo,0,Software Engineer
+69,9,12/23/2017,12/16/2017,Voolith,0,Software Engineer
+70,6,2/14/2018,8/28/2018,Yoveo,0,Software Engineer
+71,4,9/10/2018,10/7/2017,Voolith,0,Software Engineer
+72,2,8/10/2018,8/31/2018,Eamia,0,Software Engineer
+73,4,5/30/2018,9/4/2018,Oyoyo,0,Software Engineer
+74,4,9/14/2018,1/10/2018,Yakidoo,0,Software Engineer
+75,8,2/25/2018,1/2/2018,Innojam,0,Software Engineer
+76,1,5/21/2018,10/9/2017,Gabspot,0,Software Engineer
+77,1,12/26/2017,6/15/2018,Twiyo,0,Software Engineer
+78,4,5/30/2018,10/9/2017,Trupe,0,Software Engineer
+79,1,8/10/2018,4/28/2018,Quinu,0,Software Engineer
+80,7,10/4/2017,10/29/2017,Browseblab,0,Software Engineer
+81,5,9/8/2018,7/31/2018,Pixoboo,0,Software Engineer
+82,5,9/1/2018,11/26/2017,Meembee,0,Software Engineer
+83,3,5/15/2018,2/12/2018,Dynabox,0,Software Engineer
+84,1,7/3/2018,5/24/2018,Jatri,0,Software Engineer
+85,9,10/17/2017,5/13/2018,Katz,0,Software Engineer
+86,3,2/24/2018,1/18/2018,Flashpoint,0,Software Engineer
+87,8,1/4/2018,1/15/2018,Eayo,0,Software Engineer
+88,6,9/13/2018,7/5/2018,Dabjam,0,Software Engineer
+89,8,5/16/2018,10/31/2017,Photobug,0,Software Engineer
+90,5,11/27/2017,5/14/2018,Realcube,0,Software Engineer
+91,5,6/7/2018,7/28/2018,Oyoloo,0,Software Engineer
+92,8,10/29/2017,4/28/2018,Wordpedia,0,Software Engineer
+93,3,2/26/2018,4/1/2018,Oyope,0,Software Engineer
+94,7,7/28/2018,2/27/2018,Twitterlist,0,Software Engineer
+95,1,8/20/2018,9/17/2018,Buzzshare,0,Software Engineer
+96,7,3/7/2018,11/22/2017,Oyope,0,Software Engineer
+97,1,3/20/2018,2/17/2018,Meezzy,0,Software Engineer
+98,1,12/25/2017,8/8/2018,Fadeo,0,Software Engineer
+99,1,6/9/2018,12/13/2017,Twitterworks,0,Software Engineer
+100,9,3/29/2018,9/1/2018,Shuffledrive,0,Software Engineer
