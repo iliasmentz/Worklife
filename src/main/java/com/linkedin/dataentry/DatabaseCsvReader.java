@@ -43,7 +43,8 @@ public class DatabaseCsvReader {
 	  "database_files/Like.csv",
 	  "database_files/ConnectionRequest.csv",
 	  "database_files/Message.csv",
-	  "database_files/Experience.csv"
+	  "database_files/Experience.csv",
+	  "database_files/Education.csv"
   };
   private final String ENTITIES_PACKAGE_NAME = "com.linkedin.entities.database";
 

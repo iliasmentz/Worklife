@@ -1,0 +1,43 @@
+EducationId,UserId,StartDate,EndDate,UniversityDegree,UniversityName,Visible
+1,2,6/14/2018,2/10/2019,Bachelor,Universidad de San Andres,0
+2,8,11/27/2017,3/27/2019,Bachelor,Université de Ngaoundéré,0
+3,5,6/6/2018,5/22/2019,Bachelor,Guizhou University,0
+4,9,1/10/2018,3/30/2019,Bachelor,"Preston University, Pakistan Campus",0
+5,8,10/5/2017,3/20/2019,Bachelor,Seton Hall University,0
+6,6,5/21/2018,6/28/2019,Bachelor,"Islamic Azad University, Saveh",0
+7,5,5/7/2018,9/11/2019,Bachelor,Lubbock Christian University,0
+8,8,3/22/2018,4/23/2019,Bachelor,Lander University,0
+9,5,2/16/2018,12/23/2018,Bachelor,Cape Coast Polytechnic ,0
+10,8,5/31/2018,12/19/2018,Bachelor,Nanjing Union Theological Seminary,0
+11,8,12/6/2017,5/22/2019,Bachelor,"Universidad Internacional SEK, Quito",0
+12,9,12/27/2017,4/8/2019,Bachelor,Shanghai University of Science and Technology,0
+13,7,2/14/2018,4/15/2019,Bachelor,Pitzer College,0
+14,2,8/5/2018,10/16/2018,Bachelor,Indiana University-Purdue University at Columbus,0
+15,1,8/1/2018,3/21/2019,Bachelor,Florida Memorial College,0
+16,5,8/8/2018,7/3/2019,Bachelor,Ho Chi Minh City University of Foreign Languages and Information Technology,0
+17,7,8/26/2018,10/17/2018,Bachelor,Université Jean Moulin (Lyon III),0
+18,6,7/20/2018,7/1/2019,Bachelor,"Academy of Music ""Georghe Dima"" Cluj-Napoca",0
+19,6,1/16/2018,5/8/2019,Bachelor,Lutheran School Of Theology In Aarhus,0
+20,3,5/23/2018,1/7/2019,Bachelor,Universidad Itaca,0
+21,6,5/27/2018,9/3/2019,Bachelor,Orenburg State University,0
+22,4,9/20/2018,6/24/2019,Bachelor,University of Mary Hardin-Baylor,0
+23,2,10/18/2017,10/31/2018,Bachelor,Sido Kanhu Murmu University,0
+24,8,2/8/2018,8/24/2019,Bachelor,Lynn University,0
+25,2,5/15/2018,9/7/2019,Bachelor,Universidad Nacional Experimental de la Fuerza Armada,0
+26,2,5/26/2018,7/2/2019,Bachelor,University of Health Sciences,0
+27,4,7/28/2018,7/9/2019,Bachelor,Centro Universitário de João Pessoa,0
+28,4,3/20/2018,7/15/2019,Bachelor,Primier International University Perak,0
+29,1,5/14/2018,3/25/2019,Bachelor,Yasar University,0
+30,9,9/15/2018,4/26/2019,Bachelor,Internationales Hochschulinstitut Zittau,0
+31,9,11/29/2017,8/3/2019,Bachelor,Iraq University College,0
+32,1,2/24/2018,4/21/2019,Bachelor,Universidad Nacional Experimental del Táchira,0
+33,7,11/8/2017,9/18/2019,Bachelor,LungHwa University of Science and Technology,0
+34,8,1/31/2018,11/24/2018,Bachelor,Bodo Regional University,0
+35,4,11/18/2017,1/24/2019,Bachelor,"DeVry Institute of Technology, Kansas City",0
+36,4,6/8/2018,5/20/2019,Bachelor,Evangel University,0
+37,6,11/6/2017,1/26/2019,Bachelor,University of Lagos,0
+38,5,8/17/2018,11/2/2018,Bachelor,Colorado Christian University,0
+39,6,4/20/2018,8/27/2019,Bachelor,Universidad Norbert Wiener,0
+40,3,11/26/2017,7/19/2019,Bachelor,Ecole Superieur d'Ingenieurs Leonard de Vinci,0
+41,5,9/25/2018,3/9/2019,Bachelor,Universitas Islam Malang,0
+42,9,9/7/2018,12/30/2018,Bachelor,Universidad Abierta Para Adultos,0
