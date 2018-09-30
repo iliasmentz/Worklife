@@ -58,8 +58,7 @@ public class UserConverter {
 		//experienceService.getUsersExperiences(userId).sort();
 		Experience experience = experienceRepository.findAllByUserIdOrderByStartDateDesc(userId).stream().findFirst().orElse(null);
 		if(experience != null ){
-		  userDto.setCompany(experience.getCompany());
-		  userDto.setJobTitle(experience.getTitle());
+		  userDto.setJobTitleCompany(experience.getTitle() + " at " +experience.getCompany()  );
 		}
 
 

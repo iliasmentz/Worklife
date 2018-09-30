@@ -23,9 +23,7 @@ public class UserSimpleDto implements Serializable {
   @ApiModelProperty(value = "user's image path", example = "", position = 4)
   private String imagePath;
 
-  @ApiModelProperty(value = "JobTitle ", example = "Software Engineer", position = 5)
-  private String jobTitle;
+  @ApiModelProperty(value = "JobTitleCompany ", example = "Software Engineer", position = 5)
+  private String jobTitleCompany;
 
-  @ApiModelProperty(value = "Company Name", example = "Google", position = 6)
-  private String company;
 }
