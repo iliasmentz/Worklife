@@ -13,6 +13,7 @@
 
               <div class="c-info">
                 <strong>{{ connection.connectedUser.displayName }}</strong>
+                <small>{{ connection.connectedUser.jobTitleCompany }}</small>
                 <small>{{ connection.connectedUser.email }}</small>
                 <small><i>Friends since: {{ connection.createDate | amDateFormat:'LL'}}</i></small>
               </div>
@@ -40,6 +41,7 @@
 
               <div class="c-info">
                 <strong>{{ request.userRequested.displayName }}</strong>
+                <small>{{ request.userRequested.jobTitleCompany }}</small>
                 <small>{{ request.userRequested.email }}</small>
                 <small><i>User Requested on: {{ request.dateOfRequest | amDateFormat:'LL'}}</i></small>
               </div>

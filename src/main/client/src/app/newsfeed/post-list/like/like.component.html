@@ -11,6 +11,7 @@
       <img [src]="like.user.imagePath" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
       <h4><a (click)="close()" [routerLink]="['profile', like.user.username]">{{ like.user.displayName }}
       </a></h4>
+      <h5>{{ like.user.jobTitleCompany }}</h5>
     </div>
   </div>
 </div>

@@ -54,7 +54,6 @@ public class ProfileService {
 		user.setBirthdate(userRequestDto.getBirthdate());
 		user.setAddress(userRequestDto.getAddress());
 		user.setPhoneNumber(userRequestDto.getPhoneNumber());
-		user.setImgPath(userRequestDto.getImgPath());
 
 		userRepository.save(user);
 		return userConverter.toUserDto(user, login.getRole().ordinal());
