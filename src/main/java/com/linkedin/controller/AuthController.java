@@ -11,6 +11,8 @@ import com.linkedin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,19 +44,19 @@ public class AuthController {
 
 	@ApiOperation(value = "Register", notes = "Creates a new user", response = String.class)
 	@PostMapping(UrlConst.REGISTER)
-	public RegisterDto registerUser(@Valid @RequestBody RegisterRequestDto registerRequestDto) {
+	public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterRequestDto registerRequestDto) {
 		if (userService.usernameTaken(registerRequestDto.getUsername())) {
-			return new RegisterDto("Username is already taken!");
+			return new ResponseEntity<>("Username is already taken!", HttpStatus.NOT_ACCEPTABLE);
 		}
 
 		if (userService.emailExists(registerRequestDto.getEmail())) {
-			return new RegisterDto("Email Address already in use!");
+			return new ResponseEntity<>("Email Address already in use!", HttpStatus.NOT_ACCEPTABLE);
 		}
 
 		// Creating user's account
 		userService.register(registerRequestDto);
 
-		return new RegisterDto("User registered successfully");
+		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Returns Users", notes = "Returns all Users", response = String.class)

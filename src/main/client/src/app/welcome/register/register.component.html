@@ -8,6 +8,16 @@
       <img src="assets/img/img-01.png" alt="IMG">
     </div>
     <form class="register100-form validate-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <div *ngIf="showError">
+        <alert type="danger">
+          <strong>Error:</strong> {{ errorMessage }}
+        </alert>
+      </div>
+      <div *ngIf="showPasswordMismatch">
+        <alert type="danger">
+          <strong>Error:</strong> Passwords does not match!
+        </alert>
+      </div>
 					<span class="register100-form-title">
 						Hello, Welcome to Worklife!
 					</span>
