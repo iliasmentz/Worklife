@@ -81,7 +81,7 @@ public class UserService {
 		user.setSurname(registerRequestDto.getSurname());
 		user.setBirthdate(registerRequestDto.getBirthdate());
 		user.setAddress(registerRequestDto.getAddress());
-		user.setImgPath(registerRequestDto.getImgPath());
+	    user.setImgPath("default_profile.png");
 		user.setPhoneNumber(registerRequestDto.getPhoneNumber());
 
 
