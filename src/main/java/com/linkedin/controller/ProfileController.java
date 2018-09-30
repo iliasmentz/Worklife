@@ -2,7 +2,7 @@ package com.linkedin.controller;
 
 import com.linkedin.converter.UserConverter;
 import com.linkedin.entities.database.Login;
-import com.linkedin.entities.database.User;
+import com.linkedin.entities.database.repo.UserRepository;
 import com.linkedin.entities.model.UploadFileResponse;
 import com.linkedin.entities.model.UserDto;
 import com.linkedin.entities.model.UserRequestDto;
@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Api(tags = ProfileController.tag)
 @RestController
@@ -37,12 +40,14 @@ public class ProfileController {
   private final UserService userService;
   private final ProfileService profileService;
   private final UserConverter userConverter;
+  private final UserRepository userRepository;
 
   @Autowired
-  public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter) {
+  public ProfileController(UserService userService, ProfileService profileService, UserConverter userConverter, UserRepository userRepository) {
 	this.userService = userService;
 	this.profileService = profileService;
 	this.userConverter = userConverter;
+	this.userRepository = userRepository;
   }
 
   @GetMapping("/")
@@ -91,6 +96,7 @@ public class ProfileController {
   public void changeEmail(@RequestBody ChangeEmailRequestDto changeEmailRequestDto) throws Exception {
 	profileService.changeEmail(changeEmailRequestDto);
   }
+
 
 
 }

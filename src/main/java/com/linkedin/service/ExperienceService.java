@@ -101,4 +101,8 @@ public class ExperienceService {
 		return experienceConverter.toExperienceDto(experienceToUpdate);
 
 	}
+
+  public List<ExperienceDto> getAllExperiences() {
+	 return  experienceRepository.findAll().stream().map(experienceConverter::toExperienceDto).collect(Collectors.toList());
+  }
 }

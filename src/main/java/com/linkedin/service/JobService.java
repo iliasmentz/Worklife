@@ -44,6 +44,10 @@ public class JobService {
 	this.userConverter = userConverter;
   }
 
+  public List<JobDto> getAllJobUserCreated(Long userId){
+	return jobRepository.findAllByAuthorId(userId).stream().map(jobConverter::toJobDto).collect(Collectors.toList());
+  }
+
   public Job createJob(JobRequestDto dto) {
 	Job job = new Job();
 	job.setTitle(dto.getTitle());

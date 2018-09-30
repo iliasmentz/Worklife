@@ -22,44 +22,50 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/profile/experience/")
 public class ExperienceController {
-	public static final String tag = "Experience Controller";
-	private final ExperienceService experienceService;
+  public static final String tag = "Experience Controller";
+  private final ExperienceService experienceService;
 
-	@Autowired
-	public ExperienceController(ExperienceService experienceService) {
-		this.experienceService = experienceService;
-	}
+  @Autowired
+  public ExperienceController(ExperienceService experienceService) {
+	this.experienceService = experienceService;
+  }
 
-	@ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
-	@GetMapping("/{userId}")
-	public List<ExperienceDto> getExperiences(@PathVariable Long userId) {
-		return experienceService.getUsersExperiences(userId);
-	}
+  @ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
+  @GetMapping("/{userId}")
+  public List<ExperienceDto> getExperiences(@PathVariable Long userId) {
+	return experienceService.getUsersExperiences(userId);
+  }
 
-	@ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
-	@GetMapping("/")
-	public List<ExperienceDto> getExperiences() {
-		return experienceService.getExperiences();
-	}
+  @ApiOperation(value = "Returns all Experiences of the user", response = ExperienceDto.class)
+  @GetMapping("/")
+  public List<ExperienceDto> getExperiences() {
+	return experienceService.getExperiences();
+  }
 
-	@ApiOperation(value = "Creates a new Experience", response = ExperienceDto.class)
-	@PostMapping("/")
-	public ExperienceDto createExperiences(@Valid @RequestBody ExperienceRequestDto experienceRequestDto) {
-		return experienceService.createExperience(experienceRequestDto);
-	}
+  @ApiOperation(value = "Returns all Experiences from database", response = ExperienceDto.class)
+  @GetMapping("/all-experience/")
+  public List<ExperienceDto> getAllExperiences() {
+	return experienceService.getAllExperiences();
+  }
 
-	@PutMapping("/{experienceId}")
-	@ApiOperation(value = "Experience", notes = "Updates an experience of the User", response = ExperienceDto.class)
-	public ExperienceDto updateExperience(@PathVariable Long experienceId, @Valid @RequestBody ExperienceRequestDto experienceRequestDto) throws Exception {
+  @ApiOperation(value = "Creates a new Experience", response = ExperienceDto.class)
+  @PostMapping("/")
+  public ExperienceDto createExperiences(@Valid @RequestBody ExperienceRequestDto experienceRequestDto) {
+	return experienceService.createExperience(experienceRequestDto);
+  }
 
-		return experienceService.updateExperience(experienceId, experienceRequestDto);
+  @PutMapping("/{experienceId}")
+  @ApiOperation(value = "Experience", notes = "Updates an experience of the User", response = ExperienceDto.class)
+  public ExperienceDto updateExperience(@PathVariable Long experienceId, @Valid @RequestBody ExperienceRequestDto experienceRequestDto) throws Exception {
 
-	}
+	return experienceService.updateExperience(experienceId, experienceRequestDto);
 
-	@ApiOperation(value = "Deletes a Users  Experience", response = ExperienceDto.class)
-	@DeleteMapping("/{experienceId}")
-	public void deleteExperience(@PathVariable Long experienceId) throws Exception {
-		experienceService.removeExperience(experienceId);
-	}
+  }
+
+  @ApiOperation(value = "Deletes a Users  Experience", response = ExperienceDto.class)
+  @DeleteMapping("/{experienceId}")
+  public void deleteExperience(@PathVariable Long experienceId) throws Exception {
+	experienceService.removeExperience(experienceId);
+  }
 
 }

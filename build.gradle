@@ -39,4 +39,6 @@ dependencies {
     compile(group: 'com.opencsv', name: 'opencsv', version: '4.0')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
+    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
 }
+

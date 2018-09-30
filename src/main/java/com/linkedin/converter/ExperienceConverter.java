@@ -15,6 +15,7 @@ public class ExperienceConverter {
 		experienceDto.setEndDate(experience.getEndDate());
 		experienceDto.setExperienceId(experience.getExperienceId());
 		experienceDto.setVisible(experience.getVisible());
+		experienceDto.setUserId(experience.getUserId());
 		return experienceDto;
 	}
 }
