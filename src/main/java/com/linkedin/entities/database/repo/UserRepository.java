@@ -2,6 +2,8 @@ package com.linkedin.entities.database.repo;
 
 import com.linkedin.entities.database.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,6 +11,11 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsernameIgnoreCase(String username);
-	List<User> findAllByUsernameIgnoreCase(String username);
+
+	@Query("SELECT u FROM User u WHERE lower(u.username) LIKE CONCAT('%',lower(:term),'%') "
+			+ "OR lower(u.name) LIKE CONCAT('%',lower(:term),'%') "
+			+ "OR lower(u.surname) LIKE CONCAT('%',lower(:term),'%')")
+	List<User> searchUser(@Param("term") String term);
+
 	boolean existsByEmailIgnoreCase(String email);
 }
