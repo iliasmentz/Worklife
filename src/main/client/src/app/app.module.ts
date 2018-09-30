@@ -62,7 +62,13 @@ import {LikeComponent} from './newsfeed/post-list/like/like.component';
 import {ConnectionsComponent} from './connections/connections.component';
 import {ConnectionService} from "./shared/connections/connection.service";
 import {JobsComponent} from './jobs/jobs.component';
-import {MatCheckboxModule, MatTableModule} from "@angular/material";
+import {
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatTableModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {JobService} from './shared/job/job.service';
 import {JobModalComponent} from './jobs/job-modal/job-modal.component';
@@ -142,6 +148,9 @@ import {SettingsService} from "./shared/settings/settings.service";
     TabsModule.forRoot(),
     AlertModule.forRoot(),
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
     MatCheckboxModule,
     MatTableModule,
     VgCoreModule,

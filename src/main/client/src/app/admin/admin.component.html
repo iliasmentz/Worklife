@@ -1,5 +1,8 @@
 <h1>Users Info</h1>
-
+<mat-form-field class="filter-input">
+  <input matInput (keyup)="applyFilter($event.target.value)" mat placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="userId">
     <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
@@ -37,8 +40,23 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.dateCreated}} </mat-cell>
   </ng-container>
+  <ng-container matColumnDef="profile">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> View Profile </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button [routerLink]="['/profile', row.username]" class="btn btn-worklife">View Profile</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="friend">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> View Friends</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button [routerLink]="['/connections', row.userId]" class="btn btn-worklife-success">View Friends</button>
+    </mat-cell>
+  </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;">
   </mat-row>
 </mat-table>
+ <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="50"></mat-paginator>
+
+</div>
