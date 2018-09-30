@@ -1,11 +1,13 @@
 package com.linkedin.entities.database.repo;
 
 import com.linkedin.entities.database.User;
+import com.linkedin.entities.model.recommendation.UserInfoBo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -18,4 +20,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> searchUser(@Param("term") String term);
 
 	boolean existsByEmailIgnoreCase(String email);
+
+	@Query(name = "getUsersVectorQuery")
+	Collection<UserInfoBo> getAllUsersVector();
+
+	@Query(value = "select u.user_id from users", nativeQuery = true)
+	List<Long> getAllUsersIds();
 }

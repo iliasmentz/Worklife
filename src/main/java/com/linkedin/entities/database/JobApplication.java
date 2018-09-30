@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
-@Table(name = "JobApplication")
+@Table(name = "job_application")
 @Entity
 @DynamicUpdate
 public class JobApplication  implements Serializable {

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,16 +23,30 @@ public class HomeService {
 	private final PostRepository postRepository;
 	private final ConnectionService connectionService;
 	private final PostConverter postConverter;
+	private final HomePostService homePostService;
 
 	@Autowired
-	public HomeService(LikeRepository likeRepository, PostRepository postRepository, ConnectionService connectionService1, PostConverter postConverter) {
+	public HomeService(LikeRepository likeRepository, PostRepository postRepository, ConnectionService connectionService1, PostConverter postConverter, HomePostService homePostService) {
 		this.likeRepository = likeRepository;
 		this.postRepository = postRepository;
 		this.connectionService = connectionService1;
 		this.postConverter = postConverter;
+		this.homePostService = homePostService;
 	}
 
-	public List<PostDto> getHomePosts() {
+	public List<PostDto> getHomePosts(Long userId) {
+		Set<Long> userPosts = homePostService.getUserPosts(userId);
+		if (userPosts != null && userPosts.size() > 0) {
+			return userPosts.stream()
+					.map(postRepository::getOne)
+					.map(postConverter::toPostDto)
+					.collect(Collectors.toList());
+		} else {
+			return getLegacyHomePosts();
+		}
+	}
+
+	public List<PostDto> getLegacyHomePosts() {
 		Long logedUserId = AuthenticationFacade.authenticatedUser().getUserId();
 		//etsi pairnoume ola ta Post tou user pou einai loggedIn
 		List<Post> usersPostList = postRepository.findAllByCreatorIdOrderByPostDateDesc(logedUserId);

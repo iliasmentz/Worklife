@@ -1,6 +1,7 @@
 package com.linkedin.controller;
 
 import com.linkedin.entities.model.Post.PostDto;
+import com.linkedin.security.AuthenticationFacade;
 import com.linkedin.service.HomeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +28,7 @@ public class HomeController {
 	@ApiOperation(value = "Returns all Post we want for Home", response = PostDto.class, responseContainer = "List")
 	@GetMapping("/")
 	public List<PostDto> getHomePosts() {
-		return homeService.getHomePosts();
+		return homeService.getHomePosts(AuthenticationFacade.getUserId());
 	}
 
 }

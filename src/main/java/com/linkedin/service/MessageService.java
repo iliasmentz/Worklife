@@ -9,6 +9,7 @@ import com.linkedin.entities.model.messages.UserChatDto;
 import com.linkedin.security.AuthenticationFacade;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +28,9 @@ public class MessageService {
 	public List<ChatOverviewDto> getUsersMessages(Long userId) {
 		List<ChatOverviewDto> chatOverview = messageRepository.findAllUsersThatUsersHasCommunicateWith(userId);
 		updateIconPaths(chatOverview);
-		return chatOverview;
+		return chatOverview.stream()
+				.sorted(Comparator.comparing(ChatOverviewDto::getLastMessageTime))
+				.collect(Collectors.toList());
 	}
 
 	private void updateIconPaths(List<ChatOverviewDto> chatOverview) {
