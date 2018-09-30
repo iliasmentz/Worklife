@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './layout/navbar/navbar.component';
 import {HomeComponent} from './home/home.component';
 import {Globals} from "./globals";
 import {WelcomeComponent} from './welcome/welcome.component';
@@ -90,6 +89,8 @@ import {AdminResolver} from "./admin/admin.resolver";
 import {SettingsComponent} from './settings/settings.component';
 import {SettingsService} from "./shared/settings/settings.service";
 import {AdminService} from './admin/admin.service';
+import { SearchUserComponent } from './navbar/search-user/search-user.component';
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 @NgModule({
@@ -132,6 +133,7 @@ import {AdminService} from './admin/admin.service';
     ConversationComponent,
     AdminComponent,
     SettingsComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -170,6 +172,7 @@ import {AdminService} from './admin/admin.service';
     CommentComponent,
     LikeComponent,
     PostCommentComponent,
+    SearchUserComponent,
     ApplicantsComponent
   ],
   providers: [

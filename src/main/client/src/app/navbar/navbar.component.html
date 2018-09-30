@@ -8,6 +8,8 @@
       class="fa fa-home w3-margin-right"></i>Worklife</a>
     <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" routerLink=""
        title="Newsfeed"><i class="fa fa-globe"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" (click)="search()"
+       title="Newsfeed"><i class="fa fa-search"></i></a>
     <a [routerLink]="['/connections', user.userId]"
        class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
        title="My Network"><i class="fa fa-users"></i></a>

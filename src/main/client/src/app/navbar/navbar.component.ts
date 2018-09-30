@@ -1,11 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {User} from "../../shared/user/user.model";
-import {AuthService} from "../../shared/auth/auth.service";
-import {FileUploadService} from "../../shared/fiile-upload/file-upload.service";
-import {Notification, Notifications} from "../../shared/notifications/notification.model";
-import {NotificationService} from "../../shared/notifications/notification.service";
+import {User} from "../shared/user/user.model";
+import {AuthService} from "../shared/auth/auth.service";
+import {Notification, Notifications} from "../shared/notifications/notification.model";
+import {NotificationService} from "../shared/notifications/notification.service";
 import {interval} from "rxjs";
+import {FileUploadService} from "../shared/fiile-upload/file-upload.service";
+import {LikeComponent} from "../newsfeed/post-list/like/like.component";
+import {BsModalService, ModalOptions} from "ngx-bootstrap";
+import {SearchUserComponent} from "./search-user/search-user.component";
+
+const options: ModalOptions = {
+  class: 'modal-m',
+  backdrop: 'static',
+};
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +30,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private _uploadService: FileUploadService,
+              private _modal: BsModalService,
               private _notificationService: NotificationService,
               private authService: AuthService) {
   }
@@ -68,5 +77,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.notifications = this.notifications.filter(function (obj) {
       return obj.notificationId !== notification.notificationId;
     });
+  }
+
+  search() {
+    const initialState = {
+    };
+
+    this._modal.show(SearchUserComponent, {...options, initialState});
   }
 }
