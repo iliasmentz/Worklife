@@ -61,9 +61,9 @@ export class UserService {
       .toPromise() as Promise<User>;
   }
 
-  register(register: Register) {
+  register(register: Register): Promise<string>{
     return this.repoService.post("auth/register", register)
-      .toPromise();
+      .toPromise() as Promise<string>;
   }
 
 

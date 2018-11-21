@@ -39,7 +39,10 @@ export class RegisterComponent implements OnInit {
       let registerRequest = new Register(this.registerForm);
       this.userService.register(registerRequest)
         .then(() => {
-          this.userService.loginUser(registerRequest.username, registerRequest.password);
+          console.log(registerRequest)
+          this.showError = false;
+          this.userService.loginUser(registerRequest.username, registerRequest.password)
+            .then().catch();
         })
         .catch(err => {
           console.log(err);
