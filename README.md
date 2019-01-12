@@ -11,6 +11,7 @@ Worklife is a web application that helps users finds new colleagues and jobs.
 - Ilias Mentzelos ([@iliasmentz](https://github.com/iliasmentz))
 - Marinos Agapiou ([@marinosag](https://github.com/marinosag))
 - Thanasis Polydoros ([@ippokratoys](https://github.com/ippokratoys))
+- Frini Panteliadi ([@frinipanteliadi](https://github.com/frinipanteliadi))
 
 ## What technologies does it use? :computer:
 
@@ -27,6 +28,20 @@ We don't know.
 Take a look and tell us, what do you think? :wink:
 
 ### Home Page 
-![alt text](/screenshots/login.png)
+![Login](/screenshots/login.png)
+
+### Newsfeed 
+![Newsfeed with image](/screenshots/newsfeed-image.png)
+![Newsfeed](/screenshots/newsfeed.png)
+
+### Profile
+![User Profile](/screenshots/my-profile-edit.png)
+
+### Connections
+![User Profile](/screenshots/connections.png)
+
+### Messages
+![User Profile](/screenshots/messages.png)
+
 
 
