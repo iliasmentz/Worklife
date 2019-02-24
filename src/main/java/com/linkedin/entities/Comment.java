@@ -25,7 +25,6 @@ public class Comment implements Serializable {
   @Id
   @Column(name = "comment_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
   private Long commentId;
 
   @NotNull
@@ -43,6 +42,4 @@ public class Comment implements Serializable {
   @NotNull
   @Column(name = "commentDate")
   private Date commentDate;
-
-
 }

@@ -15,8 +15,6 @@ import com.linkedin.model.comment.CommentRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +27,11 @@ public class CommentService {
   private final UserRepository userRepository;
 
   @Autowired
-  public CommentService(CommentRepository commentRepository, CommentConverter commentConverter, PostRepository postRepository, NotificationService notificationService, UserRepository userRepository) {
+  public CommentService(CommentRepository commentRepository,
+      CommentConverter commentConverter,
+      PostRepository postRepository,
+      NotificationService notificationService,
+      UserRepository userRepository) {
     this.commentRepository = commentRepository;
     this.commentConverter = commentConverter;
     this.postRepository = postRepository;
@@ -37,91 +39,80 @@ public class CommentService {
     this.userRepository = userRepository;
   }
 
-
-  public List<CommentDto> getPostComments(Long postId) throws Exception {
-
-    if (!postRepository.existsById(postId)) {
-      throw new ObjectNotFoundException(Post.class, postId);
-    }
-
-
-    return commentRepository.findAllByPostId(postId)
-        .stream()
-        .map(commentConverter::toCommentDto)
-        .collect(Collectors.toList());
-
-  }
-
-  public CommentDto createNewComment(CommentRequestDto commentRequestDto) throws Exception {
-    if (!postRepository.existsById(commentRequestDto.getPostId())) {
-      throw new ObjectNotFoundException(Post.class, commentRequestDto.getPostId());
-    }
-
-
-    Comment comment = new Comment();
-
-
-    Date date = new Date();
-    String dateString = new SimpleDateFormat("dd/MM/yyyy").format(date);
-    comment.setCommentDate(new SimpleDateFormat("dd/MM/yyyy").parse(dateString));
-    comment.setCommenterId(AuthenticationFacade.getUserId());
-    comment.setContext(commentRequestDto.getContext());
-    comment.setPostId(commentRequestDto.getPostId());
-    commentRepository.save(comment);
-
-    Long targetUserId = postRepository.findById(commentRequestDto.getPostId()).get().getCreatorId(); //to userId aytou pou egrapse to
-    notificationService.createNotification(targetUserId, 1, comment.getCommentId());
-
-
-    return commentConverter.toCommentDto(comment);
-
-  }
-
-  public List<CommentDto> getAllComments() {
-    return commentRepository.findAll()
-        .stream()
-        .map(commentConverter::toCommentDto)
-        .collect(Collectors.toList());
-
-  }
-
-  public void deleteComment(Long commentId) throws Exception {
-    if (!commentRepository.existsById(commentId)) {
-      throw new ObjectNotFoundException(Comment.class, commentId);
-    }
-
-    Long userId = AuthenticationFacade.getUserId();
-    Comment comment = commentRepository.findById(commentId).orElse(null);
-    if (userId != comment.getCommenterId()) {
-      throw new NotAuthorizedException(Comment.class);
-    }
-
-    commentRepository.deleteById(commentId);
-
-
-  }
-
-  public CommentDto updateComment(Long commentId, CommentRequestDto commentRequestDto) throws Exception {
-    if (!commentRepository.existsById(commentId)) {
-      throw new ObjectNotFoundException(Comment.class, commentId);
-    }
-    Long userId = AuthenticationFacade.getUserId();
-    Comment comment = commentRepository.findById(commentId).orElse(null);
-    if (userId != comment.getCommenterId()) {
-      throw new NotAuthorizedException(Comment.class);
-    }
-
-    comment.setContext(commentRequestDto.getContext());
-    comment.setCommenterId(userId);
-    commentRepository.save(comment);
-    return commentConverter.toCommentDto(comment);
-  }
-
   public List<CommentDto> getPostUserComments(Long userId) throws Exception {
+    checkIfUserExists(userId);
+    return commentRepository.findAllByCommenterId(userId).stream().map(commentConverter::toCommentDto).collect(Collectors.toList());
+  }
+
+  private void checkIfUserExists(Long userId) throws ObjectNotFoundException {
     if (!userRepository.existsById(userId)) {
       throw new ObjectNotFoundException(User.class, userId);
     }
-    return commentRepository.findAllByCommenterId(userId).stream().map(commentConverter::toCommentDto).collect(Collectors.toList());
+  }
 
+  List<CommentDto> getPostComments(Long postId) throws Exception {
+    checkIfPostsExists(postId);
+
+    return commentRepository.findAllByPostId(postId)
+      .stream()
+      .map(commentConverter::toCommentDto)
+      .collect(Collectors.toList());
+  }
+
+  CommentDto createNewComment(CommentRequestDto commentRequestDto) throws Exception {
+    checkIfPostsExists(commentRequestDto.getPostId());
+    Comment comment = commentConverter.toComment(commentRequestDto);
+    commentRepository.save(comment);
+    sendNotificationToCreator(commentRequestDto, comment);
+
+    return commentConverter.toCommentDto(comment);
+  }
+
+  private void sendNotificationToCreator(CommentRequestDto commentRequestDto, Comment comment) {
+    Long targetUserId = postRepository.findById(commentRequestDto.getPostId()).get().getCreatorId(); //to userId aytou pou egrapse to
+    notificationService.createNotification(targetUserId, 1, comment.getCommentId());
+  }
+
+  private void checkIfPostsExists(Long postId) throws ObjectNotFoundException {
+    if (!postRepository.existsById(postId)) {
+      throw new ObjectNotFoundException(Post.class, postId);
+    }
+  }
+
+  List<CommentDto> getAllComments() {
+    return commentRepository.findAll()
+      .stream()
+      .map(commentConverter::toCommentDto)
+      .collect(Collectors.toList());
+
+  }
+
+  void deleteComment(Long commentId) throws Exception {
+    checkIfCommentExists(commentId);
+    Comment comment = commentRepository.findById(commentId).orElse(null);
+    checkIfCommentBelongsToUser(comment);
+    commentRepository.deleteById(commentId);
+  }
+
+  CommentDto updateComment(Long commentId, CommentRequestDto commentRequestDto) throws Exception {
+    checkIfCommentExists(commentId);
+    Comment comment = commentRepository.findById(commentId).orElse(null);
+    checkIfCommentBelongsToUser(comment);
+    comment.setContext(commentRequestDto.getContext());
+    commentRepository.save(comment);
+    return commentConverter.toCommentDto(comment);
+  }
+
+  private void checkIfCommentExists(Long commentId) throws ObjectNotFoundException {
+    if (!commentRepository.existsById(commentId)) {
+      throw new ObjectNotFoundException(Comment.class, commentId);
+    }
+  }
+
+  private void checkIfCommentBelongsToUser(Comment comment) throws NotAuthorizedException {
+    Long userId = AuthenticationFacade.getUserId();
+    if (!userId.equals(comment.getCommenterId())) {
+      throw new NotAuthorizedException(Comment.class);
+    }
   }
 }
